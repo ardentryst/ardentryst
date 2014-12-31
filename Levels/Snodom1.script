@@ -1,0 +1,13 @@
+# ArdenScrypt [Snodom]
+/when 1, TIME1 = 35
+/when 1, TIME2 = 22
+/when 1, TIME3 = 18
+
+/when 1, PLAYER.cold = True
+/when 1, setTreasure(1, str(random.randint(70,110)))
+/when 1, setTreasure(2, str(random.randint(100,200)))
+/when posx > 1750 and not ptag[3] and help, msg("Obelisks save your level progress so if you die later on, you will start from when you activated it. Press " + namekey("B-3") + " to activate the obelisk."); setpt(3)
+/when posx > 1070 and not ptag[4] and help, msg("Levers will activate or deactivate things. Press " + namekey("B-3") + " to pull the lever."); setpt(4)
+/when 1, action("Lever", 1, "command", "action('Firepit', 1, 'state', 0)")
+/when 1, action("Lever", 2, "command", "action('Firepit', 2, 'state', 0)")
+/when posx > 4000 and not ptag[5] and help, msg("From this level onwards, you can collect ancient time gems by finishing the level quickly. If you finish a level quick enough, you will get a time gem-either yellow, red or blue depending on your speed! These will add points to your overall score!"); setpt(5)

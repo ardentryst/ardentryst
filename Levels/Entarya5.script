@@ -1,0 +1,10 @@
+# ArdenScrypt [Entarya]
+/while 1, RAIN_HEAVINESS = 50
+/when 1, setTreasure(1, str(random.randint(40,140)))
+/when 1, setTreasure(2, "Mana potion")
+/when 1, setTreasure(3, "Potion2")
+/when 1, setTreasure(4, "Mana potion2")
+/when 1, setTreasure(5, str(random.randint(50,150)))
+/when 1, setTreasure(6, "Potion")
+
+

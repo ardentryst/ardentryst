@@ -1,0 +1,4 @@
+# ArdenScrypt [Entarya]
+/when 1, setTreasure(1, "Potion2")
+/when 1, setTreasure(2, "Mana potion2")
+

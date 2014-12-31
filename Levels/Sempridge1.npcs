@@ -1,0 +1,13 @@
+# ArdenScrypt NPC code - Tutorial level 1 [Sempridge]
+/NPC Trainer
+/set follow_player True
+/set prefix "Pyralis_Mentor"
+/set portrait ["Pyralis_Mentor.png", "Pyralis_Mentor2.png", "Pyrals_Mentor3.png"]
+/set animations["Stopped"] 14*["Stopped1.png"]+["Stopped_blink.png"]
+/set animations["Walking"] ["Walking1.png", "Walking2.png", "Walking3.png", "Walking4.png"]
+/set x 20
+/set y 240
+/set first_proximity_message ["**Ah! It's you, Pyralis! I've been trying to find you all day.*1", "I'm here to help make a warrior out of you.", "#Use your right and left keys to control Pyralis. Try this now, and keep walking to the right."]
+/set tutorial True
+/END
+

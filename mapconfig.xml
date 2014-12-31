@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+  <image-dictionary>
+    <map>
+
+      <image name="iC_Floor 1" filename="cavefloor1.png"/>
+      <image name="iC_Floor 2" filename="cavefloor2.png"/>
+      <image name="iC_Floor 3" filename="cavefloor3.png"/>
+      <image name="iC_Ice" filename="caveice.png"/>
+      <image name="iC_TopR" filename="cavetr.png"/>
+      <image name="iC_TopL" filename="cavetl.png"/>
+      <image name="iC_wr" filename="cavewr.png"/>
+      <image name="iC_wr2" filename="cavewr2.png"/>
+      <image name="iC_wl" filename="cavewl.png"/>
+      <image name="iC_wl2" filename="cavewl2.png"/>
+      <image name="iC_jr" filename="cavejr.png"/>
+      <image name="iC_jl" filename="cavejl.png"/>
+
+      <image name="C_Castle Floor 1" filename="cstl_floor1.png"/>
+      <image name="C_Castle Floor 2" filename="cstl_floor2.png"/>
+      <image name="C_Castle Floor 3" filename="cstl_floor3.png"/>
+      <image name="C_Castle Floor 4" filename="cstl_floor4.png"/>
+      <image name="C_Castle Ground 1" filename="cstl_ground1.png"/>
+      <image name="C_Castle Ground 2" filename="cstl_ground2.png"/>
+      <image name="C_Castle Ground 3" filename="cstl_ground3.png"/>
+      <image name="C_Castle HRmR" filename="cstl_hr_m_r.png"/>
+      <image name="C_Castle HRR" filename="cstl_hr_r.png"/>
+      <image name="C_Castle HRmL" filename="cstl_hr_m_l.png"/>
+      <image name="C_Castle HRL" filename="cstl_hr_l.png"/>
+      <image name="C_Castle Floor Edge R" filename="cstl_floor_edge_right.png"/>
+      <image name="C_Castle Floor Edge L" filename="cstl_floor_edge_left.png"/>
+      <image name="C_Castle Wall->Floor R" filename="cstl_wfright.png"/>
+      <image name="C_Castle Wall->Floor L" filename="cstl_wfleft.png"/>
+      <image name="C_Castle Wall R" filename="cstl_wright.png"/>
+      <image name="C_Castle Wall L" filename="cstl_wleft.png"/>
+      <image name="C_Suit of Armour" filename="suit_armour.png"/>
+
+      <image name="F_Grass" filename="grass.png"/>
+      <image name="F_Grass->Dirttop" filename="grassmdirt.png"/>
+      <image name="F_Dirttop->Grass" filename="dirtmgrass.png"/>
+      <image name="F_Dirttop" filename="dirttop.png"/>
+      <image name="F_GrassLedge" filename="grassl_edge.png"/>
+      <image name="F_GrassRedge" filename="grassr_edge.png"/>
+      <image name="F_Grass_Alt_1" filename="grassc1.png"/>
+      <image name="F_Grass_Alt_2" filename="grassc2.png"/>
+      <image name="F_Grass_Alt_3" filename="grassc3.png"/>
+      <image name="F_Grass_Alt_4" filename="grassc4.png"/>
+      <image name="F_Grass_Alt_5" filename="grassc5.png"/>
+      <image name="F_Dirt" filename="dirt.png"/>
+      <image name="F_Dirtb" filename="dirtb.png"/>
+      <image name="F_Dirtb2" filename="dirtb2.png"/>
+      <image name="F_Dirt_R1" filename="dirtr_edge1.png"/>
+      <image name="F_Dirt_R2" filename="dirtr_edge2.png"/>
+      <image name="F_Dirt_BR" filename="dirtr_bedge.png"/>
+      <image name="F_Dirt_L1" filename="dirtl_edge1.png"/>
+      <image name="F_Dirt_L2" filename="dirtl_edge2.png"/>
+      <image name="F_Dirt_BL" filename="dirtl_bedge.png"/>
+      <image name="F_Dirt_Alt_1" filename="dirtc1.png"/>
+      <image name="F_Dirt_Alt_2" filename="dirtc2.png"/>
+      <image name="F_Dirt_Alt_3" filename="dirtc3.png"/>
+      <image name="F_Dirt_Alt_4" filename="dirtc4.png"/>
+      <image name="F_Grass->DirtL" filename="grass_dirt_l.png"/>
+      <image name="F_Grass->DirtR" filename="grass_dirt_r.png"/>
+      <image name="F_Right_Ramp" filename="R_R.png"/>
+      <image name="F_Left_Ramp" filename="L_R.png"/>
+      <image name="F_RampJoinR" filename="ramp_mid_dirt_r.png"/>
+      <image name="F_RampJoinL" filename="ramp_mid_dirt_l.png"/>
+      <image name="F_Right_Halframp1" filename="R_HR1.png"/>
+      <image name="F_Right_Halframp2" filename="R_HR2.png"/>
+      <image name="F_Left_Halframp1" filename="L_HR1.png"/>
+      <image name="F_Left_Halframp2" filename="L_HR2.png"/>
+      <image name="F_HalframpJoinR" filename="halframp_mid_dirt_r.png"/>
+      <image name="F_HalframpJoinL" filename="halframp_mid_dirt_l.png"/>
+      <image name="F_Shrooms1" filename="shrooms1.png"/>
+      <image name="F_Shrooms2" filename="shrooms2.png"/>
+      <image name="F_Shrooms3" filename="shrooms3.png"/>
+      <image name="F_Tuft1" filename="tuft1.png"/>
+      <image name="F_Tuft2" filename="tuft2.png"/>
+      <image name="F_Stump" filename="treestump.png"/>
+      <image name="F_ExitSign" filename="exitsign.png"/>
+
+      <image name="S_Snow" filename="snow_snow.png"/>
+      <image name="S_Snow2" filename="snow_snow2.png"/>
+      <image name="S_Ground1" filename="snow_ground1.png"/>
+      <image name="S_LRamp" filename="snow_lramp.png"/>
+      <image name="S_bLRamp" filename="snow_blramp.png"/>
+      <image name="S_RRamp" filename="snow_rramp.png"/>
+      <image name="S_bRRamp" filename="snow_brramp.png"/>
+      <image name="S_edgeright" filename="snow_edge_right.png"/>
+      <image name="S_edgewright1" filename="snow_edgewall_right1.png"/>
+      <image name="S_edgewright2" filename="snow_edgewall_right2.png"/>
+      <image name="S_UCright" filename="snow_undercorner_right.png"/>
+      <image name="S_UCJright" filename="snow_undercorner_join_right.png"/>
+      <image name="S_ECright" filename="snow_edgecorner_right.png"/>
+
+      <image name="S_edgeleft" filename="snow_edge_left.png"/>
+      <image name="S_edgewleft1" filename="snow_edgewall_left1.png"/>
+      <image name="S_edgewleft2" filename="snow_edgewall_left2.png"/>
+      <image name="S_UCleft" filename="snow_undercorner_left.png"/>
+      <image name="S_UCJleft" filename="snow_undercorner_join_left.png"/>
+      <image name="S_ECleft" filename="snow_edgecorner_left.png"/>
+
+      <image name="S_Tree" filename="snow_tree.png"/>
+      <image name="S_Tree2" filename="snow_tree2.png"/>
+      <image name="S_Railing_L" filename="snow_railing_left.png"/>
+      <image name="S_Railing_1" filename="snow_railing1.png"/>
+      <image name="S_Railing_2" filename="snow_railing2.png"/>
+      <image name="S_Railing_R" filename="snow_railing_right.png"/>
+      <image name="S_Pillar" filename="snow_pillar.png"/>
+      <image name="S_Pillartop" filename="snow_pillartop.png"/>
+
+      <image name="S_Stones" filename="snow_stones.png"/>
+
+    </map>
+    <objects>
+      <image name="Player_Start" filename="Start.png"/>
+      <image name="Butterfly" filename="Butterfly.png"/>
+      <image name="ButterflyB" filename="ButterflyB.png"/>
+      <image name="ButterflyC" filename="ButterflyC.png"/>
+      <image name="TreasureBox" filename="Treasure_Closed.png"/>
+      <image name="TreasureBoxB" filename="TreasureB_Closed.png"/>
+      <image name="TreasureBoxC" filename="TreasureC_Closed.png"/>
+      <image name="Walltorch" filename="Walltorch.png"/>
+      <image name="Torchref" filename="Torchref.png"/>
+      <image name="Shield" filename="Shield.png"/>
+      <image name="Sword" filename="Sword.png"/>
+      <image name="FallingRock" filename="Rock.png"/>
+      <image name="Obelisk_Snow" filename="Obelisk_Snow.png"/>
+      <image name="Lever_Snow" filename="Lever1.png"/>
+      <image name="Firepit" filename="Pit.png"/>
+      <image name="Level_End" filename="End.png"/>
+      <image name="Sign" filename="Sign.png"/>
+    </objects>
+    <enemies directory="images">
+      <image name="Pod" prefix="pod"/>
+      <image name="PoisPod" prefix="poispod"/>
+      <image name="Spider" prefix="spider"/>
+      <image name="CSpider" prefix="cspider"/>
+      <image name="Worm" prefix="worm"/>
+      <image name="Wasp" prefix="wasp"/>
+      <image name="GiantWorm" prefix="giantworm"/>
+      <image name="SnowOgre" prefix="snowogre"/>
+      <image name="SnowBat" prefix="snowbat"/>
+      <image name="GiantJelly" prefix="giantjelly"/>
+      <image name="Boss_Radkelu" prefix="boss_radkelu"/>
+    </enemies>
+  </image-dictionary>
+</config>

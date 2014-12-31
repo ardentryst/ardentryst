@@ -1,0 +1,22 @@
+Ardentryst Online Play
+
+You may read this at any time from the main menu, and feel free to skip this if you do not intend
+to submit your score to the score server.
+
+Rules
+
+By submitting your score to the Ardentryst Online Scoreboard, you agree to these rules:
+
+1. The score is sent from the unaltered Ardentryst game (including its game data files)
+2. The score is attained solely by human player(s).
+3. You will not use a player name that is derogatory, offensive or anything unsuitable
+   for a worldwide audience.
+4. There is a chance that the score server flags your score submission as invalid when
+   it is legitimate. Disqualification is not permenant, e-mail me and we can sort it out.
+   (If this happens, it is a bug in the server code, not a flaw in the algorithm.)
+
+Failure to abide by these rules will result in exclusion of a rank in the scoreboard.
+Other than that, you are encouraged to read and edit the source code for your own purpose
+(as long as you don't submit a score from that version of the game.)
+
+Press a key.

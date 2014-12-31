@@ -1,0 +1,5 @@
+# ArdenScrypt [Sempridge]
+/while 1, RAIN_HEAVINESS = max(0, (-abs((posx)-400)/2+400)/4)
+/when 1, setTreasure(1, str(random.randint(150,185)))
+/when 1, setTreasure(2, "Potion2")
+/when posx >= 140 and not ptag[0] and help, msg("Hold down " + namekey("B-3") + " to keep facing the same direction while running forwards or backwards. This is known as strafing. Oh, and see that halo above your head? If you get hurt, you'll lose it. You get it back at the start of a level. If you can keep it until the end of the level, you will get an extra 100% level completion!"); ptag[0] = 1

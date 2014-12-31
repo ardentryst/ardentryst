@@ -1,0 +1,6 @@
+# ArdenScrypt [Entarya]
+/when not ptag[7] and help and posx > 2900, msg("Tip: Hold " + namekey("B-8") + " and then either " + namekey("Up") + " or " + namekey("Down") + " to look up and down. Avoid loose rocks and pitfalls this way."); ptag[7] = 1
+/when 1, setTreasure(1, str(random.randint(50, 150)))
+/when 1, setTreasure(2, "Mana potion")
+/when 1, setTreasure(3, "Mana potion")
+

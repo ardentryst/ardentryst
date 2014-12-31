@@ -1,0 +1,14 @@
+# ArdenScrypt [Snodom]
+/when 1, TIME1 = 90
+/when 1, TIME2 = 60
+/when 1, TIME3 = 45
+
+/when 1, PLAYER.cold = True
+/when 1, setTreasure(1, str(random.randint(215,335)))
+
+/when 1, action("Lever", 1, "command", "var[0] = copy.deepcopy(LEVEL.map[97:106])\nfor x in range(9):\n    LEVEL.map[97+x][10] = LEVEL.map[96][10]\n    LEVEL.map[97+x][11] = LEVEL.map[96][11]\nMake_CL_Surface(pygame.Surface((len(LEVEL.map)*40,480), SRCALPHA, 32))")
+
+
+/when not IN_GAME and type(var[0]) == list, action("Lever", 1, "state", 0)
+/when not IN_GAME and type(var[0]) == list, action("Lever", 1, "_activateable", True)
+/when not IN_GAME and type(var[0]) == list, LEVEL.map = LEVEL.map[:97] + var[0] + LEVEL.map[106:]

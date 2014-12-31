@@ -1,0 +1,4 @@
+# ArdenScrypt [Sempridge]
+/when 1, setTreasure(1, "Potion2")
+/when 1, setTreasure(2, "Mana potion2")
+/when not ptag[1] and help, msg("Tip: Hold " + namekey("B-8") + " and then either " + namekey("Up") + " or " + namekey("Down") + " to look up and down."); ptag[1] = 1

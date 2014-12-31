@@ -1,0 +1,9 @@
+# ArdenScrypt [Snodom]
+/when 1, TIME1 = 30
+/when 1, TIME2 = 25
+/when 1, TIME3 = 14
+
+/when 1, setTreasure(1, "Antidote")
+
+/when 1, PLAYER.cold = True
+/when 1, action("Sign", 1, "message", "Keep jumping while you run forward, hop along the ice platforms, and stay in the air as much as possible. If you can manage to hop like this, you will gain enough speed to cover bigger chasms... Remember to hold the jump button to jump higher...")
