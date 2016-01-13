@@ -1,0 +1,7 @@
+# ArdenScrypt [Sempridge]
+/when 1, setTreasure(1, "Potion")
+/when 1, setTreasure(2, str(random.randint(90,130)))
+/when 1, setTreasure(3, "Mana potion2")
+/when 1, setTreasure(4, str(random.randint(50,100)))
+/when 1, setTreasure(5, "Potion2")
+/when posx <= 2140 and posx >= 2060 and not PLAYER.direction and not ptag[9] and help, msg("Check your quest log via the menu (press " + namekey("B-9") + ") to see what quests you have yet to do. Talk to NPCs using the " + namekey("B-3") + " key."); setpt(9)

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /usr/share/games/ardentryst
+/usr/bin/python /usr/share/games/ardentryst/ardentryst.py

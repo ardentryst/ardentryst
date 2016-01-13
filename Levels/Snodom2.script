@@ -1,0 +1,17 @@
+# ArdenScrypt [Snodom]
+/when 1, TIME1 = 45
+/when 1, TIME2 = 30
+/when 1, TIME3 = 20
+
+/when 1, setTreasure(1, random.choice(["Potion", "Mana potion"]))
+/when 1, setTreasure(2, str(random.randint(170,180)))
+/when 1, setTreasure(3, random.choice(["Potion", "Mana potion"]))
+/when 1, setTreasure(4, "Antidote")
+/when 1, setTreasure(5, "Mana potion2")
+/when 1, setTreasure(6, "Potion2")
+/when 1, setTreasure(7, str(random.randint(90,110)))
+
+/when 1, PLAYER.cold = True
+/when 1, action("Lever", 1, "command", "action('Firepit', 3, 'state', 0)& action('Firepit', 4, 'state', 0)")
+/when 1, action("Lever", 2, "command", "action('Firepit', 1, 'state', 0)& action('Firepit', 2, 'state', 0)")
+/when 1, action("Lever", 3, "command", "PLAYER.inertia[1] -= 14 & PLAYER.y -= 24 & time.sleep(2) & self.state = 0 & self._activateable = True & SOUNDBOX.PlaySound('stone.ogg')")

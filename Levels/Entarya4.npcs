@@ -1,0 +1,11 @@
+# ArdenScrypt NPC code
+/NPC Stranger
+/set prefix "Ninja"
+/set portrait ["Stranger.png"]
+/set animations["Stopped"] 14*["Stopped1.png"]+7*["Stopped2.png"]
+/set x 2200
+/set y 320
+/set interactive True
+/set action "quest_npc('Collector1')"
+/END
+

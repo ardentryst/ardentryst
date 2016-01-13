@@ -1,0 +1,4 @@
+# ArdenScrypt [Entarya]
+/when 1, setTreasure(1, str(random.randint(60,260)))
+/when 1, setTreasure(2, "Mana potion2")
+/when posx >= 140 and not ptag[6] and help, msg("Hold down " + namekey("B-3") + " to keep facing the same direction while running forwards or backwards. This is known as strafing. Oh, and see that halo above your head? If you can keep that until the end of the level, you'll get an extra 100% completion. If you get hurt, you'll lose the halo (until you start the level again.)"); setpt(6)

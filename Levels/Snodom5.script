@@ -1,0 +1,8 @@
+# ArdenScrypt [Snodom]
+/when 1, TIME1 = 60
+/when 1, TIME2 = 45
+/when 1, TIME3 = 30
+
+/when 1, setTreasure(1, str(random.randint(40,260)))
+
+/when 1, PLAYER.cold = True

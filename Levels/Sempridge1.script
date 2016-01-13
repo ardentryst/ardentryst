@@ -1,0 +1,3 @@
+# ArdenScrypt [Sempridge]
+/when 1, setTreasure(1, random.choice(["Potion", "Mana potion"]))
+/when 1, setTreasure(2, str(random.randint(35,135)))

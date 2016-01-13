@@ -1,0 +1,13 @@
+# ArdenScrypt [Snodom]
+/when 1, TIME1 = 50
+/when 1, TIME2 = 35
+/when 1, TIME3 = 22
+
+/when 1, setTreasure(1, "Mana potion2")
+/when 1, setTreasure(2, "Potion2")
+/when 1, setTreasure(3,  str(random.randint(150,450)))
+/when 1, setTreasure(4, "Potion2")
+/when 1, setTreasure(5, "Mana potion2")
+/when 1, setTreasure(6, "Antidote")
+
+/when 1, PLAYER.cold = True

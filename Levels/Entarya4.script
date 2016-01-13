@@ -1,0 +1,9 @@
+# ArdenScrypt [Entarya]
+/when 1, setTreasure(1, str(random.randint(50,150)))
+/when 1, setTreasure(2, "Mana potion2")
+/when 1, setTreasure(3, "Potion2")
+/when 1, setTreasure(4, "Mana potion2")
+/when 1, setTreasure(5, str(random.randint(30,120)))
+
+/when posx >= 2120 and not ptag[8] and help, msg("Check your quest log via the menu (press " + namekey("B-9") + ") to see what quests you have yet to do. Talk to NPCs with the " + namekey("B-3") + " key."); setpt(8)
+

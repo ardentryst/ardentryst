@@ -1,0 +1,8 @@
+# ArdenScrypt [Entarya]
+/when 1, setTreasure(1, "Mana potion")
+/when 1, setTreasure(2, "Mana potion2")
+/when 1, setTreasure(3, "Potion")
+/when 1, setTreasure(4, str(random.randint(50,200)))
+/when 1, setTreasure(5, str(random.randint(100,200)))
+/when 1, setTreasure(6, "Mana potion2")
+/when 1, setTreasure(7, "Potion2")

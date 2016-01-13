@@ -1,0 +1,12 @@
+# ArdenScrypt NPC code - Tutorial level 1 [Entarya]
+/NPC Trainer
+/set follow_player_fly True
+/set prefix "Nyx_Mentor"
+/set portrait ["Nyx_Mentor.png", "Nyx_Mentor2.png", "Nyx_Mentor3.png"]
+/set animations["Stopped"] ["Stopped1.png", "Stopped2.png", "Stopped3.png", "Stopped2.png"]
+/set x 20
+/set y 140
+/set first_proximity_message ["**Nyx! How good to see you again! I've been sent by Queen Amee to make sure you can handle yourself!", "#Walk using the arrow keys. Walk to the right now!"]
+/set tutorial True
+/END
+

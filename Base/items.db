@@ -1,0 +1,755 @@
+<Antidote>
+display Antidote
+description A jar containing a green mixture which will cure poison.
+type Consumable
+value 80
+on-use player.bits['poisoned'] = False
+inv-image Chemical2.png
+use-prefix Drink
+use-sound drink.ogg
+
+<Potion>
+display Minor health potion
+description A flask containing a red liquid. Drinking this will heal 10 HP.
+type Consumable
+value 20
+on-use player.hp[0] = min(player.hp[0] + 10, player.hp[1])
+inv-image Potion.png
+use-prefix Drink
+use-sound drink.ogg
+
+<Potion2>
+display Med health potion
+description A flask containing a red liquid. Drinking this will heal 25 HP.
+type Consumable
+value 50
+on-use player.hp[0] = min(player.hp[0] + 25, player.hp[1])
+inv-image Potion2.png
+use-prefix Drink
+use-sound drink.ogg
+
+<Potion3>
+display Large health potion
+description A flask containing an orange liquid. Drinking this will heal 100 HP.
+type Consumable
+value 200
+on-use player.hp[0] = min(player.hp[0] + 100, player.hp[1])
+inv-image Potion3.png
+use-prefix Drink
+use-sound drink.ogg
+
+<Potion4>
+display Super health potion
+description A flask containing an orange liquid. Drinking this will heal 500 HP.
+type Consumable
+value 1000
+on-use player.hp[0] = min(player.hp[0] + 500, player.hp[1])
+inv-image Potion4.png
+use-prefix Drink
+use-sound drink.ogg
+
+<Mana potion>
+display Minor mana potion
+description A flask containing a blue liquid. Drinking this will heal 10 MP.
+type Consumable
+value 30
+on-use player.mp[0] = min(player.mp[0] + 10, player.mp[1])
+inv-image PotionB.png
+use-prefix Drink
+use-sound drink.ogg
+
+<Mana potion2>
+display Med mana potion
+description A flask containing a blue liquid. Drinking this will heal 25 MP.
+type Consumable
+value 75
+on-use player.mp[0] = min(player.mp[0] + 25, player.mp[1])
+inv-image PotionB2.png
+use-prefix Drink
+use-sound drink.ogg
+
+<Mana potion3>
+display Large mana potion
+description A flask containing an aqua-coloured liquid. Drinking this will heal 100 MP.
+type Consumable
+value 300
+on-use player.mp[0] = min(player.mp[0] + 100, player.mp[1])
+inv-image PotionB3.png
+use-prefix Drink
+use-sound drink.ogg
+
+<Mana potion4>
+display Super mana potion
+description A flask containing a aqua-coloured liquid. Drinking this will heal 500 MP.
+type Consumable
+value 1500
+on-use player.mp[0] = min(player.mp[0] + 500, player.mp[1])
+inv-image PotionB4.png
+use-prefix Drink
+use-sound drink.ogg
+
+<Anneludine shell>
+display Anneludine Shell
+description The shell of an Anneludine, spiky and blue.
+type None
+value 25
+inv-image Shell.png
+use-prefix ?
+
+<Nepthene tongue>
+display Nepthene Tongue
+description The tongue of a Nepthene. Gross!
+type None
+value 15
+inv-image Tongue.png
+use-prefix ?
+
+<Mega anneludine skull>
+display Mega Anneludine Skull
+description The skull of a Mega Anneludine. Useful to carve tools from.
+type None
+value 160
+inv-image Skull.png
+use-prefix ?
+
+<Silver ring>
+display Ring of fortune
+description A silver ring that brings luck to the wearer.
+type Accessory
+value 45
+usage-bonus luck 2
+inv-image ring1.png
+use-prefix Put on
+
+<Regen ring>
+display Ring of regeneration
+description A magical ring that constantly restores HP when worn.
+type Accessory
+value 350
+bit #regen1
+inv-image ring5.png
+use-prefix Put on
+
+<Haste ring>
+display Ring of magical haste
+description A magical ring that increases the speed of casting magic by 60%. Using another Ring of magical haste will not increase speed further.
+type Accessory
+value 280
+bit #haste1
+inv-image ring2.png
+use-prefix Put on
+
+<Ancient pendant>
+display Ancient pendant
+description An ancient magical pendant.
+type Accessory
+value 1200
+usage-bonus luck 5
+usage-bonus strength 8
+usage-bonus endurance 6
+usage-bonus magic 8
+inv-image pendant.png
+use-prefix Wear
+
+<Luck charm>
+display Luck Charm
+description A charm that brings luck to the wearer.
+type Accessory
+value 150
+usage-bonus luck 3
+inv-image pendant5.png
+use-prefix Wear
+
+<Rage pendant>
+display Pendant of rage
+description A magical pendant that enrages the wearer.
+type Accessory
+value 500
+usage-bonus strength 4
+usage-bonus magic 4
+inv-image pendant2.png
+use-prefix Wear
+
+<Nature pendant>
+display Pendant of protection
+description A magical pendant that resists damage for the wearer.
+type Accessory
+value 400
+protection 1
+inv-image pendant3.png
+use-prefix Wear
+
+<Confusion pendant>
+display Pendant of confusion
+description A magical pendant that has strange effects.
+type Accessory
+value 350
+usage-bonus endurance -2
+usage-bonus luck -4
+usage-bonus magic 12
+inv-image pendant4.png
+use-prefix Wear
+
+<Training staff>
+type Wearable
+display Training Staff
+value 25
+location Weapon
+minrange 0
+range 70
+damage 5
+time 25
+wearable-image-prefix Staff
+inv-image StaffA.png
+hit-sound WoodHit.ogg
+usage-bonus magic 8
+frames M Stopped (1 -14 -14 50)
+frames M Walking (1 -29 -22 135),(1 -16 -24 115),(1 -20 -8 40),(1 -23 -8 35),(1 -22 -5 30),(1 -24 10 15),(1 -21 -4 35),(1 8 -24 90)
+frames M Jumping (1 -29 -22 135),(1 -16 -24 115),(1 -20 -8 40),(1 -23 -8 35),(1 -22 -5 30),(1 -24 10 15),(1 -21 -4 35),(1 8 -24 90)
+frames M Attack (1 -32 8 180),(1 -15 -29 115),(1 3 -28 70),(1 -6 7 15)
+frames M Cast (2 -36 -25 20)
+description The training staff passed down to Nyx by Queen Amee. It flows with magical energy and will allow the holder to cast spells more efficiently. It is made from tough wood, and can still be used to whack a close enemy. This physical attack does not consume MP. Great magical bonus, very low physical damage and mediocre range. With a staff equipped, your best option is to cast spells to dispatch enemies.
+
+<Oak staff>
+type Wearable
+display Oak Staff
+value 300
+location Weapon
+minrange 0
+range 70
+damage 9
+time 25
+wearable-image-prefix OStaff
+inv-image StaffB.png
+hit-sound WoodHit.ogg
+usage-bonus magic 14
+frames M Stopped (1 -14 -14 50)
+frames M Walking (1 -29 -22 135),(1 -16 -24 115),(1 -20 -8 40),(1 -23 -8 35),(1 -22 -5 30),(1 -24 10 15),(1 -21 -4 35),(1 8 -24 90)
+frames M Jumping (1 -29 -22 135),(1 -16 -24 115),(1 -20 -8 40),(1 -23 -8 35),(1 -22 -5 30),(1 -24 10 15),(1 -21 -4 35),(1 8 -24 90)
+frames M Attack (1 -32 8 180),(1 -15 -29 115),(1 3 -28 70),(1 -6 7 15)
+frames M Cast (2 -36 -25 20)
+description An oak staff, made from an oak tree.
+
+<Crescent staff>
+type Wearable
+display Crescent Staff
+value 1500
+location Weapon
+minrange 0
+range 100
+damage 20
+time 35
+wearable-image-prefix CStaff
+inv-image StaffC.png
+hit-sound HitSlice.ogg
+usage-bonus magic 80
+frames M Stopped (1 -31 1 20)
+frames M Walking (1 -51 -21 150),(1 -30 -41 120),(1 -34 -15 35),(1 -38 -7 25),(1 -36 5 15),(1 -36 26 0),(1 -36 3 20),(1 9 -45 90)
+frames M Jumping (1 -51 -21 150),(1 -30 -41 120),(1 -34 -15 35),(1 -38 -7 25),(1 -36 5 15),(1 -36 26 0),(1 -36 3 20),(1 9 -45 90)
+frames M Attack (1 -52 4 175),(1 -38 -39 130),(1 15 -45 90),(1 -22 -9 25)
+frames M Cast (2 -49 -17 10)
+description A long metal staff with crescent moon styled blades on each end. Can do decent damage when swung but its main forte is its great magical power.
+
+<Nepthene fibre leggings>
+type Wearable
+display Nepthene Fibre Leggings
+value 165
+location Legs
+usage-bonus endurance 2
+protection 1
+wearable-image-prefix NepFib
+inv-image NeptheneFibreLeggings.png
+frames W Stopped (1 0 0 0)
+frames W Walking (2 0 0 0),(3 0 0 0),(4 0 0 0),(5 0 0 0),(6 0 0 0),(7 0 0 0),(8 0 0 0),(9 0 0 0)
+frames W Jumping (2 0 0 0),(3 0 0 0),(4 0 0 0),(5 0 0 0),(6 0 0 0),(7 0 0 0),(8 0 0 0),(9 0 0 0)
+description Leg armour fashioned from the fibres of Nepthene plants. Light and flexible, gives the wearer defence and vitality.
+
+<Anneludine shell platelegs>
+type Wearable
+display Annelude Shell Platelegs
+value 400
+location Legs
+protection 2
+wearable-image-prefix Annellegs
+inv-image AnneludineLeggings.png
+frames W Stopped (1 0 0 0)
+frames W Walking (2 0 0 0),(3 0 0 0),(4 0 0 0),(5 0 0 0),(6 0 0 0),(7 0 0 0),(8 0 0 0),(9 0 0 0)
+frames W Jumping (2 0 0 0),(3 0 0 0),(4 0 0 0),(5 0 0 0),(6 0 0 0),(7 0 0 0),(8 0 0 0),(9 0 0 0)
+description Leg armour made from Anneludine Shells.
+
+<Frost skirt>
+type Wearable
+display Frost Mage Skirt
+value 200
+location Legs
+usage-bonus magic 3
+protection 1
+wearable-image-prefix frostskirt
+inv-image frostskirt.png
+frames M Stopped (1 16 44 0)
+frames M Walking (2 10 42 0),(3 13 45 0),(4 13 44 0),(5 14 43 0),(6 8 45 0),(7 13 44 0),(8 14 44 0),(9 14 32 0)
+frames M Jumping (2 10 42 0),(3 13 45 0),(4 13 44 0),(5 14 43 0),(6 8 45 0),(7 13 44 0),(8 14 44 0),(9 14 32 0)
+description A beautiful skirt with an icy pattern on it.
+
+<Frost robe>
+type Wearable
+display Frost Mage Robe
+value 700
+location Torso
+usage-bonus magic 5
+protection 4
+wearable-image-prefix frostrobe
+inv-image frostrobe.png
+frames M Stopped (1 16 28 0)
+frames M Walking (2 13 30 0),(3 14 31 0),(4 14 30 0),(5 13 28 0),(6 15 30 0),(7 13 31 0),(8 14 30 0),(9 16 28 0)
+frames M Jumping (2 13 30 0),(3 14 31 0),(4 14 30 0),(5 13 28 0),(6 15 30 0),(7 13 31 0),(8 14 30 0),(9 16 28 0)
+frames M Attack (10 12 31 0)
+frames M Cast (11 5 27 0)
+description A beautiful robe with ornamental shoulderguards. Provides good protection for the body.
+
+<Sorcerers skirt>
+type Wearable
+display Sorcerer's Skirt
+value 400
+location Legs
+usage-bonus magic 5
+protection 2
+wearable-image-prefix sorcskirt
+inv-image sorcskirt.png
+frames M Stopped (1 16 44 0)
+frames M Walking (2 10 42 0),(3 13 45 0),(4 13 44 0),(5 14 43 0),(6 8 45 0),(7 13 44 0),(8 14 44 0),(9 14 32 0)
+frames M Jumping (2 10 42 0),(3 13 45 0),(4 13 44 0),(5 14 43 0),(6 8 45 0),(7 13 44 0),(8 14 44 0),(9 14 32 0)
+description A beautiful purple sorcerer skirt with a scaly pattern on it.
+
+<Sorcerers robe>
+type Wearable
+display Sorcerer's Robe
+value 1200
+location Torso
+usage-bonus magic 10
+protection 5
+wearable-image-prefix sorcrobe
+inv-image sorcrobe.png
+frames M Stopped (1 16 28 0)
+frames M Walking (2 13 30 0),(3 14 31 0),(4 14 30 0),(5 13 28 0),(6 15 30 0),(7 13 31 0),(8 14 30 0),(9 16 28 0)
+frames M Jumping (2 13 30 0),(3 14 31 0),(4 14 30 0),(5 13 28 0),(6 15 30 0),(7 13 31 0),(8 14 30 0),(9 16 28 0)
+frames M Attack (10 12 31 0)
+frames M Cast (11 5 27 0)
+description A beautiful robe with ornamental shoulderguards. Provides good protection for the body.
+
+<Magic crossbow>
+type Wearable
+display Magic Crossbow
+value 25
+location Weapon
+damage 8
+time 15
+bow
+arrow arrow1.png
+magic-drain 2
+inv-image Crossbow.png
+wearable-image-prefix Crossbow
+frames M Stopped (1 9 5 45)
+frames M Walking (1 -15 1 145),(1 12 -3 90),(1 6 8 40),(1 6 12 25),(1 8 14 20),(1 9 25 5),(1 9 19 20),(1 11 -5 90)
+frames M Jumping (1 -15 1 145),(1 12 -3 90),(1 6 8 40),(1 6 12 25),(1 8 14 20),(1 9 25 5),(1 9 19 20),(1 11 -5 90)
+frames M Attack (1 -12 15 180),(1 14 -7 90),(1 28 23 0),(1 28 27 0)
+frames M Cast (1 -7 -20 30)
+description This magic crossbow draws magical energy from the user to supply them with an unlimited supply of spiritual arrows. The bow can reach the farthest out of all weapon types. It uses MP per arrow, and cannot fire without it. Mediocre magical bonus, medium magical damage, no physical damage, excellent range. Bows can effectively fire at an angle +50 and -50 degrees. In this arc, enemies will be locked-on to and can be shot from quite a distance!
+
+<Magic crossbow2>
+type Wearable
+display M. Crossbow (Dblshot)
+value 450
+location Weapon
+damage 16
+time 15
+bow
+arrow arrow2.png
+magic-drain 4
+inv-image Crossbow2.png
+wearable-image-prefix Crossbow
+frames M Stopped (1 9 5 45)
+frames M Walking (1 -15 1 145),(1 12 -3 90),(1 6 8 40),(1 6 12 25),(1 8 14 20),(1 9 25 5),(1 9 19 20),(1 11 -5 90)
+frames M Jumping (1 -15 1 145),(1 12 -3 90),(1 6 8 40),(1 6 12 25),(1 8 14 20),(1 9 25 5),(1 9 19 20),(1 11 -5 90)
+frames M Attack (1 -12 15 180),(1 14 -7 90),(1 28 23 0),(1 28 27 0)
+frames M Cast (1 -7 -20 30)
+description This magic crossbow draws magical energy from the user to supply them with an unlimited supply of spiritual arrows. The bow can reach the farthest out of all weapon types. It uses MP per arrow, and cannot fire without it. Mediocre magical bonus, medium magical damage, no physical damage, excellent range. Bows can effectively fire at an angle +50 and -50 degrees. In this arc, enemies will be locked-on to and can be shot from quite a distance!
+
+<Magic crossbow3>
+type Wearable
+display M. Crossbow (Supershot)
+value 1800
+location Weapon
+damage 22
+time 6
+bow
+arrow arrow3.png
+magic-drain 5
+inv-image Crossbow3.png
+wearable-image-prefix Crossbow
+usage-bonus magic 15
+frames M Stopped (1 9 5 45)
+frames M Walking (1 -15 1 145),(1 12 -3 90),(1 6 8 40),(1 6 12 25),(1 8 14 20),(1 9 25 5),(1 9 19 20),(1 11 -5 90)
+frames M Jumping (1 -15 1 145),(1 12 -3 90),(1 6 8 40),(1 6 12 25),(1 8 14 20),(1 9 25 5),(1 9 19 20),(1 11 -5 90)
+frames M Attack (1 -12 15 180),(1 14 -7 90),(1 28 23 0),(1 28 27 0)
+frames M Cast (1 -7 -20 30)
+description This magic crossbow draws magical energy from the user to supply them with an unlimited supply of spiritual arrows. The bow can reach the farthest out of all weapon types. It uses MP per arrow, and cannot fire without it. Mediocre magical bonus, medium magical damage, no physical damage, excellent range. Bows can effectively fire at an angle +50 and -50 degrees. In this arc, enemies will be locked-on to and can be shot from quite a distance!
+
+<Enchanted sickle>
+display Enchanted Sickle
+type Wearable
+value 25
+location Weapon
+minrange 0
+range 40
+damage 10
+time 17
+hit-sound Cut.ogg
+magic-drain 2
+wearable-image-prefix EnchantedSickle
+inv-image EnchantedSickle.png
+frames M Stopped (1 7 5 40),(2 7 5 40),(3 7 5 40),(2 7 5 40)
+frames M Walking (1 -17 -3 150),(2 9 -5 80),(3 6 13 25),(1 7 15 15),(2 5 9 25),(3 1 7 30),(1 3 7 40),(2 8 -5 90)
+frames M Jumping (1 -17 -3 150),(2 9 -5 80),(3 6 13 25),(1 7 15 15),(2 5 9 25),(3 1 7 30),(1 3 7 40),(2 8 -5 90)
+frames M Attack (1 -14 0 170),(2 -8 -11 120),(3 14 -6 80),(1 15 -2 45)
+frames M Cast (1 -2 -7 5)
+description The enchanted sickle transfers magical power from the attacker through to the defender, causing extra damage. It uses MP when the attack hits. Good magical bonus, high magical damage, low physical damage, very poor range. The magical aura of this type of weapon means that the strength and magic ability of the wielder are equally as important to deliver a deadlier blow.
+
+<Enchanted sickle2>
+display Ench. Sickle +
+type Wearable
+value 1000
+location Weapon
+minrange 0
+range 40
+damage 20
+time 17
+hit-sound Cut.ogg
+magic-drain 6
+usage-bonus magic 20
+wearable-image-prefix EnchantedSickleb
+inv-image EnchantedSickleb.png
+frames M Stopped (1 7 5 40),(2 7 5 40),(3 7 5 40),(2 7 5 40)
+frames M Walking (1 -17 -3 150),(2 9 -5 80),(3 6 13 25),(1 7 15 15),(2 5 9 25),(3 1 7 30),(1 3 7 40),(2 8 -5 90)
+frames M Jumping (1 -17 -3 150),(2 9 -5 80),(3 6 13 25),(1 7 15 15),(2 5 9 25),(3 1 7 30),(1 3 7 40),(2 8 -5 90)
+frames M Attack (1 -14 0 170),(2 -8 -11 120),(3 14 -6 80),(1 15 -2 45)
+frames M Cast (1 -2 -7 5)
+description The enchanted sickle transfers magical power from the attacker through to the defender, causing extra damage. It uses MP when the attack hits. Good magical bonus, high magical damage, low physical damage, very poor range. The magical aura of this type of weapon means that the strength and magic ability of the wielder are equally as important to deliver a deadlier blow.
+
+<Enchanted sickle3>
+display Ench. Sickle ++
+type Wearable
+value 2200
+location Weapon
+minrange 0
+range 40
+damage 30
+time 17
+hit-sound Cut.ogg
+magic-drain 10
+usage-bonus magic 30
+wearable-image-prefix EnchantedSicklec
+inv-image EnchantedSicklec.png
+frames M Stopped (1 7 5 40),(2 7 5 40),(3 7 5 40),(2 7 5 40)
+frames M Walking (1 -17 -3 150),(2 9 -5 80),(3 6 13 25),(1 7 15 15),(2 5 9 25),(3 1 7 30),(1 3 7 40),(2 8 -5 90)
+frames M Jumping (1 -17 -3 150),(2 9 -5 80),(3 6 13 25),(1 7 15 15),(2 5 9 25),(3 1 7 30),(1 3 7 40),(2 8 -5 90)
+frames M Attack (1 -14 0 170),(2 -8 -11 120),(3 14 -6 80),(1 15 -2 45)
+frames M Cast (1 -2 -7 5)
+description The enchanted sickle transfers magical power from the attacker through to the defender, causing extra damage. It uses MP when the attack hits. Good magical bonus, high magical damage, low physical damage, very poor range. The magical aura of this type of weapon means that the strength and magic ability of the wielder are equally as important to deliver a deadlier blow.
+
+<Steel cap>
+description A helmet made from coarse steel.
+display Steel Cap
+type Wearable
+value 100
+location Head
+protection 1
+inv-image SteelCap.png
+wearable-image-prefix SteelCap
+frames W Stopped (1 11 2 0),(1 11 2 0),(1 11 2 0),(1 11 2 0)
+frames W Walking (2 14 2 0),(2 14 4 0),(2 14 2 0),(2 14 0 0),(2 14 2 0),(2 14 4 0),(2 14 2 0),(2 14 0 0)
+frames W Jumping (2 14 2 0),(2 14 4 0),(2 14 2 0),(2 14 0 0),(2 14 2 0),(2 14 4 0),(2 14 2 0),(2 14 0 0)
+frames W Attack (2 14 2 0),(2 14 2 0),(2 14 2 0),(2 14 2 0)
+
+<Blue hood>
+description A soft hood from a nameless wizard.
+display Blue Hood
+type Wearable
+value 300
+location Head
+protection 2
+usage-bonus magic 3
+inv-image BlueHood.png
+wearable-image-prefix MagicHood
+frames M Stopped (2 16 10 0),(2 16 10 0),(2 16 10 0),(2 16 10 0)
+frames M Walking (1 11 9 0),(1 11 11 0),(1 11 9 0),(1 11 7 0),(1 11 9 0),(1 11 11 0),(1 11 9 0),(1 11 7 0)
+frames M Jumping (1 11 9 0),(1 11 11 0),(1 11 9 0),(1 11 7 0),(1 11 9 0),(1 11 11 0),(1 11 9 0),(1 11 7 0)
+frames M Attack (1 11 9 0),(1 11 9 0),(1 11 9 0),(1 11 9 0)
+frames M Cast (2 9 8 0)
+
+<Green hood>
+description A hard hood from a nameless wizard. Made from dragonscale.
+display Green Hood
+type Wearable
+value 620
+location Head
+protection 4
+usage-bonus magic 10
+inv-image GreenHood.png
+wearable-image-prefix MagicHoodb
+frames M Stopped (2 16 10 0),(2 16 10 0),(2 16 10 0),(2 16 10 0)
+frames M Walking (1 11 9 0),(1 11 11 0),(1 11 9 0),(1 11 7 0),(1 11 9 0),(1 11 11 0),(1 11 9 0),(1 11 7 0)
+frames M Jumping (1 11 9 0),(1 11 11 0),(1 11 9 0),(1 11 7 0),(1 11 9 0),(1 11 11 0),(1 11 9 0),(1 11 7 0)
+frames M Attack (1 11 9 0),(1 11 9 0),(1 11 9 0),(1 11 9 0)
+frames M Cast (2 9 8 0)
+
+<Sorcerers hat>
+description A sorcerer's hat which has magical properties.
+display Sorcerer's Hat
+type Wearable
+value 900
+location Head
+protection 2
+usage-bonus magic 35
+inv-image sorchat.png
+wearable-image-prefix sorchat
+frames M Stopped (1 17 7 0),(1 17 7 0),(1 17 7 0),(1 17 7 0)
+frames M Walking (2 13 9 0),(2 13 11 0),(2 13 9 0),(2 13 7 0),(2 13 9 0),(2 13 11 0),(2 13 9 0),(2 13 7 0)
+frames M Jumping (2 13 9 0),(2 13 11 0),(2 13 9 0),(2 13 7 0),(2 13 9 0),(2 13 11 0),(2 13 9 0),(2 13 7 0)
+frames M Cast (1 10 2 0)
+frames M Attack (2 13 9 0),(2 13 9 0),(2 13 9 0),(2 13 9 0)
+
+<Wingboots>
+description Boots that allow you to float gracefully!
+display Winged boots
+type Wearable
+value 300
+location Boots
+inv-image wingboots.png
+wearable-image-prefix Wingboots
+bit #wings
+frames M Stopped (5 -25 63 0),(5 -25 63 0),(5 -25 63 0),(5 -25 63 0)
+frames M Walking (1 -11 67 0),(2 -6 60 0),(3 -2 64 0),(4 3 64 0),(5 -32 64 0),(6 7 64 0),(7 9 68 0),(8 8 67 0)
+frames M Jumping (1 -11 67 0),(2 -6 60 0),(3 -2 64 0),(4 3 64 0),(5 -32 64 0),(6 7 64 0),(7 9 68 0),(8 8 67 0)
+frames W Stopped (17 13 66 0),(17 13 66 0),(17 13 66 0),(17 13 66 0)
+frames W Walking (9 4 61 0),(10 7 65 0),(11 11 67 0),(12 6 64 0),(13 9 67 0),(14 8 66 0),(15 14 68 0),(16 8 66 0)
+frames W Jumping (9 4 61 0),(10 7 65 0),(11 11 67 0),(12 6 64 0),(13 9 67 0),(14 8 66 0),(15 14 68 0),(16 8 66 0)
+
+<Gripboots>
+description Boots that allow you to grip to any surface, great for ice and snow.
+display Grip boots
+type Wearable
+value 300
+location Boots
+inv-image gripboots.png
+wearable-image-prefix Gripboots
+bit #grip
+frames M Stopped (5 -25 63 0),(5 -25 63 0),(5 -25 63 0),(5 -25 63 0)
+frames M Walking (1 -11 67 0),(2 -6 60 0),(3 -2 64 0),(4 3 64 0),(5 -32 64 0),(6 7 64 0),(7 9 68 0),(8 8 67 0)
+frames M Jumping (1 -11 67 0),(2 -6 60 0),(3 -2 64 0),(4 3 64 0),(5 -32 64 0),(6 7 64 0),(7 9 68 0),(8 8 67 0)
+frames W Stopped (17 13 66 0),(17 13 66 0),(17 13 66 0),(17 13 66 0)
+frames W Walking (9 4 61 0),(10 7 65 0),(11 11 67 0),(12 6 64 0),(13 9 67 0),(14 8 66 0),(15 14 68 0),(16 8 66 0)
+frames W Jumping (9 4 61 0),(10 7 65 0),(11 11 67 0),(12 6 64 0),(13 9 67 0),(14 8 66 0),(15 14 68 0),(16 8 66 0)
+
+<Steel round helm>
+description A helmet made from coarse steel.
+type Wearable
+value 420
+location Head
+protection 3
+inv-image SteelRoundHelm.png
+wearable-image-prefix SteelRoundHelm
+frames W Stopped (1 11 2 0),(1 11 2 0),(1 11 2 0),(1 11 2 0)
+frames W Walking (2 14 2 0),(2 14 4 0),(2 14 2 0),(2 14 0 0),(2 14 2 0),(2 14 4 0),(2 14 2 0),(2 14 0 0)
+frames W Jumping (2 14 2 0),(2 14 4 0),(2 14 2 0),(2 14 0 0),(2 14 2 0),(2 14 4 0),(2 14 2 0),(2 14 0 0)
+frames W Attack (2 14 2 0),(2 14 2 0),(2 14 2 0),(2 14 2 0)
+
+<Anneludine platebody>
+description A sturdy platebody made from the hardened shells of Anneludines.
+display Anneludine Platebody
+type Wearable
+value 1400
+location Torso
+protection 6
+inv-image annelplate.png
+wearable-image-prefix annelplate
+frames W Stopped (1 14 23 0),(1 14 23 0),(1 14 23 0),(1 14 23 0)
+frames W Walking (2 18 24 0),(3 18 26 0),(4 18 23 0),(5 18 22 0),(6 18 24 0),(7 18 26 0),(8 18 24 0),(9 18 22 0)
+frames W Jumping (2 18 24 0),(3 18 26 0),(4 18 23 0),(5 18 22 0),(6 18 24 0),(7 18 26 0),(8 18 24 0),(9 18 22 0)
+frames W Attack (10 18 24 0),(10 18 24 0),(10 18 24 0),(10 18 24 0)
+
+<Nepthene platebody>
+description A sturdy platebody made from steel, covered in nepthene fibres.
+display Nepthene Platebody
+type Wearable
+value 600
+location Torso
+protection 2
+inv-image nepthenevest.png
+wearable-image-prefix neptheneplate
+frames W Stopped (1 14 23 0),(1 14 23 0),(1 14 23 0),(1 14 23 0)
+frames W Walking (2 18 24 0),(3 18 26 0),(4 18 23 0),(5 18 22 0),(6 18 24 0),(7 18 26 0),(8 18 24 0),(9 18 22 0)
+frames W Jumping (2 18 24 0),(3 18 26 0),(4 18 23 0),(5 18 22 0),(6 18 24 0),(7 18 26 0),(8 18 24 0),(9 18 22 0)
+frames W Attack (10 18 24 0),(10 18 24 0),(10 18 24 0),(10 18 24 0)
+
+# (Image Suffix, Relative X, Relative Y, Rotation)
+# Leaving out the display tag uses item ID name
+
+<Broadsword>
+type Wearable
+value 2100
+location Weapon
+minrange 5
+range 70
+damage 28
+time 20
+hit-sound Cut.ogg
+wearable-image-prefix Broadsword
+inv-image Broadsword.png
+frames W Stopped (1 -69 -29 145),(1 -69 -29 145),(1 -69 -29 145),(1 -69 -29 145)
+frames W Walking (1 -58 -28 155),(1 -53 -37 145),(1 -5 -38 45),(1 -1 -7 15),(1 1 -1 10),(1 5 16 0),(1 -1 -20 25),(1 2 -53 70)
+frames W Jumping (1 -58 -28 155),(1 -53 -37 145),(1 -5 -38 45),(1 -1 -7 15),(1 1 -1 10),(1 5 16 0),(1 -1 -20 25),(1 2 -53 70)
+frames W Attack (1 -56 -8 175),(1 -53 -46 145),(1 7 -63 85),(1 21 -4 5)
+description A long steel sword, thicker than average giving the blade a heavier slice.
+
+<Bronze gladius>
+type Wearable
+value 25
+location Weapon
+minrange 5
+range 33
+damage 5
+time 12
+hit-sound Cut.ogg
+wearable-image-prefix BronzeGladius
+inv-image BronzeGladius.png
+frames W Stopped (1 -13 7 135),(1 -13 7 135),(1 -13 7 135),(1 -13 7 135)
+frames W Walking (1 10 -6 115),(1 16 -5 105),(1 13 11 45),(1 11 20 20),(1 11 24 15),(1 11 27 10),(1 13 14 35),(1 23 2 90)
+frames W Jumping (1 10 -6 115),(1 16 -5 105),(1 13 11 45),(1 11 20 20),(1 11 24 15),(1 11 27 10),(1 13 14 35),(1 23 2 90)
+frames W Attack (1 -5 13 180),(1 -1 -6 145),(1 24 -11 95),(1 29 16 10)
+description The gladius is a two-edged Roman short-sword. It is quite light and is most appropriate for quicker attacks. The versatility of the gladius makes it good for cutting and thrusting. It is forged from bronze. Medium attack strength, quick attacks, poor range. As with any melee weapon, it can only be as strong as the wielder.
+
+<Steel gladius>
+type Wearable
+value 500
+location Weapon
+minrange 5
+range 33
+damage 16
+time 12
+hit-sound Cut.ogg
+wearable-image-prefix SteelGladius
+inv-image SteelGladius.png
+frames W Stopped (1 -13 7 135),(1 -13 7 135),(1 -13 7 135),(1 -13 7 135)
+frames W Walking (1 10 -6 115),(1 16 -5 105),(1 13 11 45),(1 11 20 20),(1 11 24 15),(1 11 27 10),(1 13 14 35),(1 23 2 90)
+frames W Jumping (1 10 -6 115),(1 16 -5 105),(1 13 11 45),(1 11 20 20),(1 11 24 15),(1 11 27 10),(1 13 14 35),(1 23 2 90)
+frames W Attack (1 -5 13 180),(1 -1 -6 145),(1 24 -11 95),(1 29 16 10)
+description The gladius is a two-edged Roman short-sword. It is quite light and is most appropriate for quicker attacks. The versatility of the gladius makes it good for cutting and thrusting. It is forged from steel. Medium attack strength, quick attacks, poor range.
+
+<Bronze battle axe>
+type Wearable
+value 25
+location Weapon
+minrange 15
+range 48
+damage 9
+time 26
+hit-sound Cut2.ogg
+wearable-image-prefix BronzeBattleAxe
+inv-image BronzeBattleAxe.png
+frames W Stopped (1 -19 -4 125),(1 -19 -4 125),(1 -19 -4 125),(1 -19 -4 125)
+frames W Walking (1 -9 -14 130),(1 -5 -14 125),(1 10 1 40),(1 9 8 25),(1 7 5 30),(1 5 4 35),(1 9 0 40),(1 16 -8 90)
+frames W Jumping (1 -9 -14 130),(1 -5 -14 125),(1 10 1 40),(1 9 8 25),(1 7 5 30),(1 5 4 35),(1 9 0 40),(1 16 -8 90)
+frames W Attack (1 -16 1 170),(1 -14 -12 150),(1 9 -22 105),(1 26 0 20)
+description This is a standard two-handed battle axe. Its powerfully designed axehead delivers a crushing and slicing blow simultaneously. The weight on the end of the axe requires the attacker to pause between swings. It is forged from bronze. High attack strength, slow attacks, mediocre range. As with any melee weapon, it can only be as strong as the wielder.
+
+<Bronze battle axe2>
+display Warrior's axe
+type Wearable
+value 1200
+location Weapon
+minrange 13
+range 52
+damage 50
+time 50
+hit-sound Cut2.ogg
+wearable-image-prefix BronzeBattleAxeb
+inv-image BronzeBattleAxe2.png
+frames W Stopped (1 -19 -4 125),(1 -19 -4 125),(1 -19 -4 125),(1 -19 -4 125)
+frames W Walking (1 -9 -14 130),(1 -5 -14 125),(1 10 1 40),(1 9 8 25),(1 7 5 30),(1 5 4 35),(1 9 0 40),(1 16 -8 90)
+frames W Jumping (1 -9 -14 130),(1 -5 -14 125),(1 10 1 40),(1 9 8 25),(1 7 5 30),(1 5 4 35),(1 9 0 40),(1 16 -8 90)
+frames W Attack (1 -16 1 170),(1 -14 -12 150),(1 9 -22 105),(1 26 0 20)
+description This is a stronger two-handed battle axe. Its powerfully designed axehead delivers a crushing and slicing blow simultaneously. The weight on the end of the axe requires the attacker to pause between swings. It is forged from bronze. High attack strength, slow attacks, mediocre range. As with any melee weapon, it can only be as strong as the wielder.
+
+<Bronze battle axe3>
+display Greataxe of doom
+type Wearable
+value 5000
+location Weapon
+minrange 13
+range 52
+damage 100
+time 60
+hit-sound Cut2.ogg
+wearable-image-prefix BronzeBattleAxec
+inv-image BronzeBattleAxe3.png
+frames W Stopped (1 -19 -4 125),(1 -19 -4 125),(1 -19 -4 125),(1 -19 -4 125)
+frames W Walking (1 -9 -14 130),(1 -5 -14 125),(1 10 1 40),(1 9 8 25),(1 7 5 30),(1 5 4 35),(1 9 0 40),(1 16 -8 90)
+frames W Jumping (1 -9 -14 130),(1 -5 -14 125),(1 10 1 40),(1 9 8 25),(1 7 5 30),(1 5 4 35),(1 9 0 40),(1 16 -8 90)
+frames W Attack (1 -16 1 170),(1 -14 -12 150),(1 9 -22 105),(1 26 0 20)
+description A two-handed battle axe with incredible power at an incredibly slow rate.
+
+<Steel halberd>
+type Wearable
+value 25
+location Weapon
+minrange 55
+range 96
+damage 4
+time 15
+hit-sound Cut3.ogg
+wearable-image-prefix SteelHalberd
+inv-image SteelHalberd.png
+frames W Stopped (1 -2 -42 90),(1 -2 -42 90),(1 -2 -42 90),(1 -2 -42 90)
+frames W Walking (1 -15 -54 110),(1 -20 -51 115),(1 -2 -26 40),(1 -4 -6 20),(1 -4 -12 25),(1 -7 -16 30),(1 -3 -23 35),(1 12 -45 90)
+frames W Jumping (1 -15 -54 110),(1 -20 -51 115),(1 -2 -26 40),(1 -4 -6 20),(1 -4 -12 25),(1 -7 -16 30),(1 -3 -23 35),(1 12 -45 90)
+frames W Attack (1 -53 -19 165), (1 -42 -46 140), (1 16 -57 90), (1 17 4 5)
+description Halberds have exceptional reach. Halberds are versative weapons because they offer a ranged attack with nearly as much force as a melee weapon. The axehead and spike at the end of the halberd are versatile, but still can not deliver as much force as conventional melee weapons, and as such, the halberd is considered a defensive weapon. This halberd is made of steel. Low-Medium attack strength, quick attacks, good range. As with any melee weapon, it can only be as strong as the wielder.
+
+<Steel halberd2>
+display Phantom halberd
+type Wearable
+value 450
+location Weapon
+minrange 55
+range 104
+damage 13
+time 10
+hit-sound Cut3.ogg
+wearable-image-prefix SteelHalberdb
+inv-image SteelHalberd2.png
+usage-bonus magic 20
+frames W Stopped (1 -2 -42 90),(1 -2 -42 90),(1 -2 -42 90),(1 -2 -42 90)
+frames W Walking (1 -15 -54 110),(1 -20 -51 115),(1 -2 -26 40),(1 -4 -6 20),(1 -4 -12 25),(1 -7 -16 30),(1 -3 -23 35),(1 12 -45 90)
+frames W Jumping (1 -15 -54 110),(1 -20 -51 115),(1 -2 -26 40),(1 -4 -6 20),(1 -4 -12 25),(1 -7 -16 30),(1 -3 -23 35),(1 12 -45 90)
+frames W Attack (1 -53 -19 165), (1 -42 -46 140), (1 16 -57 90), (1 17 4 5)
+description Halberds have exceptional reach. Halberds are versative weapons because they offer a ranged attack with nearly as much force as a melee weapon. The axehead and spike at the end of the halberd are versatile, but still can not deliver as much force as conventional melee weapons, and as such, the halberd is considered a defensive weapon. This halberd is made of steel. Low-Medium attack strength, quick attacks, good range. As with any melee weapon, it can only be as strong as the wielder.
+
+<Steel halberd3>
+display Halberd of wrath
+type Wearable
+value 3200
+location Weapon
+minrange 30
+range 110
+damage 25
+time 8
+hit-sound Cut3.ogg
+wearable-image-prefix SteelHalberdc
+inv-image SteelHalberd3.png
+usage-bonus magic 30
+frames W Stopped (1 -2 -42 90),(1 -2 -42 90),(1 -2 -42 90),(1 -2 -42 90)
+frames W Walking (1 -15 -54 110),(1 -20 -51 115),(1 -2 -26 40),(1 -4 -6 20),(1 -4 -12 25),(1 -7 -16 30),(1 -3 -23 35),(1 12 -45 90)
+frames W Jumping (1 -15 -54 110),(1 -20 -51 115),(1 -2 -26 40),(1 -4 -6 20),(1 -4 -12 25),(1 -7 -16 30),(1 -3 -23 35),(1 12 -45 90)
+frames W Attack (1 -53 -19 165), (1 -42 -46 140), (1 16 -57 90), (1 17 4 5)
+description Halberds have exceptional reach. Halberds are versative weapons because they offer a ranged attack with nearly as much force as a melee weapon. The axehead and spike at the end of the halberd are versatile, but still can not deliver as much force as conventional melee weapons, and as such, the halberd is considered a defensive weapon. This halberd is made of steel. Low-Medium attack strength, quick attacks, good range. As with any melee weapon, it can only be as strong as the wielder.
