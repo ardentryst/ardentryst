@@ -1699,7 +1699,7 @@ def Ingame_Menu(data):
                                 mmconfirm = True
                     if tab == "Help":
                         helping = True
-                        source = open("help.txt", "r").readlines()
+                        source = open("README.md", "r").readlines()
                         scroll = 0
                         nlines = 28
                         interface_sound("menu-item", SOUNDBOX)
