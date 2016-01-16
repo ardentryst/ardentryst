@@ -1,11 +1,9 @@
-Hi!
-
 To install a system-wide Ardentryst on your linux machine, you need to
 be root (administrator.) You can install a local copy yourself, too.
 
 Type
 
-sudo ./install.sh
+    sudo ./install.sh
 
 to run the installer script, which will copy the game data files to
 your system, and set up the command 'ardentryst'.
