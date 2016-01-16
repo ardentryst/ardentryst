@@ -1,4 +1,4 @@
-Ardentryst
+# Ardentryst
 (C) 2007 - 2009
 Jordan Trudgett
 
@@ -10,14 +10,6 @@ email me, the creator, at
 jordan_trudgett@hotmail.com
 
 if they are not covered here!
-
-Contents:
- 
- General game information   ............ 1
- Controlling the game       ............ 2
- Frequently asked questions ............ 3
- Troubleshooting            ............ 4
- License                    ............ 5
 
 ===========================================
  1. GENERAL GAME INFORMATION
