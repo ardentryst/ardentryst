@@ -2,18 +2,7 @@
 (C) 2007 - 2009
 Jordan Trudgett
 
-Help
-
-FOR ANY QUESTIONS, do not hesitate to
-email me, the creator, at
-
-jordan_trudgett@hotmail.com
-
-if they are not covered here!
-
-===========================================
- 1. GENERAL GAME INFORMATION
-===========================================
+## 1. GENERAL GAME INFORMATION
 
 Ardentryst is an open-source free game written exclusively by Jordan
 Trudgett. It works to combine elements of fighting, arcade, advent-
@@ -35,9 +24,7 @@ and of course, many different weapons and equipment to choose from.
 The game also incorporates fighting-style combos in conjunction with
 magic spells for advanced battles.
 
-===========================================
- 2. CONTROLLING THE GAME
-===========================================
+## 2. CONTROLLING THE GAME
 
 In this game, most movement or selection changing will be done with
 the keyboard: by default, the arrow keys. These controls are
@@ -57,16 +44,13 @@ continue a textbox, or confirm an action, or continue in another way.
 Up will make your character jump. Make sure to hold it down so you jump
 the highest.
 
-Left and right will make your character walk or move left and right.
+* Left and right: make your character walk or move left and right.
+* W: Hold down to activate, then use Up/Down to move the camera
+* D: Start a spell
+* C: Main button/attack
+* Z: Activate (treasure, obelisks, levers, signs, NPCs)
 
-W: Hold down to activate, then use Up/Down to move the camera
-D: Start a spell
-C: Main button/attack
-Z: Activate (treasure, obelisks, levers, signs, NPCs)
-
-===========================================
- 3. FREQUENTLY ASKED QUESTIONS
-===========================================
+## 3. FREQUENTLY ASKED QUESTIONS
 
 Q. How many lines of code is the game so far?
 A. 18000+ lines (July 09)
@@ -86,10 +70,8 @@ A. No. The game will always be free and open-source.
 
 Q. Do you make Ardentryst for money?
    I develop Ardentryst as a hobby. I will accept donations though!
-   
-===========================================
- 4. TROUBLESHOOTING
-===========================================
+
+## 4. TROUBLESHOOTING
 
 Q. The game is too slow.
 A. As for an in-game fix, you can change the graphics intensity in the
@@ -103,9 +85,7 @@ A. Please post in the Player Forums on the Ardentryst website
    It might be worthwhile to include log.txt which can be
    found in ~/.ardentryst/ or My Documents\.ardentryst\ (Windows).
 
-===========================================
- 5. LICENSE
-===========================================
+## 5. LICENSE
 
 See COPYING and COPYING.data files.
 
