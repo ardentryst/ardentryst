@@ -53,27 +53,6 @@ the highest.
 * C: Main button/attack
 * Z: Activate (treasure, obelisks, levers, signs, NPCs)
 
-## FREQUENTLY ASKED QUESTIONS
-
-Q. How many lines of code is the game so far?
-A. 18000+ lines (July 09)
-
-Q. When did you start?
-A. 12 September, 2007
-
-Q. Has the game always been called Ardentryst? What about Pyralis/Nyx?
-A. No, it was first called Luna & Sol, the original names of the first
-   two characters, then it was renamed Luna because the game was going
-   to be changed to only having one character, then back to Luna &
-   Sol, then after a long time, Ardentryst. About a month or two after
-   that, the characters were renamed Pyralis and Nyx (after thought!)
-
-Q. Will you sell this game?
-A. No. The game will always be free and open-source.
-
-Q. Do you make Ardentryst for money?
-   I develop Ardentryst as a hobby. I will accept donations though!
-
 ## TROUBLESHOOTING
 
 Q. The game is too slow.
