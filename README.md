@@ -2,7 +2,7 @@
 (C) 2007 - 2009
 Jordan Trudgett
 
-## 1. GENERAL GAME INFORMATION
+## GENERAL GAME INFORMATION
 
 Ardentryst is an open-source free game written exclusively by Jordan
 Trudgett. It works to combine elements of fighting, arcade, advent-
@@ -24,7 +24,7 @@ and of course, many different weapons and equipment to choose from.
 The game also incorporates fighting-style combos in conjunction with
 magic spells for advanced battles.
 
-## 2. CONTROLLING THE GAME
+## CONTROLLING THE GAME
 
 In this game, most movement or selection changing will be done with
 the keyboard: by default, the arrow keys. These controls are
@@ -50,7 +50,7 @@ the highest.
 * C: Main button/attack
 * Z: Activate (treasure, obelisks, levers, signs, NPCs)
 
-## 3. FREQUENTLY ASKED QUESTIONS
+## FREQUENTLY ASKED QUESTIONS
 
 Q. How many lines of code is the game so far?
 A. 18000+ lines (July 09)
@@ -71,7 +71,7 @@ A. No. The game will always be free and open-source.
 Q. Do you make Ardentryst for money?
    I develop Ardentryst as a hobby. I will accept donations though!
 
-## 4. TROUBLESHOOTING
+## TROUBLESHOOTING
 
 Q. The game is too slow.
 A. As for an in-game fix, you can change the graphics intensity in the
@@ -85,7 +85,7 @@ A. Please post in the Player Forums on the Ardentryst website
    It might be worthwhile to include log.txt which can be
    found in ~/.ardentryst/ or My Documents\.ardentryst\ (Windows).
 
-## 5. LICENSE
+## LICENSE
 
 See COPYING and COPYING.data files.
 
