@@ -24,6 +24,9 @@ and of course, many different weapons and equipment to choose from.
 The game also incorporates fighting-style combos in conjunction with
 magic spells for advanced battles.
 
+## RUNNING
+In order to run the game you have to run ardentryst.py with python2.
+
 ## CONTROLLING THE GAME
 
 In this game, most movement or selection changing will be done with
