@@ -59,9 +59,9 @@ def conchinit(HZ):
         i = list(pygame.mixer.get_init())
         if i[1] < 0: i[1] = "16, signed"
         else: i[1] = "16, unsigned"
-    except Exception, e:
-        print "Warning: Sound disabled! ("+str(e)+")"
-        print "Is your sound in use?"
+    except Exception as e:
+        print("Warning: Sound disabled! ("+str(e)+")")
+        print("Is your sound in use?")
 
 MODULE_NAME = "Conch Sound System (Conch.py)"
 MODULE_VERSION = "2006.8.9"
@@ -102,7 +102,7 @@ class Jukebox:
  
     def Comment(self,what):
         if self.comments:
-            print "["+self.name+"] " + str(what)
+            print("["+self.name+"] " + str(what))
  
     def ToggleMusic(self,on=True):
         self.music_on = on
@@ -184,7 +184,7 @@ class Jukebox:
             try:
                 pygame.mixer.music.load(path)
             except:
-                print "Couldn't load song '"+cue_name+"'."
+                print("Couldn't load song '"+cue_name+"'.")
                 return
             try:
                 self.MusicVol(0)
@@ -192,7 +192,7 @@ class Jukebox:
                 self.fadein()
                 self.Comment("Cue music: '"+cue_name+"'")
             except:
-                print "Couldn't play song '"+cue_name+"'."
+                print("Couldn't play song '"+cue_name+"'.")
 
     def set_svol(self, svol):
         self.sound_volume = svol/3.0
@@ -217,13 +217,13 @@ class Jukebox:
         self.sounds[ cue_name ] = new_sound
 
     def SoundLength(self, cue_name):
-        if self.sounds.has_key( cue_name ): 
+        if cue_name in self.sounds:
             return self.sounds[cue_name].get_length()
         return 5
 
     def FadeoutSound(self, cue_name):
         if not pygame.mixer.get_init(): return
-        if self.sounds.has_key(cue_name):
+        if cue_name in self.sounds:
             vol = self.sounds[cue_name].get_volume()
             while vol > 0:
                 self.sounds[cue_name].set_volume(vol-0.1)
@@ -233,7 +233,7 @@ class Jukebox:
 
     def FadeoutSoundSlow(self, cue_name):
         if not pygame.mixer.get_init(): return
-        if self.sounds.has_key(cue_name):
+        if cue_name in self.sounds:
             vol = self.sounds[cue_name].get_volume()
             while vol > 0:
                 self.sounds[cue_name].set_volume(vol-0.1)
@@ -242,7 +242,7 @@ class Jukebox:
 
     def SetSoundVolume(self, cue_name, vol):
         if not pygame.mixer.get_init(): return
-        if self.sounds.has_key(cue_name):
+        if cue_name in self.sounds:
             self.sounds[cue_name].set_volume(vol)
 
     def PlaySound(self,cue_name, loops=0):
@@ -250,7 +250,7 @@ class Jukebox:
         if not pygame.mixer.get_init():
             return
 
-        if self.sounds.has_key( cue_name ):
+        if cue_name in self.sounds:
             self.sounds[cue_name].set_volume(self.sound_volume)
             a =  self.sounds[ cue_name ].play(loops)
         else:
@@ -258,14 +258,14 @@ class Jukebox:
             pass
 
     def StopSound(self,cue_name):
-        if self.sounds.has_key( cue_name ):
+        if cue_name in self.sounds:
             self.sounds[ cue_name ].stop()
  
  
 ##### AUTORUN #####
 if __name__ == '__main__':
     ## This code runs if this file is run by itself.
-    print "Running "+MODULE_NAME+", v"+MODULE_VERSION+"."
+    print("Running "+MODULE_NAME+", v"+MODULE_VERSION+".")
  
 else:
     soundbox = Jukebox() ## You can now just refer to "soundbox" in your own program.

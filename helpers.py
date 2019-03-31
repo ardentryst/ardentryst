@@ -21,7 +21,7 @@
 
 # It is truly OVER 9000
 
-import pygame, sys, os, time, cPickle
+import pygame, sys, os, time, pickle
 from pygame.locals import *
 
 sd = ""
@@ -85,7 +85,7 @@ def logfile(text):
         try:
             text = str(text)
         except:
-            print "Warning, logfile call incorrect:", str(text), "(Got type", str(type(text))
+            print("Warning, logfile call incorrect:", str(text), "(Got type", str(type(text)))
             return
     try:
         src = open(os.path.join(sd, "log.txt"), "r").readlines()
@@ -157,7 +157,7 @@ def ge():
         try:
             saveimage = SCREEN
         except:
-            print "Fallback! Not processing GE properly."
+            print("Fallback! Not processing GE properly.")
             return pygame.event.get()
 
     if pygame.event.peek(QUIT):
@@ -179,7 +179,7 @@ def ge():
                         scrshotnum = int(entry[10:-4]) + 1
                 pygame.image.save(saveimage, os.path.join(SAVEDIRECTORY, "Screenshots","Screenshot"+str(scrshotnum).zfill(5)+".tga"))
                 evlist[i] = None
-                print "\a"
+                print("\a")
 
     if videotake:
         scrshotnum = 0

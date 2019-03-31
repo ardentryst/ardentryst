@@ -20,7 +20,7 @@
 #
 #------------------------------------------------------------------------
 
-import pygame, sys, os, time, cPickle, socket, thread, traceback
+import pygame, sys, os, time, pickle, socket, _thread, traceback
 import smtplib, email, math, sha, md5
 
 # Above, I import important Python libraries
@@ -676,7 +676,7 @@ def handleException(e):
     global screen, Fonts, PLAYLOCALS, SAVEDIRECTORY
     if len(e.args):
         if e.args[0] == 0: Quit()
-    print "An error has occurred. "
+    print("An error has occurred. ")
     if str(e) not in ["Don't cheat!"]:
         traceback.print_exc()
     traceback.print_exc(file = open(os.path.join(SAVEDIRECTORY, "log.txt"), "a"))
@@ -684,7 +684,7 @@ def handleException(e):
     
     screen.fill((0, 0, 0))
 
-    if PLAYLOCALS.has_key("game"):
+    if "game" in PLAYLOCALS:
         savefilename = PLAYLOCALS["game"].savefilename[:-4] + "_backup.asf"
     else:
         savefilename = ""
@@ -708,7 +708,7 @@ def handleException(e):
         y += 25
 
     if savefilename:
-        cPickle.dump(PLAYLOCALS["game"], open(os.path.join(SAVEDIRECTORY, "Saves", savefilename), "w"))
+        pickle.dump(PLAYLOCALS["game"], open(os.path.join(SAVEDIRECTORY, "Saves", savefilename), "w"))
 
     myflip()
     while True:
@@ -773,7 +773,7 @@ def useshop(shop, game, player):
     """Visits a shop."""
     global shops, screen, Data, soundbox, Fonts, p1c
     logfile("Use shop")
-    if shops.has_key(shop):
+    if shop in shops:
         shopname = shop
         shop = shops[shop]
     else:
@@ -827,7 +827,7 @@ def useshop(shop, game, player):
                 pinvd[i.display][0] += 1
             else:
                 pinvd[i.display] = [1, i]
-        pinvdl = pinvd.keys()
+        pinvdl = list(pinvd.keys())
         pinvdl.sort()
 
         msg = msg.replace("$SHOP", shopname).replace("$COST", str(cost))
@@ -1225,7 +1225,7 @@ class ac:
         self.dgests = dict.fromkeys(self.cf, "")
     def cds(self):
         self.cf.sort()
-        print
+        print()
         bh = ""
         mym = globals()["".join([chr(x) for x in [109, 100, 53]])]
         mys = globals()["".join([chr(x) for x in [115, 104, 97]])]
@@ -1239,7 +1239,7 @@ class ac:
                     logfile(chr(42)+ " " + f +  ".erocs ruoy daolpu ot elba eb ton lliw uoY .elif lanigiro eht ton si "[::-1])
                     rv = len(f)^len(f)
                 
-            except Exception, e:
+            except Exception as e:
                 pass
         return rv or cmp(len(f)^(len(f)), 0), getattr(mym.new(bh), "tsegidxeh"[::-1])()
 
@@ -1261,7 +1261,7 @@ def initscreen(screen, font):
         ]
     for x in range(len(infolist)):
         screen.blit(font.render(infolist[x], 1, (255,255,255)), (10,10+x*lh))
-        print infolist[x]
+        print(infolist[x])
 
     myflip()
     time.sleep(2)
@@ -1287,7 +1287,7 @@ def Game_SlotMenu(gameobj = None):
             raise Exception("Do not have a file called Saves in your ~/.ardentryst directory.")
     gamelist = [x for x in os.listdir(savedir) if x.endswith(".asf")]
 
-    gamelist.sort(lambda x, y: cPickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", x),"r")).startdate < cPickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", y),"r")).startdate)
+    gamelist.sort(lambda x, y: pickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", x),"r")).startdate < pickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", y),"r")).startdate)
 
     cursor = 0
     csurf = Data.images["Menupiece.png"][0]
@@ -1312,7 +1312,7 @@ def Game_SlotMenu(gameobj = None):
             return
         title = "Resume Quest"
         try:
-            gameobj = cPickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", gamelist[0]),"r"))
+            gameobj = pickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", gamelist[0]),"r"))
         except:
             raise Exception("Corruption. Delete all saves you don't need in ~/.ardentryst/Saves directory")
 
@@ -1575,7 +1575,7 @@ def Game_SlotMenu(gameobj = None):
         lasttick = wait_tick(lasttick)
 
         if not newgame and not cursloaded:
-            gameobj = cPickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", gamelist[cursor]),"r"))
+            gameobj = pickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", gamelist[cursor]),"r"))
             cursloaded = True
 
     pygame.key.set_repeat()
@@ -1855,7 +1855,7 @@ def design_character(Game, player):
     anims = {"Walking": 8,
              "Stopped": 4}
 
-    canims = anims.keys()
+    canims = list(anims.keys())
     cframes = [Data.pframes, Data.pframes2][player.classtype]
     ca = 0
 
@@ -2397,7 +2397,7 @@ def Save_intermission(game, pic, must = False, leavemus = False):
 
     saved = False
     if not pointer or must:
-        cPickle.dump(game, open(os.path.join(SAVEDIRECTORY, "Saves", game.savefilename), "w"))
+        pickle.dump(game, open(os.path.join(SAVEDIRECTORY, "Saves", game.savefilename), "w"))
         saved = True
     fade_to_black(screen, 1)
     if saved:
@@ -2546,7 +2546,7 @@ def handle_game(Game, loaded = False):
             for l in mapdata[w+1][1:]:
                 Game.scores[w].append(0)
                 Game.timegems[w].append(0)
-        cPickle.dump(Game, open(os.path.join(SAVEDIRECTORY, "Saves", Game.savefilename), "w"))
+        pickle.dump(Game, open(os.path.join(SAVEDIRECTORY, "Saves", Game.savefilename), "w"))
     else:
         player = Game.playerobject
 
@@ -2692,7 +2692,7 @@ def handle_game(Game, loaded = False):
             realplacename = placename
             # Generate mark data ->
             for location in mapdata[Game.location[0]][1:]:
-                if markdata.has_key(location["type"]):
+                if location["type"] in markdata:
                     if mapdata[Game.location[0]].index(location) in Game.Accessible[Game.location[0]]:
                         mtype = markdata[location["type"]]
                         if Game.scores[Game.location[0]-1][mapdata[Game.location[0]].index(location)-1] >= 100: mtype = "Mark4.png"
@@ -2804,7 +2804,7 @@ def handle_game(Game, loaded = False):
             playerpos = temppos[:]
             ge()
 
-        if Ondata.has_key("type"):
+        if "type" in Ondata:
             if "EXIT_WORLD" in Ondata["type"]:
                 Game.location[1] = 0
                 oldpos = [None, None]
@@ -2861,7 +2861,7 @@ def handle_game(Game, loaded = False):
                 for entry in [mapdata[Game.location[0]][1:], mapdata[0][1:]][Game.location[1]==0]:
                     if entry["name"] == Ondata["up"]:
                         lookin = [Game.location[0], 0][Game.location[1] == 0]
-                        if [mapdata[Game.location[0]], mapdata[0]][Game.location[1]==0].index(entry) in Game.Accessible[lookin] or entry.has_key("type") and entry["type"]== "EXIT_WORLD":
+                        if [mapdata[Game.location[0]], mapdata[0]][Game.location[1]==0].index(entry) in Game.Accessible[lookin] or "type" in entry and entry["type"]== "EXIT_WORLD":
                             ars, ar = Data.images["nav-arrow-up.png"]
                             ar.center = playerpos[0], playerpos[1] - 48
                             screen.blit(ars, ar)
@@ -2870,7 +2870,7 @@ def handle_game(Game, loaded = False):
                 for entry in [mapdata[Game.location[0]][1:], mapdata[0][1:]][Game.location[1]==0]:
                     if entry["name"] == Ondata["down"]:
                         lookin = [Game.location[0], 0][Game.location[1] == 0]
-                        if [mapdata[Game.location[0]], mapdata[0]][Game.location[1]==0].index(entry) in Game.Accessible[lookin] or entry.has_key("type") and entry["type"]== "EXIT_WORLD":
+                        if [mapdata[Game.location[0]], mapdata[0]][Game.location[1]==0].index(entry) in Game.Accessible[lookin] or "type" in entry and entry["type"]== "EXIT_WORLD":
                             ars, ar = Data.images["nav-arrow-down.png"]
                             ar.center = playerpos[0], playerpos[1] + 48
                             screen.blit(ars, ar)
@@ -2879,7 +2879,7 @@ def handle_game(Game, loaded = False):
                 for entry in [mapdata[Game.location[0]][1:], mapdata[0][1:]][Game.location[1]==0]:
                     if entry["name"] == Ondata["left"]:
                         lookin = [Game.location[0], 0][Game.location[1] == 0]
-                        if [mapdata[Game.location[0]], mapdata[0]][Game.location[1]==0].index(entry) in Game.Accessible[lookin] or entry.has_key("type") and entry["type"]== "EXIT_WORLD":
+                        if [mapdata[Game.location[0]], mapdata[0]][Game.location[1]==0].index(entry) in Game.Accessible[lookin] or "type" in entry and entry["type"]== "EXIT_WORLD":
                             ars, ar = Data.images["nav-arrow-left.png"]
                             ar.center = playerpos[0] - 48, playerpos[1]
                             screen.blit(ars, ar)
@@ -2888,7 +2888,7 @@ def handle_game(Game, loaded = False):
                 for entry in [mapdata[Game.location[0]][1:], mapdata[0][1:]][Game.location[1]==0]:
                     if entry["name"] == Ondata["right"]:
                         lookin = [Game.location[0], 0][Game.location[1] == 0]                    
-                        if [mapdata[Game.location[0]], mapdata[0]][Game.location[1]==0].index(entry) in Game.Accessible[lookin] or entry.has_key("type") and entry["type"]== "EXIT_WORLD":
+                        if [mapdata[Game.location[0]], mapdata[0]][Game.location[1]==0].index(entry) in Game.Accessible[lookin] or "type" in entry and entry["type"]== "EXIT_WORLD":
                             ars, ar = Data.images["nav-arrow-right.png"]
                             ar.center = playerpos[0] + 48, playerpos[1]
                             screen.blit(ars, ar)
@@ -3749,19 +3749,19 @@ def main():
                         if x == sri + 1:
                             HZ = int(option)
     except:
-        print "Command-line option malformed and options after were not processed"
+        print("Command-line option malformed and options after were not processed")
 
     if not SLOW: fade_set_slow()
 
-    print "\n-------------------------------------------------------------------------------"
-    print (GAME_NAME + " v." + VERSION).center(79)
-    print "by Jordan Trudgett".center(79)
-    print "-------------------------------------------------------------------------------\n"
+    print("\n-------------------------------------------------------------------------------")
+    print((GAME_NAME + " v." + VERSION).center(79))
+    print("by Jordan Trudgett".center(79))
+    print("-------------------------------------------------------------------------------\n")
 
-    print "    Ardentryst Copyright (C) 2007, 2008, 2009 Jordan Trudgett"
-    print "    This program comes with ABSOLUTELY NO WARRANTY."
-    print "    This is free software, and you are welcome to redistribute it"
-    print "    under certain conditions; for details, see the COPYING file."
+    print("    Ardentryst Copyright (C) 2007, 2008, 2009 Jordan Trudgett")
+    print("    This program comes with ABSOLUTELY NO WARRANTY.")
+    print("    This is free software, and you are welcome to redistribute it")
+    print("    under certain conditions; for details, see the COPYING file.")
 
 
     logfile(GAME_NAME + " v." + VERSION)
@@ -3772,7 +3772,7 @@ def main():
 #    ACC = True
 
     if not ACC:
-        print "Your score can not be uploaded to the server because your version of Ardentryst is not the original version."
+        print("Your score can not be uploaded to the server because your version of Ardentryst is not the original version.")
 
     logfile("Configuring game settings...")
     # These are default options!
@@ -3823,10 +3823,10 @@ def main():
     try:
         optionsfile = open(os.path.join(SAVEDIRECTORY, "options.dat"), "r")
 
-        graphic_o = cPickle.load(optionsfile)
-        audio_o = cPickle.load(optionsfile)
-        play_o = cPickle.load(optionsfile)
-        controls_o = cPickle.load(optionsfile)
+        graphic_o = pickle.load(optionsfile)
+        audio_o = pickle.load(optionsfile)
+        play_o = pickle.load(optionsfile)
+        controls_o = pickle.load(optionsfile)
 
         for dp in [(graphic_o, g_options), (audio_o, a_options), (play_o, p_options), (controls_o, p1c)]:
             for key in dp[0]:
@@ -3848,7 +3848,7 @@ def main():
     if SOUND:
         Conch.conchinit(HZ)
     else:
-        print "Not starting sound module"
+        print("Not starting sound module")
         
     soundbox = Conch.soundbox
 
@@ -4460,10 +4460,10 @@ def main():
 
                     # Save options to file
                     optionsfile = open(os.path.join(SAVEDIRECTORY, "options.dat"), "w")
-                    cPickle.dump(g_options, optionsfile)
-                    cPickle.dump(a_options, optionsfile)
-                    cPickle.dump(p_options, optionsfile)
-                    cPickle.dump(p1c, optionsfile)
+                    pickle.dump(g_options, optionsfile)
+                    pickle.dump(a_options, optionsfile)
+                    pickle.dump(p_options, optionsfile)
+                    pickle.dump(p1c, optionsfile)
 
                 fade_to_black(screen, 5)
                 selected = ""
@@ -4583,10 +4583,10 @@ def main():
                 activeitem = dict.fromkeys(menu_items, True)
                 p_options["MustOP"] = 0
                 optionsfile = open(os.path.join(SAVEDIRECTORY, "options.dat"), "w")
-                cPickle.dump(g_options, optionsfile)
-                cPickle.dump(a_options, optionsfile)
-                cPickle.dump(p_options, optionsfile)
-                cPickle.dump(p1c, optionsfile)
+                pickle.dump(g_options, optionsfile)
+                pickle.dump(a_options, optionsfile)
+                pickle.dump(p_options, optionsfile)
+                pickle.dump(p1c, optionsfile)
                 
             elif selected == "Code Listing":
                 listing = True
@@ -4718,7 +4718,7 @@ if __name__ == "__main__":
         main()
     except SystemExit:
         pass
-    except Exception, e: # This catches errors
+    except Exception as e: # This catches errors
         handleException(e)
     pygame.display.quit()
     pygame.mixer.quit()

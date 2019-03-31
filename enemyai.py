@@ -151,7 +151,7 @@ class Monster:
         damage = [str(damage),str(damage)[1:]][curative]
         damage = str(int(round(float(damage))))
         if not damage.isdigit():
-            print "Damage was not a digit!"
+            print("Damage was not a digit!")
             return
 
         num_info = [curative]
@@ -186,7 +186,7 @@ class Monster:
         damage = [str(damage),str(damage)[1:]][curative]
         damage = str(int(round(float(damage))))
         if not damage.isdigit():
-            print "Damage was not a digit!"
+            print("Damage was not a digit!")
             return
 
         num_info = [curative]
@@ -1016,7 +1016,7 @@ class snowogre(Monster):
         damage = [str(damage),str(damage)[1:]][curative]
         damage = str(int(round(float(damage))))
         if not damage.isdigit():
-            print "Damage was not a digit!"
+            print("Damage was not a digit!")
             return
 
         num_info = [curative]
@@ -1052,7 +1052,7 @@ class snowogre(Monster):
         damage = [str(damage),str(damage)[1:]][curative]
         damage = str(int(round(float(damage))))
         if not damage.isdigit():
-            print "Damage was not a digit!"
+            print("Damage was not a digit!")
             return
 
         num_info = [curative]
