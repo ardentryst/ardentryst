@@ -91,7 +91,7 @@ class ItemBox:
                         try:
                             fs[i][x+1] = int(fs[i][x+1])
                         except:
-                            print "Item loading failed. Check for extra commas."
+                            print("Item loading failed. Check for extra commas.")
                 alter = [self.ITEM[citem].Warrior_Frames, self.ITEM[citem].Mage_Frames][{"W":0, "M":1}[n.upper()]]
                 alter[a] = fs
 #                self.ITEM[citem].wearable_image_prefix = line.split()[1]
@@ -100,15 +100,15 @@ class ItemBox:
     def Accumulate_Images(self):
         "Finds out every graphic file that is required in this module and passes back as a list."
         Graphics = []
-        for key in self.ITEM.keys():
+        for key in list(self.ITEM.keys()):
             ci = self.ITEM[key]
-            for wkey in ci.Warrior_Frames.keys():
+            for wkey in list(ci.Warrior_Frames.keys()):
                 cfs = ci.Warrior_Frames[wkey]
                 for frame in cfs:
                     framefile = ci.wearable_image_prefix + frame[0] + ".png"
                     if framefile not in Graphics:
                         Graphics.append(framefile)
-            for mkey in ci.Mage_Frames.keys():
+            for mkey in list(ci.Mage_Frames.keys()):
                 cfs = ci.Mage_Frames[mkey]
                 for frame in cfs:
                     framefile = ci.wearable_image_prefix + frame[0] + ".png"
@@ -122,14 +122,14 @@ class ItemBox:
         return Graphics
 
     def ItemInfo(self, name):
-        for i in self.ITEM.keys():
+        for i in list(self.ITEM.keys()):
             item = self.ITEM[i]
             if item.name == name:
                 return [item.type, item.location, item.value, item.on_use, item.description, item.inv_image,\
                         item.wearable_image_prefix, item.Warrior_Frames, item.Mage_Frames]
 
     def GetItem(self, name):
-        for i in self.ITEM.keys():
+        for i in list(self.ITEM.keys()):
             item = self.ITEM[i]
             if item.name == name or item.display == name:
                 return item

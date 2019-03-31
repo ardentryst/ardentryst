@@ -22,7 +22,7 @@
 try:
     from xml.dom.ext.reader import Sax2
 except:
-    print "Ext.reader.Sax2 not found"
+    print("Ext.reader.Sax2 not found")
 
 footsteps = {
     "GRASS": [
@@ -267,20 +267,20 @@ class Map:
         self.endef = {}
 
     def compile_from_xml(self, xml_file):
-        print "Making map array..."
+        print("Making map array...")
         map_array, data = map_to_array(xml_file)
         self.name, self.theme, self.bgmusic = data
-        print "Defining..."
+        print("Defining...")
         rc = 0
         for row in map_array:
             cc = 0
             for cell in row:
                 if type(cell) == dict:
-                    if cell.has_key("map"):
+                    if "map" in cell:
                         self.map[rc][cc] = Tile(cell['map'])
-                    if cell.has_key("object"):
+                    if "object" in cell:
                         self.obj[rc][cc] = cell['object']
-                    if cell.has_key("enemy"):
+                    if "enemy" in cell:
                         self.enemy[rc][cc] = cell['enemy']
                         
                 cc += 1
@@ -294,9 +294,9 @@ class Tile:
         global ramps, backgrounds, overheads, muststoprain
         self.type = tiletype
         self.friction = 1.0
-        if alt_fric.has_key(self.type):
+        if self.type in alt_fric:
             self.friction = alt_fric[self.type]
-        if ramps.has_key(self.type):
+        if self.type in ramps:
             self.collidetype = ramps[self.type]
         elif self.type in backgrounds:
             if self.type in muststoprain:
@@ -310,9 +310,9 @@ class Tile:
 if __name__ == "__main__":
     a_map = Map()
     a_map.compile_from_xml('testmap.xml')
-    print "Compiled!"
+    print("Compiled!")
     while True:
-        a = raw_input("x,y: ").split(",")
-        print "Type:", a_map.map[int(a[0])][int(a[1])].type
-        print "Collision:", a_map.map[int(a[0])][int(a[1])].collidetype
-        print "Overhead?", a_map.map[int(a[0])][int(a[1])].overhead
+        a = input("x,y: ").split(",")
+        print("Type:", a_map.map[int(a[0])][int(a[1])].type)
+        print("Collision:", a_map.map[int(a[0])][int(a[1])].collidetype)
+        print("Overhead?", a_map.map[int(a[0])][int(a[1])].overhead)

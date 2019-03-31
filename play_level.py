@@ -19,13 +19,14 @@
 #
 #------------------------------------------------------------------------
 
-import pygame, time, sys, random, math, os, cPickle, urllib
-import enemyai, tutorial, wordwrap, magic, md5, copy, thread, traceback
+import pygame, time, sys, random, math, os, pickle, urllib.request, urllib.parse, urllib.error
+import enemyai, tutorial, wordwrap, magic, md5, copy, _thread, traceback
 import level_script, item as item_module
 from pygame.locals import *
 from fade import *
 from helpers import *
 from mapping import bgfortheme, pbgfortheme, pfgfortheme, fallingobjstylefortheme, framesfalling, footstep_types, getalt_fric
+from functools import reduce
 
 # Global values and hard-coded data here
 PLAYDEMO = False
@@ -93,7 +94,7 @@ def check_quest(PLAYER, GAME):
         "17%10%collect": "Relic Collector",
         } 
 #    questlist = ["Collector1", "1.20.Slayer.Nepthene", "1.50.Slayer.Forest Arex"]
-    questlist = questnames.keys()
+    questlist = list(questnames.keys())
     questlist.sort()
 
     questlist = [questlist[-1]] + questlist[:-1]
@@ -164,7 +165,7 @@ def check_quest(PLAYER, GAME):
 
 def quest_npc(qname):
     global PLAYER, DATA
-    if PLAYER.quests.has_key(qname):
+    if qname in PLAYER.quests:
         # Quest has been started (could be finished.)
         if qname == "Collector1":
             # Anneludine Shell Collector
@@ -231,23 +232,23 @@ def uploadscore(game):
 
     data = [game.savefilename[:-4],
             str(game.playerobject.classtype),
-            cPickle.dumps(game.scores).replace("\n","\\"),
+            pickle.dumps(game.scores).replace("\n","\\"),
             str(game.playerobject.exp),
             str(game.playerobject.level),
             str(game.playerobject.questsdone()),
-            cPickle.dumps(game.timegems).replace("\n","\\"),
-            cPickle.dumps(wearing).replace("\n","\\"),
+            pickle.dumps(game.timegems).replace("\n","\\"),
+            pickle.dumps(wearing).replace("\n","\\"),
             game.shc,
             game.ac_code,
             game.GID
             ]
 
     import sha
-    sd = [data, sha.new(cPickle.dumps(data)).hexdigest()]
+    sd = [data, sha.new(pickle.dumps(data)).hexdigest()]
 
-    senddata = cPickle.dumps(sd).replace("\n","/").replace(" ", "%20")
+    senddata = pickle.dumps(sd).replace("\n","/").replace(" ", "%20")
 
-    msg = urllib.urlopen("http://jordan.trudgett.com/cgi-bin/submit.py?code="+senddata).read().strip()
+    msg = urllib.request.urlopen("http://jordan.trudgett.com/cgi-bin/submit.py?code="+senddata).read().strip()
     return msg.split("\n")
     
 
@@ -698,7 +699,7 @@ def Monster_Tick(Monsters):
         if Monster.EXECUTE:
             cmd = Monster.EXECUTE
             Monster.EXECUTE = ""
-            exec(cmd) in globals()
+            exec((cmd), globals())
 
         while None in Monster.projectiles:
             Monster.projectiles.remove(None)
@@ -1157,7 +1158,7 @@ def Ingame_Menu(data):
 
             eq_items = []
 
-            for k in player.wearing.keys():
+            for k in list(player.wearing.keys()):
                 x = player.wearing[k]
                 if len(x):
                     if k == "Accessories":
@@ -1179,7 +1180,7 @@ def Ingame_Menu(data):
                 else:
                     inv_dict[e.display+" (eq.)"] = 1
                 
-            invlist = inv_dict.keys()
+            invlist = list(inv_dict.keys())
             invlist.sort()
 
             invhandpos = min(invhandpos, len(invlist)-1)
@@ -1467,7 +1468,7 @@ def Ingame_Menu(data):
             quests = check_quest(player, game)
             y = 0
             for qname, qid in quests:
-                if player.quests.has_key(qid):
+                if qid in player.quests:
                     message = player.quests[qid][1]
                     if player.quests[qid][0]:
                         col = (10, 200, 0)
@@ -1492,7 +1493,7 @@ def Ingame_Menu(data):
                 screen.blit(DATA.images["hand.png"][0], (450, 128 + 14 * handpos))
                 message = "I have not started this quest yet."
                 ministatus = quests[handpos][0] + ": Not Yet Begun"
-                if player.quests.has_key(quests[handpos][1]):
+                if quests[handpos][1] in player.quests:
                     message = player.quests[quests[handpos][1]][1]
 
                     if player.quests[quests[handpos][1]][0]:
@@ -1590,10 +1591,10 @@ def Ingame_Menu(data):
                         interface_sound("error", SOUNDBOX)
                     else:
                         interface_sound("menu-small-select", SOUNDBOX)
-                        tempgobj = cPickle.load(open(os.path.join("Saves", game.savefilename),"r"))
+                        tempgobj = pickle.load(open(os.path.join("Saves", game.savefilename),"r"))
                         os.rename(os.path.join("Saves", game.savefilename), os.path.join("Saves", renameto+".asf"))
                         tempgobj.savefilename = renameto + ".asf"
-                        cPickle.dump(tempgobj, open(os.path.join("Saves", renameto+".asf"), "w"))
+                        pickle.dump(tempgobj, open(os.path.join("Saves", renameto+".asf"), "w"))
                         game.savefilename = renameto + ".asf"
                         renaming = False
                         renameto = ""
@@ -1963,9 +1964,9 @@ def check_rules(rules):
         for condition in conditionclause:
             condition = condition.split()
             for x in range(len(condition)):
-                if condition[x] in creplace.keys():
+                if condition[x] in list(creplace.keys()):
                     condition[x] = creplace[condition[x]]
-                for k in creplace.keys():
+                for k in list(creplace.keys()):
                     if k in condition[x]:
                         condition[x] = condition[x].replace(k, creplace[k])
             evalcond = evalcond + " and " + " ".join(condition)
@@ -1977,12 +1978,12 @@ def check_rules(rules):
         if safe(evalcond):
             if eval(safe(evalcond)):
                 for event in eventclause:
-                    for x in creplace.keys():
+                    for x in list(creplace.keys()):
                         event = event.replace(x, creplace[x])
                     if safe(event):
                         exec(safe(event))
                     else:
-                        print "Unsafe event"
+                        print("Unsafe event")
                     if rule[0][0].lower() == "when":
                         rule[0][0] = "finished"
 
@@ -2426,7 +2427,7 @@ def playdemo(*args):
     demofile = args[-1]
     args = args[:-1]
     dfile = open(os.path.join("Demos", demofile), "r")
-    eventd, monsterd, playerd = cPickle.load(dfile)
+    eventd, monsterd, playerd = pickle.load(dfile)
     PLAYDEMO = True
     return playlevel(*args)
 
@@ -2656,7 +2657,7 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
 
     if PLAYER.obelisk_save:
         if PLAYER.obelisk_save[0] == LEVEL.name:
-            Monsters = cPickle.loads(PLAYER.obelisk_save[2])[:]
+            Monsters = pickle.loads(PLAYER.obelisk_save[2])[:]
             Objects = PLAYER.obelisk_save[3][:]
             PLAYER.obelisk_save[1].obelisk_save = PLAYER.obelisk_save[:]
             PLAYER = copy.deepcopy(PLAYER.obelisk_save[1])
@@ -2787,11 +2788,11 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
                         CONSOLE_VIEW.append("] "+CONSOLE_TEXT)
                         try:
                             CONSOLE_VIEW.append("&" + str(eval(CONSOLE_TEXT)))
-                        except Exception, e:
+                        except Exception as e:
                             try:
-                                exec(CONSOLE_TEXT) in globals()
+                                exec((CONSOLE_TEXT), globals())
                                 CONSOLE_VIEW.append("%Successful")
-                            except Exception, f:
+                            except Exception as f:
                                 CONSOLE_VIEW.append("#Couldn't evaluate because "+str(e)+".")                                
                                 CONSOLE_VIEW.append("#Couldn't execute because " + str(f) + ".")
                         CONSOLE_HIST_STAGE = 0
@@ -2816,7 +2817,7 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
                         pygame.event.pump()
                         pkgp = pygame.key.get_pressed()
                         if pkgp[K_LSHIFT] or pkgp[K_RSHIFT]:
-                            if uppervals.has_key(keyname):
+                            if keyname in uppervals:
                                 CONSOLE_TEXT += uppervals[keyname]
                             else:
                                 CONSOLE_TEXT += keyname.upper()
@@ -3271,10 +3272,10 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
                     try:
                         if OBJECT_CLOSEST and OBJECT_CLOSEST._activateable:
                             OBJECT_CLOSEST._activate()
-                    except Exception, e:
+                    except Exception as e:
                         if OBJECT_CLOSEST and OBJECT_CLOSEST.interactive:
                             if safe(OBJECT_CLOSEST.action):
-                                exec(OBJECT_CLOSEST.action) in globals()
+                                exec((OBJECT_CLOSEST.action), globals())
                 if event.key in CONTROLS["B-9"]:
                     beforetick = pygame.time.get_ticks()
                     abortable = GAME.scores[GAME.location[0]-1][GAME.location[1]-1]
@@ -3611,7 +3612,7 @@ def blit_new_status_bar(surf):
     # Ailments
 
     ails = ["poisoned"]
-    curails = [x for x in PLAYER.bits.keys() if PLAYER.isbit(x) and x in ails]
+    curails = [x for x in list(PLAYER.bits.keys()) if PLAYER.isbit(x) and x in ails]
 
     space = 50.0 / (len(curails) + 1)
 
@@ -3655,7 +3656,7 @@ def blit_character(PLAYER, CAMERA_X, in_eq = False):
     if (PLAYER.nomanaicon/10) % 2:
         PLAYERSURF.blit(DATA.images["manaicon.png"][0], (190, 80))
 
-    for wkey in PLAYER.wearing.keys():
+    for wkey in list(PLAYER.wearing.keys()):
         tf = ["Weapon", "Head", "Torso"]
         item = PLAYER.wearing[wkey]
         if wkey == "Accessories": continue
@@ -4493,7 +4494,7 @@ class Character:
 
     def questsdone(self):
         d = 0
-        for key in self.quests.keys():
+        for key in list(self.quests.keys()):
             if self.quests[key][0]:
                 d += 1
         return d
@@ -4619,7 +4620,7 @@ class Character:
             ub = item.usage_bonus
             if item.protection:
                 self.protection += item.protection
-            for key in ub.keys():
+            for key in list(ub.keys()):
                 bonuses[key] += ub[key]
 
             for bit in item.bits:
@@ -4640,7 +4641,7 @@ class Character:
             if item.protection:
                 self.protection += item.protection
             ub = item.usage_bonus
-            for key in ub.keys():
+            for key in list(ub.keys()):
                 bonuses[key] += ub[key]
 
             for bit in item.bits:
@@ -4662,7 +4663,7 @@ class Character:
         self.bonuses = bonuses
 
     def isbit(self, bit):
-        if self.bits.has_key(bit):
+        if bit in self.bits:
             return self.bits[bit]
         return False
 
@@ -5579,7 +5580,7 @@ class Character:
                         if "INCLINATION" in sb.collidetype:
                             self.on_ramp = True
                         
-                except Exception, e:
+                except Exception as e:
                     raise
             if self.inertia[1] > 13:
                 # Impact of land
@@ -6083,7 +6084,7 @@ class Lever:
         self.state = 1
         self._activateable = False
         if safe(self.command):
-            thread.start_new_thread(self.run, ())
+            _thread.start_new_thread(self.run, ())
         SOUNDBOX.PlaySound("stone.ogg")
     def run(self):
         global PLAYER, EOLFADE
@@ -6124,7 +6125,7 @@ class Obelisk:
         self.state = 1
         self._activateable = False
         PLAYER.obelisk_time = FRAMEMOD
-        PLAYER.obelisk_save = [LEVEL.name, copy.deepcopy(PLAYER), cPickle.dumps(copy.deepcopy(Monsters)), Objects[:], Treasures]
+        PLAYER.obelisk_save = [LEVEL.name, copy.deepcopy(PLAYER), pickle.dumps(copy.deepcopy(Monsters)), Objects[:], Treasures]
 
         PLAYER.obelisk_save[1].inventory = PLAYER.inventory
 
