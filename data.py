@@ -261,5 +261,5 @@ class Storage:
     def precache_levels(self):
         for x in range(len(self.levelfiles)):
             for levelfile in self.levelfiles[x]:
-                self.levels[levelfile] = pickle.load(open(os.path.join("Levels", levelfile), "r"))
+                self.levels[levelfile] = pickle.load(open(os.path.join("Levels", levelfile), "rb"))
                 self.dostage(levelfile, 2)
