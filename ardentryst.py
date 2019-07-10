@@ -3821,7 +3821,7 @@ def main():
     # Load options from file
 
     try:
-        optionsfile = open(os.path.join(SAVEDIRECTORY, "options.dat"), "r")
+        optionsfile = open(os.path.join(SAVEDIRECTORY, "options.dat"), "rb")
 
         graphic_o = pickle.load(optionsfile)
         audio_o = pickle.load(optionsfile)
