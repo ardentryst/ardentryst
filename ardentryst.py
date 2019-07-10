@@ -4146,12 +4146,12 @@ def main():
 
 
             # Flying birds
-            screen.blit(Data.images["mbirds" + str(abs(ticker/10%6 - 3)+1) + ".png"][0], ((ticker/1.8)%2000 - 180, 125 + math.sin(ticker/50.0)*15))
-            screen.blit(Data.images["mbirds" + str(abs((ticker-18)/10%6 - 3)+1) + ".png"][0], ((ticker/1.9)%2000 - 130,  120 + math.sin((ticker-15)/59.0)*12))
-            screen.blit(Data.images["mbirds" + str(abs((ticker-39)/10%6 - 3)+1) + ".png"][0], ((ticker/2)%2000 - 60,  110 + math.sin((ticker-8)/75.0)*19))
-            screen.blit(Data.images["mbirds" + str(abs(ticker/10%6 - 3)+1) + ".png"][0], ((ticker/1.8)%2000 - 680, 125 + math.sin(ticker/50.0)*15))
-            screen.blit(Data.images["mbirds" + str(abs((ticker-18)/10%6 - 3)+1) + ".png"][0], ((ticker/1.9)%2000 - 730,  120 + math.sin((ticker-15)/59.0)*12))
-            screen.blit(Data.images["mbirds" + str(abs((ticker-39)/10%6 - 3)+1) + ".png"][0], ((ticker/2)%2000 - 860,  110 + math.sin((ticker-8)/75.0)*19))
+            screen.blit(Data.images["mbirds" + str(int(round(abs(ticker/10%6 - 3)+1))) + ".png"][0], ((ticker/1.8)%2000 - 180, 125 + math.sin(ticker/50.0)*15))
+            screen.blit(Data.images["mbirds" + str(int(round(abs((ticker-18)/10%6 - 3)+1))) + ".png"][0], ((ticker/1.9)%2000 - 130,  120 + math.sin((ticker-15)/59.0)*12))
+            screen.blit(Data.images["mbirds" + str(int(round(abs((ticker-39)/10%6 - 3)+1))) + ".png"][0], ((ticker/2)%2000 - 60,  110 + math.sin((ticker-8)/75.0)*19))
+            screen.blit(Data.images["mbirds" + str(int(round(abs(ticker/10%6 - 3)+1))) + ".png"][0], ((ticker/1.8)%2000 - 680, 125 + math.sin(ticker/50.0)*15))
+            screen.blit(Data.images["mbirds" + str(int(round(abs((ticker-18)/10%6 - 3)+1))) + ".png"][0], ((ticker/1.9)%2000 - 730,  120 + math.sin((ticker-15)/59.0)*12))
+            screen.blit(Data.images["mbirds" + str(int(round(abs((ticker-39)/10%6 - 3)+1))) + ".png"][0], ((ticker/2)%2000 - 860,  110 + math.sin((ticker-8)/75.0)*19))
 
             for x in range(len(LIGHTNING)):
                 lightning = LIGHTNING[x]
