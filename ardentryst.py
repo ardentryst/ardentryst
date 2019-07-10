@@ -3865,6 +3865,7 @@ def main():
 ##         print "You can play in fullscreen with:"
 ##         print "    python "+sys.argv[0]+" -f"
 
+    pygame.init()
     pygame.display.init()
     pygame.display.set_caption("Ardentryst v."+VERSION)
     pygame.font.init()
@@ -3940,6 +3941,7 @@ def main():
     myflip()
 
     if SOUND:
+        pygame.mixer.init()
         pygame.mixer.music.load(os.path.join("Music", "theme1.ogg"))
         pygame.mixer.music.set_volume(soundbox.music_volume)
         pygame.mixer.music.play(-1)
