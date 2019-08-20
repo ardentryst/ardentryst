@@ -19,13 +19,14 @@
 #
 #------------------------------------------------------------------------
 
-import pygame, time, md5, random
+import pygame, time, random
 from helpers import ge, myflip
 from pygame.locals import *
 from fade import *
 import wordwrap
 from math import radians, sin
-
+import hashlib
+md5 = hashlib.md5()
     #1st slide(bg,(txtlines),spch,alt.len,(prespeech,prescr,extrascr,endw),amb)
 
 script = {
@@ -179,7 +180,9 @@ class Game_Object:
             ]
 
         self.timegems = []
-        self.GID = md5.new(str(random.randint(0, 9999999)).zfill(7)+time.ctime()).hexdigest()
+        md5sum = hashlib.md5()
+        md5sum.update((str(random.randint(0, 9999999)).zfill(7)+time.ctime()).encode('utf-8'))
+        self.GID = md5sum.hexdigest()
         self.KIRI_HEIGHT = 1 # How high kiripan is levitated.
 
         #1st slide(bg,(txtlines),spch,alt.len,(prespeech,prescr,extrascr,endw),amb)
