@@ -2227,9 +2227,9 @@ def level_intro():
     rts = Timegem_time[1]
     bts = Timegem_time[2]
 
-    yts = str(yts/60).zfill(1) + ":" + str(yts%60).zfill(2)
-    rts = str(rts/60).zfill(1) + ":" + str(rts%60).zfill(2)    
-    bts = str(bts/60).zfill(1) + ":" + str(bts%60).zfill(2)
+    yts = str(int(yts/60)).zfill(1) + ":" + str(yts%60).zfill(2)
+    rts = str(int(rts/60)).zfill(1) + ":" + str(rts%60).zfill(2)
+    bts = str(int(bts/60)).zfill(1) + ":" + str(bts%60).zfill(2)
 
     if sum(Timegem_time) > 0:
 
@@ -2363,7 +2363,7 @@ def Level_Score(enemyperc, treasureperc, seconds, sd):
                 line_r.midright = (440, 290 + y*30)
                 SCREEN.blit(line_s, line_r)
             elif y == 5:
-                line_s = FONTS[17].render(str(line/60) + ":" + str(line%60).zfill(2), 1, (255,255,255))
+                line_s = FONTS[17].render(str(int(line/60)) + ":" + str(line%60).zfill(2), 1, (255,255,255))
                 line_r = line_s.get_rect()
                 line_r.midright = (440, 290 + y*30)
                 SCREEN.blit(line_s, line_r)
@@ -2400,7 +2400,7 @@ def Level_Score(enemyperc, treasureperc, seconds, sd):
             line_r.midright = (440, 290 + y*30)
             SCREEN.blit(line_s, line_r)
         elif y == 5:
-            line_s = FONTS[17].render(str(line/60) + ":" + str(line%60).zfill(2), 1, (255,255,255))
+            line_s = FONTS[17].render(str(int(line/60)) + ":" + str(line%60).zfill(2), 1, (255,255,255))
             line_r = line_s.get_rect()
             line_r.midright = (440, 290 + y*30)
             SCREEN.blit(line_s, line_r)
@@ -3563,7 +3563,7 @@ def blit_new_status_bar(surf):
     lrect.center = (300, 414)
     surf.blit(lsurf, lrect)
     # TIME
-    tsurf = FONTS[13].render(str(Time_Played/60).zfill(2)+":"+str(Time_Played%60).zfill(2), 1, (255,255,255))
+    tsurf = FONTS[13].render(str(int(Time_Played/60)).zfill(2)+":"+str(Time_Played%60).zfill(2), 1, (255,255,255))
     trect = tsurf.get_rect()
     trect.center = (300, 458)
     surf.blit(tsurf, trect)
