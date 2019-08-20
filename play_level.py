@@ -20,13 +20,14 @@
 #------------------------------------------------------------------------
 
 import pygame, time, sys, random, math, os, pickle, urllib.request, urllib.parse, urllib.error
-import enemyai, tutorial, wordwrap, magic, md5, copy, _thread, traceback
+import enemyai, tutorial, wordwrap, magic, copy, _thread, traceback
 import level_script, item as item_module
 from pygame.locals import *
 from fade import *
 from helpers import *
 from mapping import bgfortheme, pbgfortheme, pfgfortheme, fallingobjstylefortheme, framesfalling, footstep_types, getalt_fric
 from functools import reduce
+from hashlib import md5
 
 # Global values and hard-coded data here
 PLAYDEMO = False
@@ -1296,6 +1297,8 @@ def Ingame_Menu(data):
                 equipment.append("#Accessories")
                 equipment += [x.display for x in player.wearing["Accessories"]]
 
+            if eqhandpos == None:
+                eqhandpos = 0
             if eqhandpos >= len(equipment):
                 eqhandpos = len(equipment) - 1
                 eqdirection = 0
@@ -1858,7 +1861,7 @@ def Ingame_Menu(data):
 
     dsa = 230
     darksurf.set_alpha(dsa)
-    for x in range(dsa / 30):
+    for x in range(dsa // 30):
         playscreen.set_alpha(255)
         screen.blit(playscreen, (0,0))
         screen.blit(darksurf, (0,0))
@@ -2023,7 +2026,7 @@ def ground_at(x, f=False):
     ysense = 479
     sensing = True
     while sensing:
-        sensetile = LEVEL.map[x/40][ysense/40]
+        sensetile = LEVEL.map[x//40][ysense//40]
         if not sensetile or "NONE" in sensetile.collidetype: break
         if sensetile.collidetype == "RIGHT_INCLINATION":
             if x%40 < 40-(ysense%40):
@@ -4724,7 +4727,7 @@ class Character:
 
         if self.breaktime == 0 and self.mbreaktime == 0:
             self.mycombotime -= 1
-            if self.chainmove[1] > 0:
+            if self.chainmove[1] != None and self.chainmove[1] > 0:
                 self.chainmove[1] -= 1
             if self.chainmove[1] == 0:
                 cm = self.chainmove[:]
@@ -4743,6 +4746,8 @@ class Character:
         self.oldcombostr = combostr
         for move in self.combo_list:
             if move[2] > self.level: continue
+            if toexec[1] == None:
+                toexec[1] = 0
             if combostr == move[0] and (len(move[0]) > toexec[1] or toexec[1] is None):
                 toexec = [move[1], len(move[0])]
 
@@ -5690,7 +5695,7 @@ class Character:
             return True
         if abs_y >= 480:
             return False
-        looktile = LEVEL.map[abs_x/40][abs_y/40]
+        looktile = LEVEL.map[abs_x//40][abs_y//40]
         if looktile:
             if looktile.collidetype == "RIGHT_INCLINATION":
                 # is a 45 degree ramp with peak at right

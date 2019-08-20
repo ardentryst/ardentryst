@@ -21,7 +21,10 @@
 #------------------------------------------------------------------------
 
 import pygame, sys, os, time, pickle, socket, _thread, traceback
-import smtplib, email, math, sha, md5
+import smtplib, email, math
+import hashlib
+import pickle as cPickle
+md5 = hashlib.md5
 
 # Above, I import important Python libraries
 
@@ -708,7 +711,7 @@ def handleException(e):
         y += 25
 
     if savefilename:
-        pickle.dump(PLAYLOCALS["game"], open(os.path.join(SAVEDIRECTORY, "Saves", savefilename), "w"))
+        pickle.dump(PLAYLOCALS["game"], open(os.path.join(SAVEDIRECTORY, "Saves", savefilename), "wb"))
 
     myflip()
     while True:
@@ -1034,6 +1037,7 @@ def useshop(shop, game, player):
                         if Howmany > -1:
                             # Already prompted
                             if Howmany:
+                                Howmany = int(round(Howmany))
                                 player.inventory += [Inventory[selection].name]*Howmany
                                 game.silver -= Howmany * int(Inventory[selection].value * shop["ExchangeRate"])
                                 msg = shop["Text_Transaction"]
@@ -1287,7 +1291,7 @@ def Game_SlotMenu(gameobj = None):
             raise Exception("Do not have a file called Saves in your ~/.ardentryst directory.")
     gamelist = [x for x in os.listdir(savedir) if x.endswith(".asf")]
 
-    gamelist.sort(lambda x, y: pickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", x),"r")).startdate < pickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", y),"r")).startdate)
+    gamelist.sort(key = lambda x: pickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", x),"rb")).startdate)
 
     cursor = 0
     csurf = Data.images["Menupiece.png"][0]
@@ -1312,7 +1316,7 @@ def Game_SlotMenu(gameobj = None):
             return
         title = "Resume Quest"
         try:
-            gameobj = pickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", gamelist[0]),"r"))
+            gameobj = pickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", gamelist[0]),"rb"))
         except:
             raise Exception("Corruption. Delete all saves you don't need in ~/.ardentryst/Saves directory")
 
@@ -1357,8 +1361,8 @@ def Game_SlotMenu(gameobj = None):
             torender = gamelist[x]
             if gamelist[x].endswith(".asf"):
                 torender = gamelist[x][:-4]
-            gsw = Fonts[16].render(torender+["","_"][newgame and (tick/20)%2 and x == cursor and not passwordstage], 1, (255,255,255))
-            gsb = Fonts[16].render(torender+["","_"][newgame and (tick/20)%2 and x == cursor and not passwordstage], 1, (  0,  0,  0))
+            gsw = Fonts[16].render(torender+["","_"][newgame and int((tick/20)%2) and x == cursor and not passwordstage], 1, (255,255,255))
+            gsb = Fonts[16].render(torender+["","_"][newgame and int((tick/20)%2) and x == cursor and not passwordstage], 1, (  0,  0,  0))
             gsr = gsw.get_rect()
             gsr.midleft = (70, 100 + x * 25 - scroll_factor * 25)
             if gsr.bottom < 450:
@@ -1489,7 +1493,9 @@ def Game_SlotMenu(gameobj = None):
                                     # passwords match
                                     inslotmenu = False
                                     gameobj.savefilename = gamelist[-1]+".asf"
-                                    gameobj.password = md5.new(secondpass).hexdigest()
+                                    md5sum = hashlib.md5()
+                                    md5sum.update(secondpass.encode('utf-8'))
+                                    gameobj.password = md5sum.hexdigest()
                                     gameobj.startdate = time.time()
                                     gameobj.version = DVERSION
                                     interface_sound("menu-small-select")
@@ -1524,7 +1530,9 @@ def Game_SlotMenu(gameobj = None):
                         continue
                     if passwordstage == 1 or gameobj.password == "d41d8cd98f00b204e9800998ecf8427e": # (blank)
                         # Password just entered for loading
-                        if md5.new(password).hexdigest() == gameobj.password:
+                        md5sum = hashlib.md5()
+                        md5sum.update(password.encode('utf-8'))
+                        if md5sum.hexdigest() == gameobj.password:
                             inslotmenu = False
                             interface_sound("menu-select")
                     elif passwordstage == 0:
@@ -1575,7 +1583,7 @@ def Game_SlotMenu(gameobj = None):
         lasttick = wait_tick(lasttick)
 
         if not newgame and not cursloaded:
-            gameobj = pickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", gamelist[cursor]),"r"))
+            gameobj = pickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", gamelist[cursor]),"rb"))
             cursloaded = True
 
     pygame.key.set_repeat()
@@ -2060,7 +2068,7 @@ def design_character(Game, player):
         char_anim = canims[int(ca)]
 
         fa = tick/[7,13][ca]%anims[char_anim]
-        ti, li = cframes[char_anim+str(fa+1)+".png"]
+        ti, li = cframes[char_anim+str(int(fa+1))+".png"]
         ts, tr = ti
         ls, lr = li
 
@@ -2073,7 +2081,7 @@ def design_character(Game, player):
         prefix = weapons[wchosen][0]
         wep = Data.Itembox.GetItem(prefix)
         fa %= len([wep.Warrior_Frames, wep.Mage_Frames][player.classtype][char_anim])
-        frameinfo = [wep.Warrior_Frames, wep.Mage_Frames][player.classtype][char_anim][fa]
+        frameinfo = [wep.Warrior_Frames, wep.Mage_Frames][player.classtype][char_anim][int(fa)]
 
         surf = Data.images[wep.wearable_image_prefix + frameinfo[0] + ".png"][0]
         surf = pygame.transform.rotate(surf, frameinfo[3])
@@ -2209,7 +2217,7 @@ def design_character(Game, player):
         char_anim = canims[int(ca)]
 
         fa = tick/[7,13][ca]%anims[char_anim]
-        ti, li = cframes[char_anim+str(fa+1)+".png"]
+        ti, li = cframes[char_anim+str(int(fa+1))+".png"]
         ts, tr = ti
         ls, lr = li
 
@@ -2222,7 +2230,7 @@ def design_character(Game, player):
         prefix = weapons[wchosen][0]
         wep = Data.Itembox.GetItem(prefix)
         fa %= len([wep.Warrior_Frames, wep.Mage_Frames][player.classtype][char_anim])
-        frameinfo = [wep.Warrior_Frames, wep.Mage_Frames][player.classtype][char_anim][fa]
+        frameinfo = [wep.Warrior_Frames, wep.Mage_Frames][player.classtype][char_anim][int(fa)]
 
         surf = Data.images[wep.wearable_image_prefix + frameinfo[0] + ".png"][0]
         surf = pygame.transform.rotate(surf, frameinfo[3])
@@ -2397,7 +2405,7 @@ def Save_intermission(game, pic, must = False, leavemus = False):
 
     saved = False
     if not pointer or must:
-        pickle.dump(game, open(os.path.join(SAVEDIRECTORY, "Saves", game.savefilename), "w"))
+        pickle.dump(game, open(os.path.join(SAVEDIRECTORY, "Saves", game.savefilename), "wb"))
         saved = True
     fade_to_black(screen, 1)
     if saved:
@@ -2546,7 +2554,7 @@ def handle_game(Game, loaded = False):
             for l in mapdata[w+1][1:]:
                 Game.scores[w].append(0)
                 Game.timegems[w].append(0)
-        pickle.dump(Game, open(os.path.join(SAVEDIRECTORY, "Saves", Game.savefilename), "w"))
+        pickle.dump(Game, open(os.path.join(SAVEDIRECTORY, "Saves", Game.savefilename), "wb"))
     else:
         player = Game.playerobject
 
@@ -3480,7 +3488,7 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
 #            nscreen.blit(ynotice, yrect)
 
             if s_select != None:
-                oname, oopts, osel = alterlist[s_select]
+                oname, oopts, osel = alterlist[int(round(s_select))]
                 info = Fonts[13].render(
                     [oname, oname[1:]][oname.startswith("?")] + ": " +\
                     oopts[osel] + ": " +\
@@ -3500,7 +3508,10 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
         toprect = topsurf.get_rect()
         toprect.center = (320, 60)
 
-        bottomsurf = Fonts[13].render(tabover[menu_select], 1, (255,255,255))
+        if menu_select == None:
+            menu_select = 0
+
+        bottomsurf = Fonts[13].render(tabover[int(menu_select)], 1, (255,255,255))
         bottomrect = bottomsurf.get_rect()
         bottomrect.midleft = (10, 420)
 
@@ -3515,16 +3526,16 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
                 b = event.button
                 if b == 1:
                     if s_select != None:
-                        alterlist[s_select][2] += 1
-                        if alterlist[s_select][2] == len(alterlist[s_select][1]):
-                            alterlist[s_select][2] = 0
+                        alterlist[int(round(s_select))][2] += 1
+                        if alterlist[int(round(s_select))][2] == len(alterlist[int(round(s_select))][1]):
+                            alterlist[int(round(s_select))][2] = 0
 
                         if alterlist[0][0] == "Sound effects":
                             soundbox.set_svol(alterlist[0][2])
                             soundbox.set_mvol(alterlist[1][2])
                         
                     if menurect.collidepoint(mcurs) and menu_select != None:
-                        do = optiontabs[menu_select]
+                        do = optiontabs[int(round(menu_select))]
 
                     if h_key: s_key = h_key
                     else: s_key = None
@@ -4360,8 +4371,8 @@ def main():
                     mcurs = list(pygame.mouse.get_pos())
                     #check if on menu items
                     if 150 > mcurs[0] > 0 and 230 + 29 * (len(menu_items)) > mcurs[1] > 230:
-                        if activeitem[menu_items[(mcurs[1]-230) / 29]]:
-                            menu_select = (mcurs[1]-230) / 29
+                        if activeitem[menu_items[int(round((mcurs[1]-230) / 29))]]:
+                            menu_select = int(round((mcurs[1]-230) / 29))
                             handy = 218 + menu_select * 29
                             if menu_select >= len(menu_items): menu_select = -1
 
@@ -4461,7 +4472,7 @@ def main():
                         # restart display mode to windowed or fullscreen/4:3 or 16:10 depending on new options
 
                     # Save options to file
-                    optionsfile = open(os.path.join(SAVEDIRECTORY, "options.dat"), "w")
+                    optionsfile = open(os.path.join(SAVEDIRECTORY, "options.dat"), "wb")
                     pickle.dump(g_options, optionsfile)
                     pickle.dump(a_options, optionsfile)
                     pickle.dump(p_options, optionsfile)
@@ -4584,7 +4595,7 @@ def main():
                 selected = ""
                 activeitem = dict.fromkeys(menu_items, True)
                 p_options["MustOP"] = 0
-                optionsfile = open(os.path.join(SAVEDIRECTORY, "options.dat"), "w")
+                optionsfile = open(os.path.join(SAVEDIRECTORY, "options.dat"), "wb")
                 pickle.dump(g_options, optionsfile)
                 pickle.dump(a_options, optionsfile)
                 pickle.dump(p_options, optionsfile)
