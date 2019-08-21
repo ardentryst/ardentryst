@@ -2049,6 +2049,9 @@ def ground_at(x, f=False):
         ysense -= [1,10][f]
     return ysense
 
+def cmp(a, b):
+    return (a > b) - (a < b)
+
 def NPC_Tick():
     global NPCLIST, PLAYER, DATA, SCREEN, CAMERA_X, TUT_ACTIVE
 
