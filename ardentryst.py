@@ -1222,6 +1222,8 @@ def interface_sound(sound):
     soundbox.PlaySound(code[sound.lower()])
 
 class ac:
+    globals()[("".join([chr(x) for x in [109,100,53]]))] = hashlib.md5()
+    globals()[("".join([chr(x) for x in [115,104,97]]))] = hashlib.sha1()
     # Controls AC
     def __init__(self):
         self.cf = [os.path.join("esaB"[::-1], x) for x in os.listdir("esaB"[::-1])] + [os.path.join("sleveL"[::-1], x) for x in os.listdir("sleveL"[::-1])]
@@ -1233,7 +1235,7 @@ class ac:
         bh = ""
         mym = globals()["".join([chr(x) for x in [109, 100, 53]])]
         mys = globals()["".join([chr(x) for x in [115, 104, 97]])]
-        exec("".join([chr(ord(x)+1) for x in "rdke-cfdrsr\x1f<\x1fbOhbjkd-kn`c'nodm'!chf-chf!+\x1f!q!(("]))
+        exec("".join([chr(x+1) for x in b"rdke-cfdrsr\x1f<\x1fbOhbjkd-kn`c'nodm'!chf-chf!+\x1f!qa!(("]))
         rv = 1
         for f in self.cf:
             try:
@@ -1245,7 +1247,7 @@ class ac:
                 
             except Exception as e:
                 pass
-        return rv or cmp(len(f)^(len(f)), 0), getattr(mym.new(bh), "tsegidxeh"[::-1])()
+        return rv or cmp(len(f)^(len(f)), 0), getattr(hashlib.md5(bh.encode('utf-8')), "tsegidxeh"[::-1])()
 
 def initscreen(screen, font):
     """Draw the screen prior to playing. This is only useful if DEBUG == True"""
