@@ -24,6 +24,11 @@ and of course, many different weapons and equipment to choose from.
 The game also incorporates fighting-style combos in conjunction with
 magic spells for advanced battles.
 
+### REQUIREMENTS
+
+Ardentryst just need pygame to run. You can install running:
+```python install -r requirements.txt ```
+
 ## RUNNING
 In order to run the game you have to run ardentryst.py with python2.
 

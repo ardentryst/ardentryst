@@ -19,3 +19,14 @@ a terminal window (in X) by typing 'ardentryst'.
 
 To run the game without doing a system-wide install, just run
 ardentryst.py (with Python) and you're ready to go.
+
+
+To use Python virtual env you can run:
+
+```
+$ python3 -m venv  venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt
+$ python ardentryst.py
+
+```
