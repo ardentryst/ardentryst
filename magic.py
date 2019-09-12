@@ -235,7 +235,7 @@ class Ice_1(Spell):
     def s_init(self):
         global DATA
         self.affected = []
-        self.cant = self.caster.mp < 4
+        self.cant = self.caster.mp[0] < 4
     def s_blit(self, surf, ALT_X, ALT_Y):
         global DATA
         if not self.affected:
@@ -440,7 +440,7 @@ class Implosion_1(Spell):
     def s_init(self):
         global DATA
         self.affected = []
-        self.cant = self.caster.mp < 15
+        self.cant = self.caster.mp[0] < 15
     def s_blit(self, surf, ALT_X, ALT_Y):
         global DATA
         pic = DATA.mag_images["bubble.png"][0]
