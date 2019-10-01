@@ -5329,7 +5329,11 @@ class Character:
                                     FACE_VIEW.target = monster
 
 
-                lm = LEVEL.map[int(arrow.x/40)][int(arrow.y/40)]
+                lm = None
+                try:
+                    lm = LEVEL.map[int(arrow.x/40)][int(arrow.y/40)]
+                except IndexError:
+                    pass
                 if lm:
                     if lm.collidetype == "BOX" and not arrow.broken:
                         arrow.broken = True
