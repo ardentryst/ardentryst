@@ -471,7 +471,7 @@ class Implosion_1(Spell):
                     if self.caster.mp[0] >= 15:
                         self.affected.append(monster)
 
-            self.affected.sort(lambda x, y: cmp(y.maxhp, x.maxhp))
+            self.affected.sort(key=lambda x: x.maxhp)
 
             if len(self.affected):
                 self.affected = self.affected[:1]
