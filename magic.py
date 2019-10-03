@@ -27,7 +27,7 @@ def ground_at(LEVEL, x, f=False):
     ysense = 479
     sensing = True
     while sensing:
-        sensetile = LEVEL.map[x/40][ysense/40]
+        sensetile = LEVEL.map[x//40][ysense//40]
         if not sensetile or "NONE" in sensetile.collidetype: break
         if sensetile.collidetype == "RIGHT_INCLINATION":
             if x%40 < 40-(ysense%40):
