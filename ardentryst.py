@@ -1383,7 +1383,7 @@ def Game_SlotMenu(gameobj = None):
         hand, handr = Data.images["hand.png"]
         hand = pygame.transform.flip(hand, True, False)
 
-        handr.midright = (60+abs(math.sin(tick/10.0))*10.0, 100 + cursor * 25 - scroll_factor * 25)
+        handr.midright = (int(60+abs(math.sin(tick/10.0))*10.0), int(100 + cursor * 25 - scroll_factor * 25))
         screen.blit(hand, handr)
 
         inw = Fonts[9].render("Instructions: " + instructions, 1, (255,255,255))
@@ -1661,7 +1661,7 @@ def choose_character(screen):
     namesurf = Fonts[14].render(NAME[CHAR], 1, (255,255,255))
     namerect = namesurf.get_rect()
     namerect.top = headrect.bottom
-    namerect.centerx = (charrect.right + 640) / 2 # Average of Charrect.right and 640
+    namerect.centerx = int((charrect.right + 640) / 2) # Average of Charrect.right and 640
     namerect.move_ip(0, 10) # to get that 10px border
 
     DESCSURFS = [
@@ -1719,7 +1719,7 @@ def choose_character(screen):
 
         sc = 0
         for stat in stats:
-            statrect = pygame.Rect(0,0,full_length/float(maxstat) * stat,12)
+            statrect = pygame.Rect(0,0,int(full_length/float(maxstat) * stat),12)
             statrect.topleft = headrect.topright
             statrect.move_ip(35, 25 + sc*20)
             screen.fill((255-(255.0/maxstat)*stat*0.75,(255.0/maxstat)*stat*0.75,0), statrect.inflate(6,6))
@@ -1750,14 +1750,14 @@ def choose_character(screen):
         namesurf = Fonts[14].render(NAME[0], 1, (255,255,255))
         namerect = namesurf.get_rect()
         namerect.top = headrect.bottom
-        namerect.centerx = (charrect.right + 640) / 2 # Average of Charrect.right and 640
-        namerect.move_ip(-((640-charrect.right)/3), 10) # to get that 10px border, and move it left
+        namerect.centerx = int((charrect.right + 640) / 2) # Average of Charrect.right and 640
+        namerect.move_ip(int(-((640-charrect.right)/3)), 10) # to get that 10px border, and move it left
 
         namesurf2 = Fonts[14].render(NAME[1], 1, (255,255,255))
         namerect2 = namesurf2.get_rect()
         namerect2.top = headrect.bottom
-        namerect2.centerx = (charrect.right + 640) / 2 # Average of Charrect.right and 640
-        namerect2.move_ip(((640-charrect.right)/3), 10) # to get that 10px border, and move it right
+        namerect2.centerx = int((charrect.right + 640) / 2) # Average of Charrect.right and 640
+        namerect2.move_ip(int((640-charrect.right)/3), 10) # to get that 10px border, and move it right
 
         # the namesurf stuff above is a bit of a bother, but shouldn't be too slow.
 
@@ -1765,12 +1765,12 @@ def choose_character(screen):
             hand = Data.images["hand.png"][0]
             handrect = hand.get_rect()
             handrect.midleft = namerect.midright
-            handrect.move_ip(20+abs(math.sin(tick/10.0)*10),0)
+            handrect.move_ip(int(20+abs(math.sin(tick/10.0)*10)),0)
         else:
             hand = pygame.transform.flip(Data.images["hand.png"][0], True, False)
             handrect = hand.get_rect()
             handrect.midright = namerect2.midleft
-            handrect.move_ip(-20-abs(math.sin(tick/10.0)*10),0)
+            handrect.move_ip(int(-20-abs(math.sin(tick/10.0)*10)),0)
 
         screen.blit(headpic, headrect)
         screen.blit(namesurf, namerect)
@@ -2078,7 +2078,7 @@ def design_character(Game, player):
         lr.topleft = (50,100)
 
         PLAYERSURF.blit(ls, (180, 100))
-        PLAYERSURF.blit(ts, (180-(tr[2]-40)/2, 100))
+        PLAYERSURF.blit(ts, (int(180-(tr[2]-40)/2), 100))
 
         prefix = weapons[wchosen][0]
         wep = Data.Itembox.GetItem(prefix)
@@ -2203,9 +2203,9 @@ def design_character(Game, player):
         screen.blit(NAMESURF, NAMERECT).inflate(300,0)
 
         ARROWRECT.midleft = NAMERECT.midright
-        ARROWRECT.move_ip(20+5*math.sin(tick/5.0),0)
+        ARROWRECT.move_ip(int(20+5*math.sin(tick/5.0)),0)
         ARROWRECT2.midright = NAMERECT.midleft
-        ARROWRECT2.move_ip(-20-5*math.sin(tick/5.0),0)
+        ARROWRECT2.move_ip(int(-20-5*math.sin(tick/5.0)),0)
         screen.blit(ARROWSURF, ARROWRECT).inflate(20,0)
         screen.blit(ARROWSURF2, ARROWRECT2).inflate(20,0)
 
@@ -2227,7 +2227,7 @@ def design_character(Game, player):
         lr.topleft = (50,100)
 
         PLAYERSURF.blit(ls, (180, 100))
-        PLAYERSURF.blit(ts, (180-(tr[2]-40)/2, 100))
+        PLAYERSURF.blit(ts, (int(180-(tr[2]-40)/2), 100))
 
         prefix = weapons[wchosen][0]
         wep = Data.Itembox.GetItem(prefix)
@@ -2340,7 +2340,7 @@ def Save_intermission(game, pic, must = False, leavemus = False):
         m_s = Fonts[16].render(vmsg, 1, (255,255,255))
         m_sb = Fonts[16].render(vmsg, 1, (0,0,0))
         m_r = m_s.get_rect()
-        m_r.midleft = (320-Fonts[16].size(msg)[0]/2, 350)
+        m_r.midleft = (int(320-Fonts[16].size(msg)[0]/2), 350)
         for xp in range(-1,2):
             for yp in range(-1,2):
                 screen.blit(m_sb, m_r.move(xp,yp))
@@ -2348,7 +2348,7 @@ def Save_intermission(game, pic, must = False, leavemus = False):
 
         npi, npi_r = Data.images["Next_Page_Icon.png"]
         if ready:
-            npi_r.center = (320, 400+abs(math.sin(tick/10.0)*15))
+            npi_r.center = (320, int(400+abs(math.sin(tick/10.0)*15)))
             screen.blit(npi, npi_r)
 
         myflip()
@@ -2384,7 +2384,7 @@ def Save_intermission(game, pic, must = False, leavemus = False):
                 m_s = Fonts[16].render(vmsg, 1, (50,50,50))
             m_sb = Fonts[16].render(vmsg, 1, (0,0,0))
             m_r = m_s.get_rect()
-            m_r.midleft = (320-Fonts[16].size(msg)[0]/2, 350+y)
+            m_r.midleft = (int(320-Fonts[16].size(msg)[0]/2), int(350+y))
             for xp in range(-1,2):
                 for yp in range(-1,2):
                     screen.blit(m_sb, m_r.move(xp,yp))
@@ -2454,9 +2454,9 @@ def seeSpirit(game):
 
         glow, glow_r = Data.images["glow_texture.png"]
         glow_r.midleft = (224, 200)
-        screen.blit(glow, glow_r, Rect(tick*3.5%480,0,192,192))
+        screen.blit(glow, glow_r, Rect(int(tick*3.5%480),0,192,192))
         glow_r.midleft = (224, 200)
-        screen.blit(glow, glow_r, Rect(tick*3.5%480-480,0,192,192))
+        screen.blit(glow, glow_r, Rect(int(tick*3.5%480-480),0,192,192))
 
         face, face_r = Data.images["spiritguardian.png"]
         face_r.center = (320,200)
@@ -2467,13 +2467,13 @@ def seeSpirit(game):
 
         m_s = Fonts[16].render(vmsg, 1, (255,255,255))
         m_r = m_s.get_rect()
-        m_r.midleft = (320-Fonts[16].size(msg)[0]/2, 350)
+        m_r.midleft = (int(320-Fonts[16].size(msg)[0]/2), 350)
         screen.blit(m_s, m_r)
 
         npi, npi_r = Data.images["Next_Page_Icon.png"]
         if ready:
             blacksurf = pygame.Surface(npi_r.size)
-            npi_r.center = (320, 400+abs(math.sin(tick/10.0)*15))
+            npi_r.center = (320, int(400+abs(math.sin(tick/10.0)*15)))
             screen.blit(npi, npi_r)
             blacksurf.set_alpha(255-abs(math.sin(tick/10.0)*255))
             screen.blit(blacksurf, npi_r)
@@ -2838,7 +2838,7 @@ def handle_game(Game, loaded = False):
             if Game.ENDSCENE:
                 screen.blit(Data.images["kiripan.png"][0], (290, 81 + Game.ENDSCENE))
             elif Game.KIRI_HEIGHT:
-                screen.blit(Data.images["kiripan.png"][0], (290, 141 - Game.KIRI_HEIGHT*60 + math.sin(tick/30.0)*6))
+                screen.blit(Data.images["kiripan.png"][0], (290, int(141 - Game.KIRI_HEIGHT*60 + math.sin(tick/30.0)*6)))
             else:
                 screen.blit(Data.images["kiripan.png"][0], (290, 141))
             screen.blit(Data.images["maptop.png"][0], (0,0))
@@ -2909,7 +2909,7 @@ def handle_game(Game, loaded = False):
         menutext = Fonts[17].render(namekey("B-9") + ": Menu", 1, (255,255,255))
         menutextb = Fonts[17].render(namekey("B-9") + ": Menu", 1, (0,0,0))
         menurect = menutext.get_rect()
-        menurect.midright = (632+math.cos(tick/20.0)*3, 30+math.sin(tick/20.0)*10)
+        menurect.midright = (int(632+math.cos(tick/20.0)*3), int(30+math.sin(tick/20.0)*10))
         for x in range(-1,2):
             for y in range(-1,2):
                 screen.blit(menutextb,menurect.move(x,y))
@@ -2920,7 +2920,7 @@ def handle_game(Game, loaded = False):
         placetext = Fonts[2].render(placename, 1, (255, 255, 255))
         placetext_black = Fonts[2].render(placename, 1, (0, 0, 0))
         placerect = placetext.get_rect()
-        placerect.center = (320, 452+math.sin(tick/20.0)*6)
+        placerect.center = (320, int(452+math.sin(tick/20.0)*6))
 
         for x in range(-1, 2):
             for y in range(-1, 2):
@@ -4159,12 +4159,12 @@ def main():
 
 
             # Flying birds
-            screen.blit(Data.images["mbirds" + str(int(round(abs(ticker/10%6 - 3)+1))) + ".png"][0], ((ticker/1.8)%2000 - 180, 125 + math.sin(ticker/50.0)*15))
-            screen.blit(Data.images["mbirds" + str(int(round(abs((ticker-18)/10%6 - 3)+1))) + ".png"][0], ((ticker/1.9)%2000 - 130,  120 + math.sin((ticker-15)/59.0)*12))
-            screen.blit(Data.images["mbirds" + str(int(round(abs((ticker-39)/10%6 - 3)+1))) + ".png"][0], ((ticker/2)%2000 - 60,  110 + math.sin((ticker-8)/75.0)*19))
-            screen.blit(Data.images["mbirds" + str(int(round(abs(ticker/10%6 - 3)+1))) + ".png"][0], ((ticker/1.8)%2000 - 680, 125 + math.sin(ticker/50.0)*15))
-            screen.blit(Data.images["mbirds" + str(int(round(abs((ticker-18)/10%6 - 3)+1))) + ".png"][0], ((ticker/1.9)%2000 - 730,  120 + math.sin((ticker-15)/59.0)*12))
-            screen.blit(Data.images["mbirds" + str(int(round(abs((ticker-39)/10%6 - 3)+1))) + ".png"][0], ((ticker/2)%2000 - 860,  110 + math.sin((ticker-8)/75.0)*19))
+            screen.blit(Data.images["mbirds" + str(int(round(abs(ticker/10%6 - 3)+1))) + ".png"][0], (int((ticker/1.8)%2000 - 180), int(125 + math.sin(ticker/50.0)*15)))
+            screen.blit(Data.images["mbirds" + str(int(round(abs((ticker-18)/10%6 - 3)+1))) + ".png"][0], (int((ticker/1.9)%2000 - 130),  int(120 + math.sin((ticker-15)/59.0)*12)))
+            screen.blit(Data.images["mbirds" + str(int(round(abs((ticker-39)/10%6 - 3)+1))) + ".png"][0], (int((ticker/2)%2000 - 60),  int(110 + math.sin((ticker-8)/75.0)*19)))
+            screen.blit(Data.images["mbirds" + str(int(round(abs(ticker/10%6 - 3)+1))) + ".png"][0], (int((ticker/1.8)%2000 - 680), int(125 + math.sin(ticker/50.0)*15)))
+            screen.blit(Data.images["mbirds" + str(int(round(abs((ticker-18)/10%6 - 3)+1))) + ".png"][0], (int((ticker/1.9)%2000 - 730),  int(120 + math.sin((ticker-15)/59.0)*12)))
+            screen.blit(Data.images["mbirds" + str(int(round(abs((ticker-39)/10%6 - 3)+1))) + ".png"][0], (int((ticker/2)%2000 - 860),  int(110 + math.sin((ticker-8)/75.0)*19)))
 
             for x in range(len(LIGHTNING)):
                 lightning = LIGHTNING[x]
@@ -4310,14 +4310,14 @@ def main():
             if ahandy != handy:
                 ahandy = int(round((ahandy * 2 + handy)/3.0))
             if abs(ahandy-handy) < 2: ahandy = handy
-            screen.blit(Data.images["hand.png"][0], (150+abs(math.sin(ticker/10.0)*10), ahandy))
+            screen.blit(Data.images["hand.png"][0], (int(150+abs(math.sin(ticker/10.0)*10)), ahandy))
             for i in range(len(menu_texts)):
                 mprect = menupiece.get_rect()
                 mprect.midleft = (0, 243 + i * 29)
                 screen.blit(menupiece,mprect)
                 if i == menu_select:
                     srect = selector.get_rect()
-                    srect.midleft = (-30 + sinselect, 243 + i * 29)
+                    srect.midleft = (int(-30 + sinselect), int(243 + i * 29))
                     screen.blit(selector, srect)
 
                 mtrect = menu_texts[i][1].get_rect()
@@ -4337,7 +4337,7 @@ def main():
             ONTEXTSURFG = Fonts[16].render(ONTEXT, 1, (0,0,0))
             ONTEXTRECT = ONTEXTSURF.get_rect()
 
-            ONTEXTRECT.topleft = (25-ontextmov, 440)
+            ONTEXTRECT.topleft = (int(25-ontextmov), 440)
             screen.blit(ONTEXTSURFG, ONTEXTRECT.move(1,1))
             screen.blit(ONTEXTSURF, ONTEXTRECT)
 
@@ -4701,7 +4701,7 @@ class Spark:
     def blit(self, surf):
 
         self.img.set_alpha(self.alpha)
-        self.imrect.center = (self.x, self.y)
+        self.imrect.center = (int(self.x), int(self.y))
         surf.blit(self.img, self.imrect)
 
         self.x += self.inertia[0]
