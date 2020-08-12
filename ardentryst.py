@@ -4373,8 +4373,8 @@ def main():
                     mcurs = list(pygame.mouse.get_pos())
                     #check if on menu items
                     if 150 > mcurs[0] > 0 and 230 + 29 * (len(menu_items)) > mcurs[1] > 230:
-                        if activeitem[menu_items[int(round((mcurs[1]-230) / 29))]]:
-                            menu_select = int(round((mcurs[1]-230) / 29))
+                        if activeitem[menu_items[int((mcurs[1]-230) / 29)]]:
+                            menu_select = int((mcurs[1]-230) / 29)
                             handy = 218 + menu_select * 29
                             if menu_select >= len(menu_items): menu_select = -1
 
