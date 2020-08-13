@@ -3444,7 +3444,7 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
                     if pkgp[k.keycode]: im2blit = "Keydown.png"; mycol = (0,0,0)
 
                     keypic, keyrect = Data.images[im2blit]
-                    keyrect.center = (k.x, k.y)
+                    keyrect.center = (int(k.x), int(k.y))
                     nscreen.blit(keypic, keyrect)
 
                     #label
@@ -3452,7 +3452,7 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
                     finallabel = [k.label[:3], "_"][k == s_key]
                     labelsurf = Fonts[13].render(finallabel, 1, mycol)
                     labelrect = labelsurf.get_rect()
-                    labelrect.center = (k.x, k.y - [3,0][pkgp[k.keycode]])
+                    labelrect.center = (int(k.x), int(k.y - [3,0][pkgp[k.keycode]]))
                     nscreen.blit(labelsurf, labelrect)
 
             if h_key:
@@ -3607,12 +3607,12 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
             m2 = 0.1
             m3 = 0.15
 
-            cbit.blit(bws, ((ti*m1)%640,0))
-            cbit.blit(bws, ((ti*m1)%640-640,0))
-            cbit.blit(bws2, ((ti*m2)%640,0))
-            cbit.blit(bws2, ((ti*m2)%640-640,0))
-            cbit.blit(bws3, ((ti*m3)%640,0))
-            cbit.blit(bws3, ((ti*m3)%640-640,0))
+            cbit.blit(bws, (int((ti*m1)%640),0))
+            cbit.blit(bws, (int((ti*m1)%640-640),0))
+            cbit.blit(bws2, (int((ti*m2)%640),0))
+            cbit.blit(bws2, (int((ti*m2)%640-640),0))
+            cbit.blit(bws3, (int((ti*m3)%640),0))
+            cbit.blit(bws3, (int((ti*m3)%640-640),0))
 
             nscreen.blit(cbit, (0,220))
             nscreen.blit(Data.images["BWBGW.png"][0], (0, 200))
@@ -3635,9 +3635,9 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
             mr = []
             for m in mitems:
                 mr.append(m.get_rect())
-            mr[0].midleft = (10, 300+[0,sv][conf_select==1])
-            mr[1].center = (320, 300+[0,sv][conf_select==2])
-            mr[2].midright = (630, 300+[0,sv][conf_select==3])
+            mr[0].midleft = (10, int(300+[0,sv][conf_select==1]))
+            mr[1].center = (320, int(300+[0,sv][conf_select==2]))
+            mr[2].midright = (630, int(300+[0,sv][conf_select==3]))
 
             nscreen.blit(mitems[0], mr[0])
             nscreen.blit(mitems[1], mr[1])
@@ -4505,7 +4505,7 @@ def main():
                                 linecol = (100,255,150)
                         thisline = Fonts[8].render(line, 1, linecol)
                         thisrect = thisline.get_rect()
-                        screen.blit(thisline, (320-thisrect[2]/2, 480 - tick + x * thisrect[3]))
+                        screen.blit(thisline, (int(320-thisrect[2]/2), int(480 - tick + x * thisrect[3])))
                         x += 1
                         if x == len(CREDITS) and 480-tick+x*thisrect[3] < 0:
                             crediting = False
