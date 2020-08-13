@@ -55,16 +55,16 @@ the highest.
 
 ## TROUBLESHOOTING
 
-*Q:* The game is too slow.
+**Q:** The game is too slow.
 
-*A:* As for an in-game fix, you can change the graphics intensity in the
+**A:** As for an in-game fix, you can change the graphics intensity in the
    options screen on the main menu. Usually, turning off unnecessary
    effects like rain and some parallax layers can increase playability
    dramatically.
 
-*Q:* I found a bug, or I have a suggestion to make.
+**Q:** I found a bug, or I have a suggestion to make.
 
-*A:* Please post in the Player Forums on the Ardentryst website
+**A:** Please post in the Player Forums on the Ardentryst website
    or e-mail me at jordan_trudgett@hotmail.com.
    It might be worthwhile to include log.txt which can be
    found in ~/.ardentryst/ or My Documents\.ardentryst\ (Windows).
