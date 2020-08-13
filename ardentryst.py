@@ -3490,7 +3490,7 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
 #            nscreen.blit(ynotice, yrect)
 
             if s_select != None:
-                oname, oopts, osel = alterlist[int(round(s_select))]
+                oname, oopts, osel = alterlist[int(s_select)]
                 info = Fonts[13].render(
                     [oname, oname[1:]][oname.startswith("?")] + ": " +\
                     oopts[osel] + ": " +\
@@ -3528,16 +3528,16 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
                 b = event.button
                 if b == 1:
                     if s_select != None:
-                        alterlist[int(round(s_select))][2] += 1
-                        if alterlist[int(round(s_select))][2] == len(alterlist[int(round(s_select))][1]):
-                            alterlist[int(round(s_select))][2] = 0
+                        alterlist[int(s_select)][2] += 1
+                        if alterlist[int(s_select)][2] == len(alterlist[int(s_select)][1]):
+                            alterlist[int(s_select)][2] = 0
 
                         if alterlist[0][0] == "Sound effects":
                             soundbox.set_svol(alterlist[0][2])
                             soundbox.set_mvol(alterlist[1][2])
                         
                     if menurect.collidepoint(mcurs) and menu_select != None:
-                        do = optiontabs[int(round(menu_select))]
+                        do = optiontabs[int(menu_select)]
 
                     if h_key: s_key = h_key
                     else: s_key = None
