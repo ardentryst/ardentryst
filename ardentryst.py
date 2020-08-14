@@ -859,7 +859,8 @@ def useshop(shop, game, player):
         if Buy:
             selection = max(min(selection, len(Inventory)-1), 0)
             pic, picr = Data.images[Inventory[selection].inv_image]
-            Howmany = min(Howmany, game.silver / int(Inventory[selection].value*shop["ExchangeRate"]))
+            # int() here fixes cheating by buying a negative quantity of item (Issue #16)
+            Howmany = int(min(Howmany, game.silver / Inventory[selection].value*shop["ExchangeRate"]))
         elif Sell:
             selection = max(min(selection, len(pinvdl)-1), 0)
             if len(pinvdl):
