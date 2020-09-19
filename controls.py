@@ -35,7 +35,7 @@ class SET1:
 class SET2:
     def __init__(self, keycodes, x, y, set):
         self.set = set
-        self.keys = [Key(keycodes[c], x + ((8-c)%3) * 32, y + (c/3)*30, "B-" + str(((11-c)/3)*3 - (11-c)%3), set) for c in range(9)]
+        self.keys = [Key(keycodes[c], x + ((8-c)%3) * 32, y + (c/3)*30, "B-" + str(int(int((11-c)/3.0)*3.0 - (11-c)%3)), set) for c in range(9)]
 
 class Key:
     def __init__(self, keycode, x, y, binding, set):

@@ -2715,7 +2715,7 @@ def handle_game(Game, loaded = False):
             elif Ondata["type"] == "SHOP":
                 placename += " (shop)"
             elif "LEVEL" in Ondata["type"]:
-                placename += " (" + str(Game.scores[Game.location[0]-1][Game.location[1]-1]) + "%)"
+                placename += " (" + str(int(Game.scores[Game.location[0]-1][Game.location[1]-1])) + "%)"
                 if Game.location[0] >= 3:
                     tg = Game.timegems[Game.location[0]-1][Game.location[1]-1]
                     placename += " ... " + {0: "No Gem (Slow)", 1: "Yellow (Fast)", 2: "Red (Faster)", 3:"Blue (Fastest)"}[tg]
@@ -3572,12 +3572,12 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
         # Handle mcurs
 
         if menurect.collidepoint(mcurs) and not confirmmenu:
-            menu_select = (mcurs[1] - 200) / 29
+            menu_select = int((mcurs[1] - 200) / 29)
         else:
             menu_select = None
 
         if 200 <= mcurs[0] <= 640 and 90 <= mcurs[1] <= yend:
-            s_select = (mcurs[1] - 90) / 20
+            s_select = int((mcurs[1] - 90) / 20)
         else:
             s_select = None
 

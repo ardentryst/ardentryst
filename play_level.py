@@ -2398,7 +2398,7 @@ def Level_Score(enemyperc, treasureperc, seconds, sd):
             if type(line) == str:
                 line_s = FONTS[17].render(line, 1, (255,255,255))
             else:
-                line_s = FONTS[17].render(str(line) + "%", 1, (255,255,255))
+                line_s = FONTS[17].render(str(int(line)) + "%", 1, (255,255,255))
             line_r = line_s.get_rect()
             line_r.midright = (440, 290 + y*30)
             SCREEN.blit(line_s, line_r)
@@ -3343,7 +3343,7 @@ def Particle_Spawn(sx, sy, ptype, amt):
     global G_OPTIONS, PARTICLES
     if G_OPTIONS["Particle Effects"] == 0: return
     if G_OPTIONS["Particle Effects"] == 1: amt /=2
-    for x in range(amt):
+    for x in range(int(amt)):
         PARTICLES.append(Particle(sx, int(sy), ptype))
 
 def blit_new_rain(r_heaviness, rain, v_info):
@@ -5220,7 +5220,7 @@ class Character:
                         Reactants.append(Monster)
         if Reactants:
             if self.md > self.mp[0]:
-                dmg /= 2; crit = 0
+                dmg = int(dmg / 2); crit = 0
             elif self.md > 0:
                 self.mp[0] -= self.md
                 SOUNDBOX.PlaySound("mdrain.ogg")
