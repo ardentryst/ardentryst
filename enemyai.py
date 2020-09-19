@@ -21,6 +21,9 @@
 
 import random, pygame, math
 
+def cmp(a, b):
+    return (a > b) - (a < b)
+
 def monster_ground_at(x, l, f=1):
     "Finds the y co-ordinate of the ground at position x. For monsters."
     x = int(x)
@@ -28,7 +31,7 @@ def monster_ground_at(x, l, f=1):
     ysense = 479
     sensing = True
     while sensing:
-        sensetile = LEVEL.map[x/40][ysense/40]
+        sensetile = LEVEL.map[x//40][ysense//40]
         if not sensetile or "NONE" in sensetile.collidetype: break
         if sensetile.collidetype == "RIGHT_INCLINATION":
             if x%40 < 40-(ysense%40):
@@ -151,7 +154,7 @@ class Monster:
         damage = [str(damage),str(damage)[1:]][curative]
         damage = str(int(round(float(damage))))
         if not damage.isdigit():
-            print "Damage was not a digit!"
+            print("Damage was not a digit!")
             return
 
         num_info = [curative]
@@ -186,7 +189,7 @@ class Monster:
         damage = [str(damage),str(damage)[1:]][curative]
         damage = str(int(round(float(damage))))
         if not damage.isdigit():
-            print "Damage was not a digit!"
+            print("Damage was not a digit!")
             return
 
         num_info = [curative]
@@ -1016,7 +1019,7 @@ class snowogre(Monster):
         damage = [str(damage),str(damage)[1:]][curative]
         damage = str(int(round(float(damage))))
         if not damage.isdigit():
-            print "Damage was not a digit!"
+            print("Damage was not a digit!")
             return
 
         num_info = [curative]
@@ -1052,7 +1055,7 @@ class snowogre(Monster):
         damage = [str(damage),str(damage)[1:]][curative]
         damage = str(int(round(float(damage))))
         if not damage.isdigit():
-            print "Damage was not a digit!"
+            print("Damage was not a digit!")
             return
 
         num_info = [curative]
