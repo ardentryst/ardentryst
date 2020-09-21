@@ -27,7 +27,7 @@ def ground_at(LEVEL, x, f=False):
     ysense = 479
     sensing = True
     while sensing:
-        sensetile = LEVEL.map[x/40][ysense/40]
+        sensetile = LEVEL.map[x//40][ysense//40]
         if not sensetile or "NONE" in sensetile.collidetype: break
         if sensetile.collidetype == "RIGHT_INCLINATION":
             if x%40 < 40-(ysense%40):
@@ -235,7 +235,7 @@ class Ice_1(Spell):
     def s_init(self):
         global DATA
         self.affected = []
-        self.cant = self.caster.mp < 4
+        self.cant = self.caster.mp[0] < 4
     def s_blit(self, surf, ALT_X, ALT_Y):
         global DATA
         if not self.affected:
@@ -440,7 +440,7 @@ class Implosion_1(Spell):
     def s_init(self):
         global DATA
         self.affected = []
-        self.cant = self.caster.mp < 15
+        self.cant = self.caster.mp[0] < 15
     def s_blit(self, surf, ALT_X, ALT_Y):
         global DATA
         pic = DATA.mag_images["bubble.png"][0]
@@ -471,7 +471,7 @@ class Implosion_1(Spell):
                     if self.caster.mp[0] >= 15:
                         self.affected.append(monster)
 
-            self.affected.sort(lambda x, y: cmp(y.maxhp, x.maxhp))
+            self.affected.sort(key=lambda x: x.maxhp)
 
             if len(self.affected):
                 self.affected = self.affected[:1]

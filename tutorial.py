@@ -154,7 +154,7 @@ class TutBox:
         self.AlwaysFlag = []
 
         self.Flags = dict.fromkeys(
-            self.FlagMessages.keys() + self.ExtraFlags,
+            list(self.FlagMessages.keys()) + self.ExtraFlags,
             False)
 
 
@@ -188,7 +188,7 @@ class TutBox:
         return r, self.cpt, self.face
 
     def playeraction(self, action):
-        if self.Flags.has_key(action):
+        if action in self.Flags:
             if not self.Flags[action] or action in self.AlwaysFlag:
                 self.Text = self.FlagMessages[action]
             self.Flags[action] = True
