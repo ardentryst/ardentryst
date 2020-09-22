@@ -1486,10 +1486,11 @@ def Game_SlotMenu(gameobj = None):
                                     passwordstage = 2
                                     password_prompt = "Confirm blank password?"
                                     instructions = "Press Enter/Return if you don't want a password, otherwise type something"
-                                password = ""
-                                password_prompt = "Confirm that password:"
-                                passwordstage = 2
-                                instructions = "Type it again to make sure it is correct. [Esc cancels]"
+                                else:
+                                    password = ""
+                                    password_prompt = "Confirm that password:"
+                                    passwordstage = 2
+                                    instructions = "Type it again to make sure it is correct. [Esc cancels]"
                             elif passwordstage == 0:
                                 # Just entered name.
                                 passwordstage = 1
