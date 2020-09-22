@@ -57,7 +57,7 @@ def dofinal(f):
     global finalstage
     finalstage = f
 
-def Loading_Screen(scr, loading_image, myfont, acc):
+def Loading_Screen(scr, loading_image, myfont):
     "Initialise loading screen."
     global loading_img, bar_grad, screen, lb, lbr
     screen = scr
