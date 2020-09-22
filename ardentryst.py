@@ -16,7 +16,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Ardentryst.  If not, see <http://www.gnu.org/licenses/>.
 #
-#    Copyright 2007, 2008, 2009 Jordan Trudgett
+#    Copyright 2007-2020 Elle Trudgett
 #
 #------------------------------------------------------------------------
 
@@ -77,10 +77,11 @@ except OSError:
 # If we can't, don't worry about it, and hope its working directory
 # has already been set. (This should be fine in 99% of cases.)
 
-VERSION = "20090726 (1.71-Comet Unstable) 1:11 PM AEST"
+VERSION = "20200922 (1.8-New World Stable)"
 DVERSION = VERSION[VERSION.index("(")+1:VERSION.index(")")].replace("-", ":")
 
 ALLOWED_OLDER_VERSIONS = [
+    "1.71:Comet Unstable",
     "1.7:Warp Speed Stable"
     ]
 
@@ -113,7 +114,7 @@ GAME_NAME = "Ardentryst"
 
 CREDITS = ["# " + GAME_NAME + " v" + DVERSION,
            "",
-           "An Action RPG and Software Major Project by Jordan Trudgett",
+           "An Action RPG and Software Major Project by Elle Trudgett",
            "developed with text-editor GNU Emacs",
            "written in Python with use of pygame libraries",
            "",
@@ -124,7 +125,7 @@ CREDITS = ["# " + GAME_NAME + " v" + DVERSION,
            "#Interface Design, Editor, Musical Talent,",
            "#Project Manager, Lead Game Developer, Project Leader,",
            "#Website Master, Digital Artist",
-           "$Jordan Trudgett",
+           "$Elle Trudgett",
            "",
            "What did you expect? :)",
            "",
@@ -142,7 +143,7 @@ CREDITS = ["# " + GAME_NAME + " v" + DVERSION,
            "#Voice Talent",
            "$Kendra Pietruszewski as Opening Scene Girl",
            "$Amy Dunwoodie as Nyx",
-           "$Jordan Trudgett as Pyralis",
+           "$Elle Trudgett as Pyralis",
            "",
            "#Sound contribution (freesound.org users)",
            "Creative Commons 3.0 License",
@@ -693,9 +694,8 @@ def handleException(e):
         savefilename = ""
     text = [
         "Ardentryst has experienced an unexpected crash.",
-        "Please take the effort to report the bug to the forums at",
-        "http://jordan.trudgett.com/",
-        "(Quick sign-up required)",
+        "You may report the bug on Github",
+        "https://github.com/ardentryst/ardentryst/issues",
         "",
         "By doing this, you may discover a solution to the bug,",
         "or help us fix it. You can even discuss it with other players!",
@@ -1222,34 +1222,6 @@ def interface_sound(sound):
     
     soundbox.PlaySound(code[sound.lower()])
 
-class ac:
-    globals()[("".join([chr(x) for x in [109,100,53]]))] = hashlib.md5()
-    globals()[("".join([chr(x) for x in [115,104,97]]))] = hashlib.sha1()
-    # Controls AC
-    def __init__(self):
-        self.cf = [os.path.join("esaB"[::-1], x) for x in os.listdir("esaB"[::-1])] + [os.path.join("sleveL"[::-1], x) for x in os.listdir("sleveL"[::-1])]
-        self.cf += ["yp.tsyrtnedra"[::-1], "yp.level_yalp"[::-1], "yp.cigam"[::-1], "yp.iaymene"[::-1]]
-        self.dgests = dict.fromkeys(self.cf, "")
-    def cds(self):
-        self.cf.sort()
-        print()
-        bh = ""
-        mym = globals()["".join([chr(x) for x in [109, 100, 53]])]
-        mys = globals()["".join([chr(x) for x in [115, 104, 97]])]
-        exec("".join([chr(x+1) for x in b"rdke-cfdrsr\x1f<\x1fbOhbjkd-kn`c'nodm'!chf-chf!+\x1f!qa!(("]))
-        rv = 1
-        for f in self.cf:
-            try:
-                sh = getattr(mys.new(getattr(mym.new(open(f, "r").read()), "tsegidxeh"[::-1])()[::-1]), "tsegidxeh"[::-1])()
-                bh += sh
-                if self.dgests[f] != sh:
-                    logfile(chr(42)+ " " + f +  ".erocs ruoy daolpu ot elba eb ton lliw uoY .elif lanigiro eht ton si "[::-1])
-                    rv = len(f)^len(f)
-                
-            except Exception as e:
-                pass
-        return rv or cmp(len(f)^(len(f)), 0), getattr(hashlib.md5(bh.encode('utf-8')), "tsegidxeh"[::-1])()
-
 def initscreen(screen, font):
     """Draw the screen prior to playing. This is only useful if DEBUG == True"""
     global VERSION
@@ -1275,7 +1247,7 @@ def initscreen(screen, font):
 
 def Game_SlotMenu(gameobj = None):
     """Allows the player to create new game saves or load old ones."""
-    global screen, Data, Fonts, p1c, soundbox, DVERSION, shc, ACC
+    global screen, Data, Fonts, p1c, soundbox, DVERSION
     logfile("Entered slotmenu with parameter " + str(gameobj))
     Title = "Game Menu"
     NumSlots = 11 # Number of slots visible on the screen
@@ -1514,10 +1486,11 @@ def Game_SlotMenu(gameobj = None):
                                     passwordstage = 2
                                     password_prompt = "Confirm blank password?"
                                     instructions = "Press Enter/Return if you don't want a password, otherwise type something"
-                                password = ""
-                                password_prompt = "Confirm that password:"
-                                passwordstage = 2
-                                instructions = "Type it again to make sure it is correct. [Esc cancels]"
+                                else:
+                                    password = ""
+                                    password_prompt = "Confirm that password:"
+                                    passwordstage = 2
+                                    instructions = "Type it again to make sure it is correct. [Esc cancels]"
                             elif passwordstage == 0:
                                 # Just entered name.
                                 passwordstage = 1
@@ -1590,10 +1563,6 @@ def Game_SlotMenu(gameobj = None):
             cursloaded = True
 
     pygame.key.set_repeat()
-    gameobj.shc = shc
-    gameobj.ACC = ACC
-    if not ACC:
-        gameobj.hc = True
     return gameobj
 
 def typekey(k):
@@ -3724,7 +3693,7 @@ def BranchScreenTemplate():
 def main():
     """The game, from init"""
     global screen, Fonts, soundbox, Data
-    global mcurs, oldmcurs, ACC, shc
+    global mcurs, oldmcurs
     global g_options, a_options, p_options, p1c
     global VERSION, DEBUG, WIDESCREENBIT, DVERSION
 
@@ -3769,24 +3738,15 @@ def main():
 
     print("\n-------------------------------------------------------------------------------")
     print((GAME_NAME + " v." + VERSION).center(79))
-    print("by Jordan Trudgett".center(79))
+    print("by Elle Trudgett".center(79))
     print("-------------------------------------------------------------------------------\n")
 
-    print("    Ardentryst Copyright (C) 2007, 2008, 2009 Jordan Trudgett")
+    print("    Ardentryst Copyright (C) 2007-2020 Elle Trudgett")
     print("    This program comes with ABSOLUTELY NO WARRANTY.")
     print("    This is free software, and you are welcome to redistribute it")
     print("    under certain conditions; for details, see the COPYING file.")
 
-
     logfile(GAME_NAME + " v." + VERSION)
-
-    ACC, shc = getattr(ac(), "sdc"[::-1])()
-    logfile("Secure hash code: " + shc)
-    logfile("ACC" + str(ACC))
-#    ACC = True
-
-    if not ACC:
-        print("Your score can not be uploaded to the server because your version of Ardentryst is not the original version.")
 
     logfile("Configuring game settings...")
     # These are default options!
@@ -3812,8 +3772,7 @@ def main():
         }
 
     p_options = {
-        "Help": 1,
-        "MustOP": 1,
+        "Help": 1
         }
 
     p1c = {
@@ -3951,7 +3910,7 @@ def main():
 
     # Show loading screen and precache data
     loading_pics = load_image("Title.png")
-    Loading_Screen(screen, loading_pics, Fonts[21], ACC)
+    Loading_Screen(screen, loading_pics, Fonts[21])
     myflip()
 
     if SOUND:
@@ -3987,8 +3946,7 @@ def main():
     while GAMELOOP:
         # Show game info slide(s)
         for scrp in [
-            ("Dedication.png", 4),
-            ("DevelopedWith.png", 5),
+            ("DevelopedWith.png", 5)
             ]:
             screen.blit(Data.images[scrp[0]][0], (0,0))
             skipsurf = Fonts[13].render("Press a key to skip", 1, (155,155,155))
@@ -4006,20 +3964,12 @@ def main():
                       "Options",
                       "Credits",
                       "About the game",
-                      "Online play rules",
                       "Quit"]
 
-        if p_options["MustOP"]:
-            activeitem = dict.fromkeys(menu_items, False)
-            activeitem["Online play rules"] = True
-            menu_select = 5
-            handy = 218 + menu_select * 29
-            ahandy = handy
-        else:
-            activeitem = dict.fromkeys(menu_items, True)
-            menu_select = 0
-            handy = 218 + menu_select * 29
-            ahandy = handy
+        activeitem = dict.fromkeys(menu_items, True)
+        menu_select = 0
+        handy = 218 + menu_select * 29
+        ahandy = handy
 
         ge()                                # Flush events (most likely during fade)
                                             # Don't want to start new game
@@ -4028,7 +3978,7 @@ def main():
         ticker = 0
         t = pygame.time.get_ticks()
 
-        MENU_STATUS = GAME_NAME + ": A 2007-2009 Software Project created by Jordan Trudgett. Written in 100% Python and pygame. This game is open source software. Please distribute it to your friends!"
+        MENU_STATUS = GAME_NAME + ": A 2007-2009 Software Project created by Elle Trudgett. Written in 100% Python and pygame. This game is open source software. Please distribute it to your friends!"
         sttext = Fonts[7].render(MENU_STATUS, 1, (255,245,235))
         sttextb = Fonts[7].render(MENU_STATUS, 1, (0,0,0))
         slen = sttext.get_rect()[2]
@@ -4036,7 +3986,7 @@ def main():
         vtextW = Fonts[9].render("Version " + DVERSION, 1, (255,255,255))
         vtextlen = vtextW.get_rect()[2]
 
-        svtexts = Fonts[9].render("Ardentryst, by Jordan Trudgett: http://jordan.trudgett.com/", 1, (255,255,255))
+        svtexts = Fonts[9].render("Ardentryst, by Elle Trudgett: https://www.elletrudgett.com/", 1, (255,255,255))
         svtextr = svtexts.get_rect()
         svtextr.midleft = (5,25)
         
@@ -4095,7 +4045,6 @@ def main():
             "Options": "Tweak the game's settings.",
             "Credits": "See who developed and contributed to " + GAME_NAME + ".",
             "About the game": "A little bit of information about " + GAME_NAME + ".",
-            "Online play rules": "Read the rules of playing Ardentryst Online before you start!",
             "Quit": "Finish playing, quit " + GAME_NAME + "."
             }
 
@@ -4576,33 +4525,6 @@ def main():
                     if Back: break
                 selected = ""
                 needfade = True
-
-            elif selected == "Online play rules":
-                fade_to_black(screen)
-                ge()
-                InOPR = True
-                screen.blit(Data.images["whatsnewbg.png"][0], (0,0))
-                oprsrc = [x.strip() for x in open("OPR.txt", "r")]
-                y = 0
-                for line in oprsrc:
-                    screen.blit(Fonts[23].render(line, 1, (255,255,255)), (5, 5+y))
-                    y += 14
-                fade_from_black(screen)
-                while InOPR:
-                    time.sleep(0.01)
-                    for e in ge():
-                        if e.type == KEYDOWN:
-                            InOPR = False
-
-                needfade = True
-                selected = ""
-                activeitem = dict.fromkeys(menu_items, True)
-                p_options["MustOP"] = 0
-                optionsfile = open(os.path.join(SAVEDIRECTORY, "options.dat"), "wb")
-                pickle.dump(g_options, optionsfile)
-                pickle.dump(a_options, optionsfile)
-                pickle.dump(p_options, optionsfile)
-                pickle.dump(p1c, optionsfile)
                 
             elif selected == "Code Listing":
                 listing = True

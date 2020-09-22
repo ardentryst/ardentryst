@@ -15,7 +15,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Ardentryst.  If not, see <http://www.gnu.org/licenses/>.
 #
-#    Copyright 2007, 2008, 2009 Jordan Trudgett
+#    Copyright 2007-2020 Elle Trudgett
 #
 #------------------------------------------------------------------------
 
@@ -223,35 +223,6 @@ def action(object_type, ID, attr, val):
             c += 1
             if c == ID:
                 setattr(o, attr, val)
-
-def uploadscore(game):
-    # If you cheat, you cannot get a ranking on the Public Scoreboard
-
-    wearing = []
-    for area in ["Head", "Torso", "Legs", "Boots", "Weapon"]:
-        wearing.append(game.playerobject.wearing[area][0])
-
-    data = [game.savefilename[:-4],
-            str(game.playerobject.classtype),
-            pickle.dumps(game.scores).replace("\n","\\"),
-            str(game.playerobject.exp),
-            str(game.playerobject.level),
-            str(game.playerobject.questsdone()),
-            pickle.dumps(game.timegems).replace("\n","\\"),
-            pickle.dumps(wearing).replace("\n","\\"),
-            game.shc,
-            game.ac_code,
-            game.GID
-            ]
-
-    import sha
-    sd = [data, sha.new(pickle.dumps(data)).hexdigest()]
-
-    senddata = pickle.dumps(sd).replace("\n","/").replace(" ", "%20")
-
-    msg = urllib.request.urlopen("http://jordan.trudgett.com/cgi-bin/submit.py?code="+senddata).read().strip()
-    return msg.split("\n")
-    
 
 def strbon(num):
     """Takes a number, x, and turns it into a "+x", "-x", or "+0"."""
@@ -953,7 +924,6 @@ def Ingame_Menu(data):
         "Quest Log",
         "",
         "Return",
-        "Upload Score",
         "Main Menu",
         "",
         "Help",
@@ -961,8 +931,6 @@ def Ingame_Menu(data):
 
     if abortable:
         menuitems[-2] = "Abort level"
-    if not game.ACC or game.hc:
-        menuitems[-4] = "-----"
 
     descs = {
         "Status": "Information about your character",
@@ -970,12 +938,10 @@ def Ingame_Menu(data):
         "Equipped": "What you are wearing or using",
         "Abilities": "What your character can do",
         "Return": "Back to the level or overview map",
-        "Upload Score": "Put your score on the Ardentryst Online Scoreboard",
         "Help": "Help! Enter help by pressing " + namekey("B-1", CONTROLS),
         "Main Menu": "Exit this game and return to the Main Menu.",
         "Abort level": "Return to Overview Map.",
         "Quest Log": "View quests.",
-        "-----": "Cannot upload score. Gamefile not legitimate."
         }
 
     pygame.key.set_repeat(400,50)
@@ -1512,48 +1478,6 @@ def Ingame_Menu(data):
                     screen.blit(surf, rect)
                     y += 1
 
-        elif tab == "Upload Score":
-            information = [
-                "Player: " + game.savefilename[:-4],
-                "Character: " + game.character + ", level " + str(player.level),
-                "",
-                "Your score (calculated by the server.)",
-                "",
-                "---------------------------------",
-                "The above information will be",
-                "submitted to a public scoreboard.",
-                "",
-                "See the scoreboard at jordan.trudgett.com.",
-                "",
-                "Status Message:",
-                ]
-
-            information += uploadresult
-
-            for l in range(len(information)):
-                if l > 11:
-                    c = (255, 255, 0)
-                else:
-                    c = (255, 255, 255)
-
-                ls = FONTS[23].render(information[l], 1, c)
-                lr = ls.get_rect()
-                lr.midleft = (275, 150 + 16 * l)
-                screen.blit(ls, lr)
-
-##             for line in information:
-##                 line = line.strip()
-##                 if information.index(line) >= len(information)-len(uploadresult):
-##                     l_s = FONTS[23].render(line.strip(), 1, (255,255,0))
-##                 elif information.index(line) < 4:
-##                     l_s = FONTS[23].render(line.strip(), 1, (0,255,255))
-##                 else:
-##                     l_s = FONTS[16].render(line.strip(), 1, (255,255,255))
-##                 l_r = l_s.get_rect()
-##                 l_r.midleft = (275, 150 + 16 * y)
-##                 screen.blit(l_s, l_r)
-##                 y += 1
-
         elif tab == "Return":
             screen.blit(splayscreen, (265,140))
 
@@ -1689,10 +1613,7 @@ def Ingame_Menu(data):
                             rv = -2
                             inmenu = False
                         if menuitems[handpos] == "Upload Score":
-                            try:
-                                uploadresult = uploadscore(game)
-                            except:
-                                uploadresult = ["Service unavailable, try again later or check http://jordan.trudgett.com/"]
+                            uploadresult = ["Service unavailable."]
                         if menuitems[handpos] == "Return":
                             inmenu = False
                         if menuitems[handpos] == "Main Menu":
@@ -3199,7 +3120,7 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
             else: PLAYER.mp[0] += int(0.015 * PLAYER.mp[1]) + 1
 
         if EOLFADE is not None: continue # Ignore events if level finishing
-        if DEATHFADE is not 0: continue # likewise
+        if DEATHFADE != 0: continue # likewise
 
 
         # <-

@@ -11,7 +11,7 @@
 /when 1, setTreasure(1, "Mana potion3")
 /when 1, setTreasure(2, "Potion3")
 /when 1, action("Sign", 1, "message", "You're not supposed to be up here!!! But well done anyway!")
-/when 1, action("Sign", 2, "message", "This game was made by Jordan Trudgett -- tgfcoder -- jordan_trudgett@hotmail.com")
+/when 1, action("Sign", 2, "message", "This game was made by Elle Trudgett.")
 /when posx > 500 and not ptag[10], message_box(["Prepare to be finished, amateur...", "You will never defeat me!"], "Radkelu.png"); setpt(10)
 
 /while posx > 787 and posx < 1009, PLAYER.inertia[0] = 9.5

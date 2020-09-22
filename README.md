@@ -1,12 +1,12 @@
 # Ardentryst
-(C) 2007 - 2009
-Jordan Trudgett
+(C) 2007 - 2020
+Elle Trudgett
 
 ## GENERAL GAME INFORMATION
 
-Ardentryst is an open-source free game written exclusively by Jordan
-Trudgett. It works to combine elements of fighting, arcade, advent-
-ure, RPG and sidescrolling games to give the game a very unique
+Ardentryst is an open-source free game by Elle
+Trudgett. It works to combine elements of fighting, arcade, adventure,
+RPG and sidescrolling games to give the game a very unique
 genre. Its aim is to provide an enjoyable game to people of many ages
 from young to old, and to appeal to many types of gamers.
 
@@ -69,8 +69,8 @@ the highest.
 
 **Q:** I found a bug, or I have a suggestion to make.
 
-**A:** Please post in the Player Forums on the Ardentryst website
-   or e-mail me at jordan_trudgett@hotmail.com.
+**A:** Please create an issue in the Github repository: https://github.com/ardentryst/ardentryst/issues
+   or tweet me @ElleTrudgett
    It might be worthwhile to include log.txt which can be
    found in ~/.ardentryst/ or My Documents\.ardentryst\ (Windows).
 
@@ -81,7 +81,7 @@ See COPYING and COPYING.data files.
 If you are unsure of what you can and can't
 do with this software, or need to ask
 permission to do something, email me at
-jordan_trudgett@hotmail.com. Thanks!
+elle.trudgett@gmail.com. Thanks!
 
 The game media is covered under Creative
 Commons - commercial use allowed

@@ -15,7 +15,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Ardentryst.  If not, see <http://www.gnu.org/licenses/>.
 #
-#    Copyright 2007, 2008, 2009 Jordan Trudgett
+#    Copyright 2007-2020 Elle Trudgett
 #
 #------------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ def load_image(name, colorkey=None, blur = False, prefix = 'Data'):
     if blur:
         image.set_alpha(blur, RLEACCEL)
     if colorkey is not None:
-        if colorkey is -1:
+        if colorkey == -1:
             colorkey = image.get_at((0,0))
         image.set_colorkey(colorkey, RLEACCEL)
     image = image.convert_alpha()

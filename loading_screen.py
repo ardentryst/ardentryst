@@ -15,7 +15,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Ardentryst.  If not, see <http://www.gnu.org/licenses/>.
 #
-#    Copyright 2007, 2008, 2009 Jordan Trudgett
+#    Copyright 2007-2020 Elle Trudgett
 #
 #------------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ def dofinal(f):
     global finalstage
     finalstage = f
 
-def Loading_Screen(scr, loading_image, myfont, acc):
+def Loading_Screen(scr, loading_image, myfont):
     "Initialise loading screen."
     global loading_img, bar_grad, screen, lb, lbr
     screen = scr
