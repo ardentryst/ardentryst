@@ -15,7 +15,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Ardentryst.  If not, see <http://www.gnu.org/licenses/>.
 #
-#    Copyright 2007, 2008, 2009 Jordan Trudgett
+#    Copyright 2007-2020 Elle Trudgett
 #
 #------------------------------------------------------------------------
 
@@ -3120,7 +3120,7 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
             else: PLAYER.mp[0] += int(0.015 * PLAYER.mp[1]) + 1
 
         if EOLFADE is not None: continue # Ignore events if level finishing
-        if DEATHFADE is not 0: continue # likewise
+        if DEATHFADE != 0: continue # likewise
 
 
         # <-

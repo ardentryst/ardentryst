@@ -16,7 +16,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Ardentryst.  If not, see <http://www.gnu.org/licenses/>.
 #
-#    Copyright 2007, 2008, 2009 Jordan Trudgett
+#    Copyright 2007-2020 Elle Trudgett
 #
 #------------------------------------------------------------------------
 
@@ -77,10 +77,11 @@ except OSError:
 # If we can't, don't worry about it, and hope its working directory
 # has already been set. (This should be fine in 99% of cases.)
 
-VERSION = "20090726 (1.71-Comet Unstable) 1:11 PM AEST"
+VERSION = "20200922 (1.8-New World Stable)"
 DVERSION = VERSION[VERSION.index("(")+1:VERSION.index(")")].replace("-", ":")
 
 ALLOWED_OLDER_VERSIONS = [
+    "1.71:Comet Unstable",
     "1.7:Warp Speed Stable"
     ]
 
@@ -113,7 +114,7 @@ GAME_NAME = "Ardentryst"
 
 CREDITS = ["# " + GAME_NAME + " v" + DVERSION,
            "",
-           "An Action RPG and Software Major Project by Jordan Trudgett",
+           "An Action RPG and Software Major Project by Elle Trudgett",
            "developed with text-editor GNU Emacs",
            "written in Python with use of pygame libraries",
            "",
@@ -124,7 +125,7 @@ CREDITS = ["# " + GAME_NAME + " v" + DVERSION,
            "#Interface Design, Editor, Musical Talent,",
            "#Project Manager, Lead Game Developer, Project Leader,",
            "#Website Master, Digital Artist",
-           "$Jordan Trudgett",
+           "$Elle Trudgett",
            "",
            "What did you expect? :)",
            "",
@@ -142,7 +143,7 @@ CREDITS = ["# " + GAME_NAME + " v" + DVERSION,
            "#Voice Talent",
            "$Kendra Pietruszewski as Opening Scene Girl",
            "$Amy Dunwoodie as Nyx",
-           "$Jordan Trudgett as Pyralis",
+           "$Elle Trudgett as Pyralis",
            "",
            "#Sound contribution (freesound.org users)",
            "Creative Commons 3.0 License",
@@ -693,9 +694,8 @@ def handleException(e):
         savefilename = ""
     text = [
         "Ardentryst has experienced an unexpected crash.",
-        "Please take the effort to report the bug to the forums at",
-        "http://jordan.trudgett.com/",
-        "(Quick sign-up required)",
+        "You may report the bug on Github",
+        "https://github.com/ardentryst/ardentryst/issues",
         "",
         "By doing this, you may discover a solution to the bug,",
         "or help us fix it. You can even discuss it with other players!",
@@ -3737,10 +3737,10 @@ def main():
 
     print("\n-------------------------------------------------------------------------------")
     print((GAME_NAME + " v." + VERSION).center(79))
-    print("by Jordan Trudgett".center(79))
+    print("by Elle Trudgett".center(79))
     print("-------------------------------------------------------------------------------\n")
 
-    print("    Ardentryst Copyright (C) 2007, 2008, 2009 Jordan Trudgett")
+    print("    Ardentryst Copyright (C) 2007-2020 Elle Trudgett")
     print("    This program comes with ABSOLUTELY NO WARRANTY.")
     print("    This is free software, and you are welcome to redistribute it")
     print("    under certain conditions; for details, see the COPYING file.")
@@ -3945,8 +3945,7 @@ def main():
     while GAMELOOP:
         # Show game info slide(s)
         for scrp in [
-            ("Dedication.png", 4),
-            ("DevelopedWith.png", 5),
+            ("DevelopedWith.png", 5)
             ]:
             screen.blit(Data.images[scrp[0]][0], (0,0))
             skipsurf = Fonts[13].render("Press a key to skip", 1, (155,155,155))
@@ -3978,7 +3977,7 @@ def main():
         ticker = 0
         t = pygame.time.get_ticks()
 
-        MENU_STATUS = GAME_NAME + ": A 2007-2009 Software Project created by Jordan Trudgett. Written in 100% Python and pygame. This game is open source software. Please distribute it to your friends!"
+        MENU_STATUS = GAME_NAME + ": A 2007-2009 Software Project created by Elle Trudgett. Written in 100% Python and pygame. This game is open source software. Please distribute it to your friends!"
         sttext = Fonts[7].render(MENU_STATUS, 1, (255,245,235))
         sttextb = Fonts[7].render(MENU_STATUS, 1, (0,0,0))
         slen = sttext.get_rect()[2]
@@ -3986,7 +3985,7 @@ def main():
         vtextW = Fonts[9].render("Version " + DVERSION, 1, (255,255,255))
         vtextlen = vtextW.get_rect()[2]
 
-        svtexts = Fonts[9].render("Ardentryst, by Jordan Trudgett: http://jordan.trudgett.com/", 1, (255,255,255))
+        svtexts = Fonts[9].render("Ardentryst, by Elle Trudgett: https://www.elletrudgett.com/", 1, (255,255,255))
         svtextr = svtexts.get_rect()
         svtextr.midleft = (5,25)
         

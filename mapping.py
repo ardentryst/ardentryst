@@ -15,14 +15,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Ardentryst.  If not, see <http://www.gnu.org/licenses/>.
 #
-#    Copyright 2007, 2008, 2009 Jordan Trudgett
+#    Copyright 2007-2020 Elle Trudgett
 #
 #------------------------------------------------------------------------
-
-try:
-    from xml.dom.ext.reader import Sax2
-except:
-    print("Ext.reader.Sax2 not found")
 
 footsteps = {
     "GRASS": [
@@ -308,6 +303,7 @@ class Tile:
         self.overhead = self.type in overheads
         
 if __name__ == "__main__":
+    from xml.dom.ext.reader import Sax2
     a_map = Map()
     a_map.compile_from_xml('testmap.xml')
     print("Compiled!")
