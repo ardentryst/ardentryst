@@ -30,7 +30,7 @@ Ardentryst just need pygame to run. You can install running:
 ```python install -r requirements.txt ```
 
 ## RUNNING
-In order to run the game you have to run ardentryst.py with python2.
+In order to run the game you have to run ardentryst.py with python3.
 
 ## CONTROLLING THE GAME
 
