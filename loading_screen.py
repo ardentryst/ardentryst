@@ -58,7 +58,7 @@ def dofinal(f):
     finalstage = f
 
 def Loading_Screen(scr, loading_image, myfont):
-    "Initialise loading screen."
+    """Initialise loading screen."""
     global loading_img, bar_grad, screen, lb, lbr
     screen = scr
     loading_img = loading_image[0]
@@ -108,7 +108,7 @@ def Update_Loading_Old(stage, mytext3, finish = False):
 
     cstage = stage * (255.0 / finalstage)
     b = int(cstage)
-    
+
     tb = myfont.render(mytext + " "+mytext2, 1, (255,255,255))
     tb2 = myfont.render(mytext3, 1, (255,255,255))
     tr = tb.get_rect()

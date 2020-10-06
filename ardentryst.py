@@ -51,7 +51,7 @@ HOMEDIRECTORY = os.path.expanduser('~')
 try:
     from win32com.shell import shellcon, shell
     HOMEDIRECTORY = shell.SHGetFolderPath(0, shellcon.CSIDL_APPDATA, 0, 0)
- 
+
 except ImportError:
     HOMEDIRECTORY = os.path.expanduser("~")
 
@@ -209,12 +209,12 @@ mapdata = [
      [
 
       "World_Map.png"            , # World Map
-    
+
       {"name": "Sempridge" ,
        "position": (377, 260)    ,
        "up": None                ,
        "down": None              ,
-       "left": "Snodom"          , 
+       "left": "Snodom"          ,
        "right": None             ,
        },
 
@@ -222,7 +222,7 @@ mapdata = [
        "position": (239, 241)    ,
        "up": None                ,
        "down": None              ,
-       "left": None              , 
+       "left": None              ,
        "right": "Snodom"         ,
        },
 
@@ -230,7 +230,7 @@ mapdata = [
        "position": (290, 342)    ,
        "up": "Kiripan"           ,
        "down": None              ,
-       "left": "Entarya"         , 
+       "left": "Entarya"         ,
        "right": "Sempridge"      ,
        },
 
@@ -247,7 +247,7 @@ mapdata = [
      [
 
       "Map_Sempridge.png"        , # World 1:Sempridge
-      
+
       {"name": "Flerrim's Forest",
        "position": (150, 347)    ,
        "type": "LEVEL"           ,
@@ -357,7 +357,7 @@ mapdata = [
       },
 
      ],
-      
+
      [
 
       "Map_Entarya.png"          , # Entarya
@@ -471,7 +471,7 @@ mapdata = [
       },
 
      ],
-      
+
      [
 
       "Map_Snodom.png"           , # Snodom
@@ -498,7 +498,7 @@ mapdata = [
        "right": "Frozen Path",
        "map": None
       },
-      
+
       {"name": "Chilly Road"     ,
        "position": (300, 60)     ,
        "type": "LEVEL"           ,
@@ -509,7 +509,7 @@ mapdata = [
        "right": "Frosty Frolic"  ,
        "map": "Snodom2"          ,
       },
-      
+
       {"name": "Frosty Frolic"   ,
        "position": (435, 75)     ,
        "type": "LEVEL"           ,
@@ -610,7 +610,7 @@ mapdata = [
      ],
 
      [],
-      
+
 
     ]
 
@@ -685,7 +685,7 @@ def handleException(e):
         traceback.print_exc()
     traceback.print_exc(file = open(os.path.join(SAVEDIRECTORY, "log.txt"), "a"))
     open("bugreport.txt", "w").write(open(os.path.join(SAVEDIRECTORY, "log.txt"), "r").read())
-    
+
     screen.fill((0, 0, 0))
 
     if "game" in PLAYLOCALS:
@@ -752,7 +752,7 @@ def verify_game(Game):
         for l in mapdata[w+1][1:]:
             if len(Game.timegems[w]) < len(mapdata[w+1][1:]):
                 Game.timegems[w].append(0)
-        
+
     return Game
 
 def cleanup(pl):
@@ -815,7 +815,7 @@ def useshop(shop, game, player):
         Inventory = [x for x in Inventory if x.Mage_Frames or (not x.Warrior_Frames and not x.Mage_Frames)]
 
         # These will make sure that the shops do not sell items to a player who cannot use them. :)
-        
+
     pinv = [Data.Itembox.GetItem(x) for x in player.inventory]
     overlay = Data.images[shop["Shopfront"]][0].convert()
     overlay.set_alpha(25)
@@ -834,7 +834,7 @@ def useshop(shop, game, player):
         pinvdl.sort()
 
         msg = msg.replace("$SHOP", shopname).replace("$COST", str(cost))
-        
+
         ti = pygame.time.get_ticks()
         screen.blit(Data.images[shop["Shopfront"]][0], (0,0))
         if needfade:
@@ -933,7 +933,7 @@ def useshop(shop, game, player):
                 ei_r = ei_s.get_rect()
                 ei_r.center = (477, 350)
                 screen.blit(ei_s, ei_r)
-            
+
         if Buy:
             selection = min(len(Inventory)-1, selection)
             for item in Inventory:
@@ -974,7 +974,7 @@ def useshop(shop, game, player):
                 hmr.center = (495, 415)
                 screen.blit(hms, hmr)
 
-                
+
 
         screen.blit(overlay, (0,0))
 
@@ -1042,7 +1042,7 @@ def useshop(shop, game, player):
                                 player.inventory += [Inventory[selection].name]*Howmany
                                 game.silver -= Howmany * int(Inventory[selection].value * shop["ExchangeRate"])
                                 msg = shop["Text_Transaction"]
-                                pinv = [Data.Itembox.GetItem(x) for x in player.inventory]                                
+                                pinv = [Data.Itembox.GetItem(x) for x in player.inventory]
                                 vmsg = ""
                                 Howmany = -1
                             else:
@@ -1050,7 +1050,7 @@ def useshop(shop, game, player):
                                 vmsg = ""
                                 Howmany = -1
 
-                                
+
                             options = ["Buy", "Sell", "Exit"]
                             opcurs = 1
                             MenuDisabled = True
@@ -1079,7 +1079,7 @@ def useshop(shop, game, player):
                                         player.inventory.remove(sellingitem.display)
                                     else:
                                         logfile("Cheating? Couldn't remove enough from inventory at shop.")
-                                        
+
                                 pinv = [Data.Itembox.GetItem(x) for x in player.inventory]
                                 msg = shop["Text_Transaction"]
                                 vmsg = ""
@@ -1091,7 +1091,7 @@ def useshop(shop, game, player):
                             options = ["Buy", "Sell", "Exit"]
                             opcurs = 2
                             MenuDisabled = True
-                            
+
                         else:
                             itemch = pinv[selection]
                             if itemch.value <= 0:
@@ -1156,13 +1156,13 @@ def useshop(shop, game, player):
                     if selobj.minrange: information.append("Minimum range: " + str(selobj.minrange))
                     if selobj.range: information.append("Maximum range: " + str(selobj.range))
                     if selobj.magic_drain: information.append("Magic drain: " + str(selobj.magic_drain))
-                    if selobj.protection: information.append("Resistance: " + strbon(selobj.protection))                    
+                    if selobj.protection: information.append("Resistance: " + strbon(selobj.protection))
 
                     for key in ["strength", "endurance", "magic", "luck"]:
-                        if selobj.usage_bonus[key]: information.append(key.capitalize() + " " + strbon(selobj.usage_bonus[key]))                    
+                        if selobj.usage_bonus[key]: information.append(key.capitalize() + " " + strbon(selobj.usage_bonus[key]))
 
                     sinfo = []
-                    
+
                     for i in information:
                         surflist = string_to_paragraph(i, Fonts[17], 1, (255, 255, 255), 400)
                         sinfo.append(surflist)
@@ -1170,7 +1170,7 @@ def useshop(shop, game, player):
                     bs = Fonts[17].render("Press " + namekey("B-2") + " to go back", 1, (180,180,180))
                     br = bs.get_rect()
                     br.midright = (630, 460)
-                    
+
                     while showing:
                         ti = pygame.time.get_ticks()
                         screen.fill((0,0,0))
@@ -1194,12 +1194,12 @@ def useshop(shop, game, player):
                                 k = e.key
                                 if k in p1c["B-2"]:
                                     showing = False
-                                
+
 
         tick += 1
         ti = wait_tick(ti)
         myflip()
-        
+
         if vmsg == msg:
             if ReadyToGo:
                 soundbox.FadeoutMusic(2000)
@@ -1219,16 +1219,16 @@ def interface_sound(sound):
             "menu-back": "menu-back.ogg",
             "menu-small-select": "menu-small-select.ogg",
             }
-    
+
     soundbox.PlaySound(code[sound.lower()])
 
 def initscreen(screen, font):
-    """Draw the screen prior to playing. This is only useful if DEBUG == True"""
+    """Draws the screen prior to playing. This is only useful if DEBUG == True"""
     global VERSION
     dinfo = pygame.display.Info()
 
     lh = 30
-    
+
     infolist = [
         VERSION,
         "",
@@ -1408,7 +1408,7 @@ def Game_SlotMenu(gameobj = None):
                 screen.blit(line_s, line_r)
                 c += 1
 
-            # ->>> 
+            # ->>>
 
         if not mature:
             mature = True
@@ -1496,7 +1496,7 @@ def Game_SlotMenu(gameobj = None):
                                 passwordstage = 1
                                 password_prompt = "Your password:"
                                 instructions = "Create a password to protect your game file. Leave blank for no password [Esc cancels]"
-                            
+
                 if (k in p1c["B-1"] or k == K_KP_ENTER or k == K_RETURN) and not newgame:
                     if gameobj.version != DVERSION and gameobj.version not in ALLOWED_OLDER_VERSIONS and k != K_KP_ENTER:
                         # You can press Numpad Enter to bypass this check, however it is not recommended unless you know
@@ -1517,7 +1517,7 @@ def Game_SlotMenu(gameobj = None):
                         passwordstage = 1
                         instructions = "You must enter the password for this file to play it."
                         continue
-                        
+
 
                 if newgame:
                     if passwordstage == 0:
@@ -1756,7 +1756,7 @@ def choose_character(screen):
         if needfade:
             fade_from_black(screen)
             needfade = False
- 
+
         calpha = max(0, min(255, calpha+[10,-10][CHAR]))
         screen2 = pygame.Surface((640,480))
         screen2.blit(screen, (0,0))
@@ -1764,7 +1764,7 @@ def choose_character(screen):
         screen.blit(charpic, charrect)
         screen.blit(screen2, charrect, charrect)
         screen2.set_alpha(None)
- 
+
         myflip()
 
         if Chosen: break
@@ -1790,7 +1790,7 @@ def choose_character(screen):
     return ["Pyralis", "Nyx"][CHAR]
 
 def PlaceHolderScreen(screen, fonts, msg = None):
-    """A place holder screen so that going to parts of the game won't crash it (its a stub.)"""
+    """A place holder screen so that going to parts of the game won't crash it (it's a stub.)"""
     nscreen = screen.copy()
     nscreen.fill((0,0,0))
     viewmsg = "Sorry, this feature is not implemented yet! Press a key."
@@ -1799,8 +1799,8 @@ def PlaceHolderScreen(screen, fonts, msg = None):
     # Oh, by the way, TRS stands for Text:Rendered(Surface)
     TRR = TRS.get_rect() # And this one is Text:Rendered(Rect)
     TRR.center = (320, 240)
-    
-    
+
+
     nscreen.blit(TRS, TRR)
     fade_screens(screen, nscreen)
     ge()
@@ -1878,7 +1878,7 @@ def design_character(Game, player):
     Bonuses = [0,0,0,0]
 
     ih2 = 50
-       
+
     ALLOTPHASE = True
     Cursor = 0
     CURS_SURF = pygame.Surface((368, ih2))
@@ -1931,7 +1931,7 @@ def design_character(Game, player):
         # Previous -->
 
         c = 0
-        
+
         for stat in [("Strength"+" (+"+str(Bonuses[0])+")",Bonuses[0]),
                      ("Endurance"+" (+"+str(Bonuses[1])+")",Bonuses[1]),
                      ("Magic"+" (+"+str(Bonuses[2])+")",Bonuses[2]),
@@ -2014,7 +2014,7 @@ def design_character(Game, player):
             CURS_SURF.set_alpha(100)
         else:
             CURS_SURF.set_alpha(60)
-            
+
         screen.blit(CURS_SURF, (240, 170 + Cursor * ih2))
 
         # Blit status message
@@ -2086,7 +2086,7 @@ def design_character(Game, player):
         [
         "This gladius is a two-edged Roman short-sword measuring 70cm in length. It is"
         " quite light and is most appropriate for quicker attacks. The versatility"
-        " of the gladius makes it good for cutting and thrusting." 
+        " of the gladius makes it good for cutting and thrusting."
         " It is forged from bronze. Medium attack strength, quick attacks, poor range.",
 
         "This standard two-handed battle axe reaches 90cm. Its powerfully designed"
@@ -2120,7 +2120,7 @@ def design_character(Game, player):
         ][who == "Nyx"] # Breaks it down into one half or the other depending on char
 
     while WEAPONPHASE:
-       
+
         t = pygame.time.get_ticks()
         tick += 1
 
@@ -2155,7 +2155,7 @@ def design_character(Game, player):
             screen.blit(statsurf, statrect).inflate(20,0)
             c += 1
 
-        
+
         screen.blit(TITLESURF, TR)
 
         c = 0
@@ -2238,7 +2238,7 @@ def design_character(Game, player):
 
 
     return primary_weapon
-        
+
 class snowflake:
     def __init__(self, x, y):
         self.x = x
@@ -2409,7 +2409,7 @@ def seeSpirit(game):
             if vmsg == msg:
                 ready = True
             vmsg = msg[:len(vmsg)+1]
-    
+
         screen.fill((0,0,0))
 
         sks = Fonts[16].render("Press " + namekey("B-1") + " to skip", 1, (255,255,255))
@@ -2418,7 +2418,7 @@ def seeSpirit(game):
         screen.blit(sks, skr)
 
         aura, aura_r = Data.images["white_aura.png"]
-        
+
         aura_r.center = (320,200)
         screen.blit(aura, aura_r)
 
@@ -2447,7 +2447,7 @@ def seeSpirit(game):
             screen.blit(npi, npi_r)
             blacksurf.set_alpha(255-abs(math.sin(tick/10.0)*255))
             screen.blit(blacksurf, npi_r)
-        
+
         myflip()
 
         for event in ge():
@@ -2585,7 +2585,7 @@ def handle_game(Game, loaded = False):
         if Game.location[1] == 0 and Game.KIRI_HEIGHT == 0 and Game.ENDSCENE == 0:
             Game.ENDSCENE = 1
             playerpos = [290, 342]
-        
+
         if Game.world_tut <= 1:
             if Game.location == [1, 0]:
                 worldbox_msg = "This is the map of Ardentryst. This overview of the region shows you all the great locations in the continent. For now, we start in Sempridge. Press " + namekey("B-1") + " to enter Sempridge."
@@ -2643,7 +2643,7 @@ def handle_game(Game, loaded = False):
         if Game.world_tut == 5 and Game.location in [[1,7],[2,8]]:
             worldbox_msg = "Look out! Rumour has is there is a giant forest guardian lurking in this area. Stay strong!"
             worldbox_pos = 220
-        
+
 
 
         # <-
@@ -2655,7 +2655,7 @@ def handle_game(Game, loaded = False):
             overmap = None
             if mapdata[0][0] == "World_Map.png":
                 cloudlayer = True
-              
+
             Ondata = mapdata[0][Game.location[0]]
             if not Game.ENDSCENE or Game.ENDSCENE == 60:
                 playerpos = [Ondata["position"][0], Ondata["position"][1]]
@@ -2710,7 +2710,7 @@ def handle_game(Game, loaded = False):
                 ydif = float(playerpos[1] - oldpos[1]) / 19.0
             playerpos = oldpos[:]
             if cloudlayer:
-                screen.blit(Data.images["earth.png"][0], (0,0))                    
+                screen.blit(Data.images["earth.png"][0], (0,0))
             screen.blit(bgmap, (0,0))
             if cloudlayer:
                 if Game.ENDSCENE:
@@ -2735,7 +2735,7 @@ def handle_game(Game, loaded = False):
             if cloudlayer:
                 screen.blit(Data.images["cloudlayer.png"][0], (-tick%1280,0))
                 screen.blit(Data.images["cloudlayer.png"][0], (-tick%1280-1280,0))
-           
+
             if overmap:
                 screen.blit(overmap, (0,0))
 #            myflip()
@@ -2743,7 +2743,7 @@ def handle_game(Game, loaded = False):
                 playerpos[0] = oldpos[0] + xdif * x
                 playerpos[1] = oldpos[1] + ydif * x
                 if cloudlayer:
-                    screen.blit(Data.images["earth.png"][0], (0,0))                    
+                    screen.blit(Data.images["earth.png"][0], (0,0))
                 screen.blit(bgmap, (0,0))
                 if cloudlayer:
                     if Game.ENDSCENE:
@@ -2752,7 +2752,7 @@ def handle_game(Game, loaded = False):
                         screen.blit(Data.images["kiripan.png"][0], (290, 141 - Game.KIRI_HEIGHT*60 + math.sin(tick/30.0)*6))
                     else:
                         screen.blit(Data.images["kiripan.png"][0], (290, 141))
-                    
+
                     screen.blit(Data.images["maptop.png"][0], (0,0))
                     if not tick%5:
                         snowflakes.append(snowflake(random.randint(275,400),random.randint(285,340)))
@@ -2800,7 +2800,7 @@ def handle_game(Game, loaded = False):
                         if x not in Game.Accessible[Game.location[0]]:
                             if mapdata[Game.location[0]][x]["name"] == loc:
                                 Game.Accessible[Game.location[0]].append(x)
-                
+
         if cloudlayer:
             screen.blit(Data.images["earth.png"][0], (0,0))
         screen.blit(bgmap, (0,0))
@@ -2867,7 +2867,7 @@ def handle_game(Game, loaded = False):
             if Ondata["right"]:
                 for entry in [mapdata[Game.location[0]][1:], mapdata[0][1:]][Game.location[1]==0]:
                     if entry["name"] == Ondata["right"]:
-                        lookin = [Game.location[0], 0][Game.location[1] == 0]                    
+                        lookin = [Game.location[0], 0][Game.location[1] == 0]
                         if [mapdata[Game.location[0]], mapdata[0]][Game.location[1]==0].index(entry) in Game.Accessible[lookin] or "type" in entry and entry["type"]== "EXIT_WORLD":
                             ars, ar = Data.images["nav-arrow-right.png"]
                             ar.center = playerpos[0] + 48, playerpos[1]
@@ -2886,7 +2886,7 @@ def handle_game(Game, loaded = False):
         screen.blit(menutext, menurect)
 
         #place text
-        
+
         placetext = Fonts[2].render(placename, 1, (255, 255, 255))
         placetext_black = Fonts[2].render(placename, 1, (0, 0, 0))
         placerect = placetext.get_rect()
@@ -2965,7 +2965,7 @@ def handle_game(Game, loaded = False):
                     if r:
                         if r == -1:
                             return
-                
+
                 if Game.location[1] == 0:
                     # ENTIRE WORLD MAP STUFF
                     if event.key in p1c["Up"]:
@@ -3050,7 +3050,7 @@ def handle_game(Game, loaded = False):
                             needlevelfade = True
                         elif leveltype == "SHOP":
                             useshop(mapdata[Game.location[0]][Game.location[1]]["name"], Game, player)
-                            soundbox.PlaySong(wmc, -1)                        
+                            soundbox.PlaySong(wmc, -1)
 
                         elif "LEVEL" in leveltype:
                             level.name = realplacename
@@ -3088,7 +3088,7 @@ def handle_game(Game, loaded = False):
                                     Game.world_tut = 5
                                 elif Game.location in [[1,7], [2,8]] and Game.world_tut == 5:
                                     Game.world_tut = 6
-                                    
+
                                 if mapdata[Game.location[0]][Game.location[1]]["nextloc"] and Result[1] != -1:
                                     for x in range(1, len(mapdata[Game.location[0]])):
                                         if mapdata[Game.location[0]][x]["name"] == mapdata[Game.location[0]][Game.location[1]]["nextloc"]:
@@ -3103,7 +3103,7 @@ def handle_game(Game, loaded = False):
                                             # (Snodom and further) Boss killed for first time
                                             Game.Accessible[0].append(Game.location[0]+1)
                                             Game.KIRI_HEIGHT -= 1
-                            soundbox.PlaySong(wmc, -1)    
+                            soundbox.PlaySong(wmc, -1)
 
         if needlevelfade:
             screen.blit(bgmap, (0,0))
@@ -3121,7 +3121,7 @@ def handle_game(Game, loaded = False):
             ge()
             needlevelfade = False
 
-                            
+
         myflip()
 
 def csleep(sec, all=False):
@@ -3213,7 +3213,7 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
         "Back": "",
         "": GAME_NAME + " options menu: select a tab on the left with the mouse."
         }
-    
+
     tabover = {
         0: "Graphics options",
         1: "Sound options",
@@ -3252,7 +3252,7 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
         ]
 
     gameflags = [x+[p_options[[x[0],x[0][1:]][x[0].startswith("?")]]] for x in gameflags]
-        
+
 
     descriptions = {
         "Fullscreen": {
@@ -3322,7 +3322,7 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
         "Off": "No help messages will appear--good for advanced players during speedruns",
         "On": "Help messages will guide beginner players."
         },
-        
+
         }
 
     menu_items = [
@@ -3410,7 +3410,7 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
                     mycol = [(150,150,150), (255,255,255)][k == h_key]
 
                     #key
-                    
+
                     if pkgp[k.keycode]: im2blit = "Keydown.png"; mycol = (0,0,0)
 
                     keypic, keyrect = Data.images[im2blit]
@@ -3418,7 +3418,7 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
                     nscreen.blit(keypic, keyrect)
 
                     #label
-                    
+
                     finallabel = [k.label[:3], "_"][k == s_key]
                     labelsurf = Fonts[13].render(finallabel, 1, mycol)
                     labelrect = labelsurf.get_rect()
@@ -3505,7 +3505,7 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
                         if alterlist[0][0] == "Sound effects":
                             soundbox.set_svol(alterlist[0][2])
                             soundbox.set_mvol(alterlist[1][2])
-                        
+
                     if menurect.collidepoint(mcurs) and menu_select != None:
                         do = optiontabs[int(menu_select)]
 
@@ -3598,7 +3598,7 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
                 Fonts[16].render("Save changes", 1, (c1,c1,c1)),
                 Fonts[16].render("Discard changes", 1, (c2,c2,c2)),
                 Fonts[16].render("Cancel, back to options", 1, (c3,c3,c3))
-                ]                
+                ]
 
             sv = math.sin(sti/10.0)*8
 
@@ -3637,7 +3637,7 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
                 playercontrols = p1c
                 for key in set.keys:
                     playercontrols[key.binding] = [key.keycode]
-            
+
             rvar = g_options, a_options, p_options, p1c
         elif do == "OUT.discard":
             OptionsScreenActive = False
@@ -3703,13 +3703,13 @@ def main():
     SOUND = True
 
     HZ = None
-    
+
     # Handle command parameters
     sri = None
     x = 0
     try:
         if len(sys.argv) > 1:
-            
+
             parameters = sys.argv[1:]
             logfile("Ardentryst parameters: " + str(parameters))
             for option in parameters:
@@ -3756,7 +3756,7 @@ def main():
         "Widescreen": 0,
         "Parallax Backgrounds": 2,
         "Parallax Foregrounds": 2,
-        "Moving BG Objects": 1, 
+        "Moving BG Objects": 1,
         "Rain": 1,
         "Heat Shimmer": 1,
         "Particle Effects": 2,
@@ -3822,7 +3822,7 @@ def main():
         Conch.conchinit(HZ)
     else:
         print("Not starting sound module")
-        
+
     soundbox = Conch.soundbox
 
     soundbox.set_svol(a_options["Sound effects"])
@@ -3897,7 +3897,7 @@ def main():
     for x in range(len(fontlist)):
         Fonts[x] = pygame.font.Font(os.path.join("Fonts", fontlist[x][0]), fontlist[x][1])
 
-    
+
     logfile("Fonts loaded!")
     # End fonts
 
@@ -3989,7 +3989,7 @@ def main():
         svtexts = Fonts[9].render("Ardentryst, by Elle Trudgett: https://www.elletrudgett.com/", 1, (255,255,255))
         svtextr = svtexts.get_rect()
         svtextr.midleft = (5,25)
-        
+
         s1x = 627
         s2x = 647 + slen
 
@@ -4094,7 +4094,7 @@ def main():
                     if music_ms > LIGHTNINGCUES[len(DONELIGHTNINGCUES)][0]:
                         DONELIGHTNINGCUES.append(LIGHTNINGCUES[len(DONELIGHTNINGCUES)])
                         LIGHTNING.append([random.randint(0,1), random.randint(0,640), random.randint(0,30), LIGHTNINGCUES[len(DONELIGHTNINGCUES)-1][1]])
-                
+
             ticker += 1
             sinselect = math.sin(ticker/20.0) * 30
             silalpha += sildir
@@ -4221,11 +4221,11 @@ def main():
 
 
 
-            
+
             # Version text
             vtr = screen.blit(vtextW, (5, 5))
             screen.blit(svtexts, svtextr)
-        
+
             if needfade: fade_from_black(screen); needfade = False
 
             s1x -= 1
@@ -4492,7 +4492,7 @@ def main():
                             InNew = False
                 selected = ""
                 needfade = True
-                    
+
 
             elif selected == "About the game":
                 fade_to_black(screen)
@@ -4525,7 +4525,7 @@ def main():
                     if Back: break
                 selected = ""
                 needfade = True
-                
+
             elif selected == "Code Listing":
                 listing = True
                 fade_to_black(screen)
@@ -4564,7 +4564,7 @@ def main():
                     for e in ge():
                         if e.type == KEYDOWN:
                             listing = False
-                            
+
                     scroll +=inert
                     inert = min(inert + 0.006, 12)
                     if scroll >= len(source):
@@ -4620,7 +4620,7 @@ class Spark:
         self.imrect = self.img.get_rect()
 
         self.alpha = 120
-        
+
     def blit(self, surf):
 
         self.img.set_alpha(self.alpha)
@@ -4660,5 +4660,3 @@ if __name__ == "__main__":
         handleException(e)
     pygame.display.quit()
     pygame.mixer.quit()
-
-

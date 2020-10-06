@@ -23,11 +23,11 @@ import os
 
 class ItemBox:
     def __init__(self):
-        "ItemBox holds all the items, their names, data, frames.. including\
-        wearables in the game. It has to be done somewhere..."
+        """ItemBox holds all the items, their names, data, frames.. including
+        wearables in the game. It has to be done somewhere..."""
 
         citem = "NULL"
-        
+
         self.ITEM = {}
 
         for line in open(os.path.join("Base", "items.db"), 'r').readlines():
@@ -98,7 +98,7 @@ class ItemBox:
 #                print "Wearable image prefix:",self.ITEM[citem].wearable_image_prefix
 
     def Accumulate_Images(self):
-        "Finds out every graphic file that is required in this module and passes back as a list."
+        """Finds out every graphic file that is required in this module and passes back as a list."""
         Graphics = []
         for key in list(self.ITEM.keys()):
             ci = self.ITEM[key]
@@ -133,7 +133,7 @@ class ItemBox:
             item = self.ITEM[i]
             if item.name == name or item.display == name:
                 return item
-    
+
 
 class Item:
     def __init__(self, name):
@@ -174,6 +174,3 @@ class Item:
         # These numbers represent:
         # Image Suffix, Relative X, Relative Y, Rotation
         # Suffix (then .png) will be appended to Prefix to get the right frame.
-
-
-

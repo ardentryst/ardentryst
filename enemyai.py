@@ -25,7 +25,7 @@ def cmp(a, b):
     return (a > b) - (a < b)
 
 def monster_ground_at(x, l, f=1):
-    "Finds the y co-ordinate of the ground at position x. For monsters."
+    """Finds the y co-ordinate of the ground at position x. For monsters."""
     x = int(x)
     LEVEL = l
     ysense = 479
@@ -236,7 +236,7 @@ class pod(Monster):
         self.reward_items = [
             (55, "Nepthene tongue"),
             (1, "Nepthene fibre leggings")]
-                             
+
         self.a_prefix = "rest"
         self.a_frame = 1
         self.barb_pain = 4
@@ -395,7 +395,7 @@ class spider(Monster):
 
             if self.basey == 0: self.basey = self.y
             if self.basex == 0: self.basex = self.x
-            
+
             if self.upjump > 1:
                 self.basey -= self.upjump
                 self.upjump *= 0.9
@@ -483,7 +483,7 @@ class cspider(Monster):
 
             if self.basey == 0: self.basey = self.y
             if self.basex == 0: self.basex = self.x
-            
+
             if self.upjump > 1:
                 self.basey -= self.upjump
                 self.upjump *= 0.9
@@ -604,7 +604,7 @@ class giantjelly(Monster):
                 self.fall = min(5, self.fall + 0.5)
         if mgaf < self.y - 25:
             self.inert = 0
-            
+
         self.inert *= 0.85
 
         if self.hittime:
@@ -695,7 +695,7 @@ class worm(Monster):
                 self.fall = min(5, self.fall + 0.5)
         if mgaf < self.y - 25:
             self.inert = 0
-            
+
         self.inert *= 0.96
 
         if self.hittime:
@@ -747,7 +747,7 @@ class wasp(Monster):
         self.fall = 0
         self.xdash = 0
         self.pause = 0
-        
+
     def step(self):
         if self.isdead:
             self.a_prefix = "dead"
@@ -852,7 +852,7 @@ class giantworm(Monster):
                 self.projectiles.remove(None)
 
         self.FLIPME = self.PLAYERSTATE.x > self.x
-            
+
         self.inert *= 0.99
         newy = monster_ground_at(self.x, self.LEVELSTATE)
         if self.lasty:
@@ -977,7 +977,7 @@ class snowogre(Monster):
                         self.inert = 8
                     else:
                         self.inert = -8
-                
+
 
         if abs(self.inert) < 4 and self.state == 3: self.lunged = False; self.state = 1
 
@@ -997,7 +997,7 @@ class snowogre(Monster):
                 self.fall = min(5, self.fall + 0.5)
         if mgaf < self.y - 25:
             self.inert = 0
-            
+
         self.inert *= 0.98
 
         if self.hittime:
@@ -1165,7 +1165,7 @@ class snowbat(Monster):
             self.inert[0] += 15
         else:
             self.inert[0] -= 15
-        
+
     def collision(self, entity):
         if not self.hittime:
             entity.raw_hit(self.pain * (random.randint(60,140)/100.0))
@@ -1197,7 +1197,7 @@ class boss_radkelu(Monster):
         self.fphase2 = 0
         self.BOSS = True
         self.BOSSFACE = "Radkeluface.png"
-        
+
     def step(self):
         if self.isdead:
             self.ALPHA -= 5
@@ -1215,7 +1215,7 @@ class boss_radkelu(Monster):
             elif self.phase == 1 or self.phase == 6:
                 # Sweep left to right, shooting fireballs from hands
                 self.x = self.cx - math.sin(self.ptick/70.0) * 250
-                
+
                 self.ptick += 1
 
                 if not self.ptick%8:
@@ -1280,7 +1280,7 @@ class boss_radkelu(Monster):
                         self.f1.append([self.x - 32, self.y - 68, -9, 4])
                         self.f1.append([self.x + 28, self.y - 68,  9, 4])
                         self.fphase2 = 0
-                    
+
 
                 self.ptick += 1
                 if self.ptick >= 200:
@@ -1326,7 +1326,7 @@ class boss_radkelu(Monster):
             for x, y, dx, dy in self.f1:
                 self.projectiles.append(["rfireball.png", x, y])
 
-            
+
     def die(self):
         self.isdead = True
         self.SPAWN_GOODIES = True
