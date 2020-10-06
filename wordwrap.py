@@ -22,7 +22,7 @@
 import pygame
 
 def string_to_paragraph(string, font, antialiasbool, colour, size):
-    "Converts a long string to a list of rendered surfaces that don't exceed the size in width."
+    """Converts a long string to a list of rendered surfaces that don't exceed the size in width."""
     try:
         srender = font.render(string, antialiasbool, colour)
     except:
@@ -45,6 +45,6 @@ def string_to_paragraph(string, font, antialiasbool, colour, size):
             surf_list.append(prender)
             string = string[lastspace+1:]
 
-        
+
     else:
         return [srender]

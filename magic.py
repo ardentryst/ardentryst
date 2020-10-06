@@ -23,7 +23,7 @@ import pygame, math, random
 from pygame.locals import *
 
 def ground_at(LEVEL, x, f=False):
-    "Finds the y co-ordinate of the ground at position x."
+    """Finds the y co-ordinate of the ground at position x."""
     ysense = 479
     sensing = True
     while sensing:
@@ -129,7 +129,7 @@ class Fire_1(Spell):
                 self.flame_entities = [0] + self.flame_entities
 
         self.flame_entities = [[x + self.mydir,-40][[x<-35 or x>0,x>35 or x<0][self.unchdir]] for x in self.flame_entities]
-            
+
 
         if self.caster.up_held: self.rise -= 0.05
         if self.caster.down_held: self.rise += 0.05
@@ -184,7 +184,7 @@ class Summon(Spell):
                 relalpha = max(0, min(255, 255 - (abs(variance)) * (255/100.0))) * 0.3
                 raysurf.set_alpha(alphamult * relalpha)
                 surf.blit(raysurf, rayrect.move(ALT_X, ALT_Y))
-                
+
     def stick(self):
         ri = random.randint
         if self.alphamod and self.caster.mbreaktime:
@@ -365,7 +365,7 @@ class Fire_2(Spell):
                 self.flame_entities = [0] + self.flame_entities
 
         self.flame_entities = [[x + self.mydir,-666][[x<-65 or x>0,x>65 or x<0][self.unchdir]] for x in self.flame_entities]
-            
+
 
         if self.caster.up_held: self.rise -= 0.05
         if self.caster.down_held: self.rise += 0.05
@@ -608,8 +608,7 @@ class Summon_Maea(Spell):
             monster.react_to_damage(int(damage))
             self.fvm = monster
             self.fvd = damage
-                
+
 
         while None in self.bombs:
             self.bombs.remove(None)
-

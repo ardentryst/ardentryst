@@ -1,5 +1,5 @@
 To install a system-wide Ardentryst on your linux machine, you need to
-be root (administrator.) You can install a local copy yourself, too.
+be root (administrator). You can install a local copy yourself, too.
 
 Type
 
