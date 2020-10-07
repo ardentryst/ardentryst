@@ -22,7 +22,7 @@
 """
 Conch.py, a music toolkit.
 By Kris Schnee, borrowing heavily from Pygame's docs and examples.
- 
+
 License: Free software; use as you please. Credit appreciated.
 Requirements: Just Python and Pygame. Put all sound and music files
 in subdirectories called "sound" and "music".
@@ -34,15 +34,15 @@ neatly stored in a subdirectory. So, to use this code you just LoadSong for
 whatever songs you like, giving the filename and a nickname, then PlaySong
 to play. Same for sound effects, though behind the scenes the sounds are
 actually loaded once and kept in memory instead of just the paths.
- 
+
 Example:
 j = Jukebox()
 j.LoadSong("battle00.mid","Battle Music")
 j.PlaySong("Battle Music")
 j.StopMusic()
 """
- 
- 
+
+
 import pygame ## Pygame toolkit for sound (and many other things); pygame.org
 import os     ## File system
 import time
@@ -50,7 +50,6 @@ import time
 def conchinit(HZ):
     Hz = HZ
     try:
-    #    pygame.mixer.pre_init(44100,-16,2, 8)
         if Hz == None:
             pygame.mixer.init(44100, -16, 2, 2**10)
         else:
@@ -65,19 +64,19 @@ def conchinit(HZ):
 
 MODULE_NAME = "Conch Sound System (Conch.py)"
 MODULE_VERSION = "2006.8.9"
- 
+
 DEFAULT_MUSIC_EXTENSION = ".mp3"
 DEFAULT_SOUND_EXTENSION = ".wav"
 SOUND_DIRECTORY = "Sounds"
 MUSIC_DIRECTORY = "Music"
- 
+
 JUKEBOX_COMMENTS = False
- 
+
 ## You can change these options to have sound/music muted by default.
 MUSIC_ON = True
 SOUND_ON = True
- 
- 
+
+
 class Jukebox:
     def __init__(self,dir=MUSIC_DIRECTORY):
         """Load and play sounds and music, referenced by name.
@@ -86,36 +85,36 @@ class Jukebox:
         there's not really a need to make another."""
         self.name = "Conch Audio Module"
         self.comments = JUKEBOX_COMMENTS
- 
+
         self.music_on = MUSIC_ON
         self.sound_on = SOUND_ON
- 
+
         self.songs = {} ## eg. {"Battle Theme":"battle01.ogg"}
- 
+
         self.music_directory = MUSIC_DIRECTORY
         self.sound_directory = SOUND_DIRECTORY
- 
+
         self.sounds = {}
 
         self.music_volume = 1
         self.sound_volume = 1
- 
+
     def Comment(self,what):
         if self.comments:
             print("["+self.name+"] " + str(what))
- 
+
     def ToggleMusic(self,on=True):
         self.music_on = on
- 
+
     def ToggleSound(self,on=True):
         self.sound_on = on
- 
+
     def StopMusic(self):
         """Stops music without turning it off; another song may get cued."""
         if not pygame.mixer.get_init():
             return
         pygame.mixer.music.stop()
- 
+
     def QuitMusic(self):
         """Shuts off Pygame's music code.
         This probably isn't necessary."""
@@ -144,7 +143,7 @@ class Jukebox:
             pygame.mixer.music.unpause()
         except:
             pass
- 
+
     def LoadSong(self,songname,key=""):
         """Add name, including directory location, to songlist.
         You can give the song a key, too, for easy reference.
@@ -161,7 +160,7 @@ class Jukebox:
         for x in range(20):
             self.MusicVol(x/20.0)
             time.sleep(0.03)
- 
+
     def PlaySong(self,cue_name,loops = 0, vol= 1.0, interrupt=False):
         """Cue this song. If interrupt, the song will start even
         if one is already playing."""
@@ -177,9 +176,7 @@ class Jukebox:
                         self.MusicVol(1-x/20.0)
                         time.sleep(0.03)
                     pygame.mixer.music.stop()
- 
-#            pygame.mixer.music.stop()
- 
+
             ## Now load and play.
             try:
                 pygame.mixer.music.load(path)
@@ -200,7 +197,7 @@ class Jukebox:
     def set_mvol(self, mvol):
         self.music_volume = mvol/3.0
         self.MusicVol(1)
- 
+
     def FadeoutMusic(self, time):
         if not pygame.mixer.get_init():
             return
@@ -260,13 +257,13 @@ class Jukebox:
     def StopSound(self,cue_name):
         if cue_name in self.sounds:
             self.sounds[ cue_name ].stop()
- 
- 
+
+
 ##### AUTORUN #####
 if __name__ == '__main__':
     ## This code runs if this file is run by itself.
     print("Running "+MODULE_NAME+", v"+MODULE_VERSION+".")
- 
+
 else:
     soundbox = Jukebox() ## You can now just refer to "soundbox" in your own program.
                           # Oh. Now you tell me. I might rewrite some parts to make

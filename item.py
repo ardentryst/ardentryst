@@ -94,8 +94,6 @@ class ItemBox:
                             print("Item loading failed. Check for extra commas.")
                 alter = [self.ITEM[citem].Warrior_Frames, self.ITEM[citem].Mage_Frames][{"W":0, "M":1}[n.upper()]]
                 alter[a] = fs
-#                self.ITEM[citem].wearable_image_prefix = line.split()[1]
-#                print "Wearable image prefix:",self.ITEM[citem].wearable_image_prefix
 
     def Accumulate_Images(self):
         """Finds out every graphic file that is required in this module and passes back as a list."""
@@ -114,11 +112,6 @@ class ItemBox:
                     framefile = ci.wearable_image_prefix + frame[0] + ".png"
                     if framefile not in Graphics:
                         Graphics.append(framefile)
-#            if ci.inv_image:
-#                imagefile = ci.inv_image
-#                if imagefile not in Graphics:
-#                    Graphics.append(imagefile)
-#                    print "a3 ", imagefile
         return Graphics
 
     def ItemInfo(self, name):

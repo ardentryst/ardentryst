@@ -314,8 +314,6 @@ class Ice_2(Ice_1):
                         self.affected.append(monster)
                         self.caster.mp[0] -= 8
             if len(self.affected):
-#                self.affected = reduce(lambda m1,m2:[m1,m2][abs(m2.x-self.caster.x)<abs(m1.x-self.caster.x)], self.affected)
-#                attacks (1) closest enemy ^ ^ ^ ^ ^ ^ ^
                 self.SOUND = "Ice.ogg"
                 self.caster.animation = "Stopped"
                 self.caster.torso_animation = "Cast"
