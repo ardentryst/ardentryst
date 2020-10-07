@@ -97,7 +97,6 @@ def Update_Loading_Old(stage, mytext3, finish = False):
     global finalstage, loading_img, bar_grad, screen, mytext, myfont, mytext2, lb, lbr
     screen.fill((0, 0, 0), pygame.rect.Rect(0, 370, 640, 140))
 
-    #pygame.display.update(updr.inflate(160, 10))
 
     mytext = "Precaching Game Data:"
 

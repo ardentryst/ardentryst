@@ -30,7 +30,7 @@ def parse_scriptfile(sf):
         return []
 
     rules = []
-    
+
     for line in lines_sf:
         line = line.strip()
         if not line: continue
@@ -50,7 +50,6 @@ def parse_scriptfile(sf):
             condition = [x.strip() for x in condition]
 
             event = line[line.index(",")+1:].split(";")
-#            event = line[line.index(",")+1:]
             event = [x.strip().replace("&",";") for x in event]
 
             rule = [condition, event]

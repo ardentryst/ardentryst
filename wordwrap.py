@@ -33,7 +33,6 @@ def string_to_paragraph(string, font, antialiasbool, colour, size):
         while True:
             lastspace = None
             torender = string
-#            prender = font.render(string, antialiasbool, colour)
 
             if font.size(torender)[0] <= size:
                 surf_list.append(font.render(torender, antialiasbool, colour))

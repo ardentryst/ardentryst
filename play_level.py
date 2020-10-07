@@ -93,8 +93,8 @@ def check_quest(PLAYER, GAME):
         "15&40000": "Pro Investor",
         "16%3%hunt": "Relic Hunter",
         "17%10%collect": "Relic Collector",
-        } 
-#    questlist = ["Collector1", "1.20.Slayer.Nepthene", "1.50.Slayer.Forest Arex"]
+        }
+
     questlist = list(questnames.keys())
     questlist.sort()
 
@@ -128,7 +128,7 @@ def check_quest(PLAYER, GAME):
                 PLAYER.quests[q][1] = "I have attained a horizontal speed of " + str(PLAYER.quests[q][2]) + "/" + str(speed)
                 if PLAYER.quests[q][2] >= speed:
                     PLAYER.quests[q][0] = True
-                
+
         if "&" in q:
             # is a money quest
             u, cash = q.split("&")
@@ -143,7 +143,7 @@ def check_quest(PLAYER, GAME):
                     PLAYER.quests[q][0] = True
                 if PLAYER.quests[q][0] == True:
                     PLAYER.quests[q][1] = "I have proved my money saving skills."
-                
+
         if "%" in q:
             # is a money quest
             u, relics, l = q.split("%")
@@ -158,11 +158,11 @@ def check_quest(PLAYER, GAME):
                     PLAYER.quests[q][0] = True
                 if PLAYER.quests[q][0] == True:
                     PLAYER.quests[q][1] = "I have found the required amount of relics."
-                
-                
+
+
 
     return [[questnames[qn], qn] for qn in questlist]
-    
+
 
 def quest_npc(qname):
     global PLAYER, DATA
@@ -178,7 +178,7 @@ def quest_npc(qname):
                 PLAYER.quests["Collector1"][2] += 1
                 happy = "That's great! You've given me " + str(PLAYER.quests["Collector1"][2]) + " so far. "
                 PLAYER.quests["Collector1"][1] = "I've given the stranger " + str(PLAYER.quests["Collector1"][2]) + "/10 Anneludine shells."
-            
+
             if PLAYER.quests["Collector1"][2] < 10:
                 if PLAYER.quests["Collector1"][2] == 9: p = ""
                 else: p = "s"
@@ -204,7 +204,7 @@ def quest_npc(qname):
                 PLAYER.quests["Collector1"][1] = "I gave the last shell to the stranger and he rewarded me for my kindness."
             elif PLAYER.quests["Collector1"][2] == 11:
                 message_box("I think I will just rest here for a while and catch my breath.", ["Stranger.png"])
-                
+
     else:
         # Begin quest?
         if qname == "Collector1":
@@ -233,7 +233,7 @@ def strbon(num):
         return "+0"
     else:
         return str(num)
-    
+
 
 def namekey(keyname, c=None):
     global CONTROLS
@@ -343,7 +343,7 @@ def interface_sound(sound, sb = None):
             "menu-back": "menu-back.ogg",
             "menu-small-select": "menu-small-select.ogg",
             "message": "Msg.ogg"}
-    
+
     mysb.PlaySound(code[sound.lower()])
 
 def message_box(message, face = None, csounds = None):
@@ -352,7 +352,7 @@ def message_box(message, face = None, csounds = None):
     if PLAYDEMO: return
 
     countdown = Hourglass(1)
-    
+
     ntick = pygame.time.get_ticks()
     tick = 0
 
@@ -423,7 +423,6 @@ def message_box(message, face = None, csounds = None):
     MBSURF.blit(DARKSURF, (0,0))
     DARKSURF.set_alpha(150)
 
-#    MBSURF.set_alpha(60)
     finalscreen.blit(MBSURF, MBRECT)
 
     tsurfs = wordwrap.string_to_paragraph(message, FONTS[13], True, (255,255,255), 440)
@@ -488,7 +487,7 @@ def message_box(message, face = None, csounds = None):
             srect.move_ip(-5,-4)
             finalscreen.blit(ssurf, srect)
 
-           
+
         myflip()
 
         el = ge()
@@ -522,7 +521,7 @@ def mywait(lasttick, fps = 40):
     msdelay = int(1000.0/FPS)
     if lasttick == 0: return pygame.time.get_ticks()
     ctick = pygame.time.get_ticks()
-    
+
     CSPEEDARRAY.append(100+int(100 * (lasttick + msdelay - ctick)/float(msdelay)))
     CSPEEDARRAY = CSPEEDARRAY[-10:]
 
@@ -542,7 +541,7 @@ def my_raw_wait(lasttick, fps = 40):
     msdelay = int(1000.0/FPS)
     if lasttick == 0: return pygame.time.get_ticks()
     ctick = pygame.time.get_ticks()
-    
+
     if ctick < lasttick + msdelay:
         pygame.time.wait(lasttick + msdelay - ctick)
         ctick = pygame.time.get_ticks()
@@ -719,7 +718,7 @@ def Monster_Tick(Monsters):
                         PIC_VIEW.pics.append([DATA.Itembox.GetItem(PLAYER.inventory[-1]).inv_image, 400])
                     except:
                         pass
-        
+
         if Monster.SOUND:
             if Monster.SOUNDTIME == 0:
                 pos_sounds = DATA.Monster_Data[Monster.name]["sounds"][Monster.SOUND]
@@ -744,7 +743,7 @@ def Monster_Tick(Monsters):
                 Monster.imgheight = monrect.height
             except:
                 raise Exception("Invalid frame ("+str(Monster.a_frame)+") for animation "+Monster.a_prefix+ " on monster " + Monster.name)
-                
+
             monrect.midbottom = (Monster.x-CAMERA_X, Monster.y)
             if Monster.ALPHA < 255:
                 mbuffer_surf = pygame.Surface((200,200))
@@ -762,7 +761,7 @@ def Monster_Tick(Monsters):
                     p_s, p_r = DATA.images[p[0]]
                     p_r.center = (p[1], p[2])
                     SCREEN.blit(p_s, p_r.move(-CAMERA_X, 0))
-            
+
 
             if len(Monster.numbers) > 0:
                 tempDIGSURF = pygame.Surface((320,100))
@@ -797,7 +796,7 @@ def Tutorial_Tick(THISFLIP):
     global PLAYER, TUTBOX, TUT_ACTIVE, RAIN_HEAVINESS
     TUTBOX.tick()
     TUTBOX.playerat(PLAYER.x)
-    
+
     TutMsg, CPT, TutFace = TUTBOX.poll()
 
     if TutMsg and THISFLIP:
@@ -847,7 +846,7 @@ def Poison_Tick():
     greensurf.set_alpha(60 + math.sin(POISONFACTOR/10) * 25)
 
     SCREEN.blit(greensurf, (0,0))
-    
+
     POISONFACTOR += 0.5
 
     if POISONFACTOR >= 700:
@@ -895,7 +894,7 @@ def Ingame_Menu(data):
     uploadresult = ""
 
     global mmpic, ovscreen
-    
+
     inmenu = True
     playscreen = pygame.Surface((640,480))
     playscreen.blit(screen, (0,0))
@@ -970,7 +969,7 @@ def Ingame_Menu(data):
         player.var_tick(1)
 
         # Blitting
-        
+
         darksurf.set_alpha(min(255, max(0, dsa+math.sin(tick/10.0)*7)))
         menusurf.set_alpha(dsa)
         screen.blit(playscreen, (0,0))
@@ -1027,7 +1026,7 @@ def Ingame_Menu(data):
 
         sbr = sb.get_rect()
         sbr.center = (320, 440)
-        
+
         screen.blit(sbb, sbr.move(1,1))
         screen.blit(sb, sbr)
 
@@ -1095,8 +1094,6 @@ def Ingame_Menu(data):
 
         elif tab == "Inventory":
             if handcol == 0: oldhp = handpos; handpos = 0
-#            screen.fill((0,0,0), Rect(275, 145, 180, 280))
-#            screen.fill((0,0,0), Rect(460, 280, 130, 100))
 
             if handcol == 1:
                 if handpos >= len(invlist):
@@ -1146,7 +1143,7 @@ def Ingame_Menu(data):
                     inv_dict[e.display+" (eq.)"] += 1
                 else:
                     inv_dict[e.display+" (eq.)"] = 1
-                
+
             invlist = list(inv_dict.keys())
             invlist.sort()
 
@@ -1188,7 +1185,7 @@ def Ingame_Menu(data):
                     c = (100,100,100)
                     if item.endswith("(eq.)"):
                         c = (20,100,120)
-                
+
                 i_s = FONTS[13].render(item+["", " x" + str(inv_dict[item])][inv_dict[item] > 1], 1, c)
                 i_r = i_s.get_rect()
                 i_r.midleft = (277, 155 + 16 * y)
@@ -1284,7 +1281,7 @@ def Ingame_Menu(data):
                         eqdirection = 0
                     ply += 1
                     if ply > 5: eqhandpos = None; handcol = 0
-            
+
             y = 0
             sel_item = None
             for line in equipment:
@@ -1310,7 +1307,7 @@ def Ingame_Menu(data):
                 pic = DATA.images[sel_obj.inv_image][0]
                 for key in ["strength", "endurance", "magic", "luck"]:
                     if sel_obj.usage_bonus[key]:
-                        iteminfo.append(key.capitalize() + " " + strbon(sel_obj.usage_bonus[key]))                
+                        iteminfo.append(key.capitalize() + " " + strbon(sel_obj.usage_bonus[key]))
                 if not sel_obj.bow:
                     if sel_obj.protection:
                         iteminfo.append("Resistance " + strbon(sel_obj.protection))
@@ -1405,7 +1402,7 @@ def Ingame_Menu(data):
                     "BACKSPACE": "Bksp",
                     "SPACE": "Spce"
                     }
-                
+
                 for l in range(len(real)):
                     letter = real[l]
                     if letter.isdigit():
@@ -1417,7 +1414,7 @@ def Ingame_Menu(data):
                         elif len(lettercode) > 1:
                             lettercode = lettercode[:4].capitalize()
                         real[l] = lettercode
-                        
+
                 key_s = FONTS[16].render(", ".join(real), 1, (180, 180, 180))
                 key_r = key_s.get_rect()
 
@@ -1525,7 +1522,7 @@ def Ingame_Menu(data):
                         game.savefilename = renameto + ".asf"
                         renaming = False
                         renameto = ""
-                    
+
                 if k in CONTROLS["Down"] and not renaming:
                     mmconfirm = False
                     eqdirection = 1
@@ -1546,7 +1543,7 @@ def Ingame_Menu(data):
                     mmconfirm = False
                     eqdirection = 0
                     if handpos > 0:
-                        interface_sound("menu-item", SOUNDBOX) 
+                        interface_sound("menu-item", SOUNDBOX)
                         handpos -= 1
                         if handcol == 1:
                             invscroll = max(min(invscroll, handpos-2), 0)
@@ -1607,7 +1604,7 @@ def Ingame_Menu(data):
                                     if e.key in CONTROLS["B-1"] + CONTROLS["B-2"] + CONTROLS["B-9"]:
                                         im = False
                             ti = my_raw_wait(ti, 40)
-                                
+
                     if handcol == 0:
                         if menuitems[handpos] == "Abort level":
                             rv = -2
@@ -1644,7 +1641,6 @@ def Ingame_Menu(data):
                                 y += 1
 
                             # Bottom bar
-#                            screen.fill((0,0,0), Rect(0, 450, 640, 30))
                             bottombar_s = FONTS[16].render("Press " + namekey("B-2", CONTROLS) + " to exit and " +\
                                                            namekey("Up", CONTROLS) + " and " +\
                                                            namekey("Down", CONTROLS) + " to scroll", 1, (255,255,255))
@@ -1664,7 +1660,7 @@ def Ingame_Menu(data):
                                         scroll += 1
                                     elif e.key in CONTROLS["Up"]:
                                         scroll = max(0, scroll - 1)
-                            
+
                             ti = my_raw_wait(ti, 40)
                     if tab == "Inventory":
                         if handcol == 2:
@@ -1761,7 +1757,7 @@ def Ingame_Menu(data):
                                         if e.type == KEYDOWN:
                                             if e.key in CONTROLS["B-1"]:
                                                 examining = False
-                                    
+
                                     ti = my_raw_wait(ti, 50)
                                     tick += 1
 
@@ -1773,7 +1769,7 @@ def Ingame_Menu(data):
         if dsa < 230: dsa += 30
         if dsa > 230: dsa = 230
 
-        # Time delay 
+        # Time delay
         ti = my_raw_wait(ti, 40)
         tick += 1
 
@@ -1808,7 +1804,7 @@ def blit_debug_messages(screen):
     sr = ss.get_rect()
     sr.midleft = (PLAYER.x-CAMERA_X-60, PLAYER.y + 20 - vpos)
     screen.blit(ss, sr)
-                 
+
     information = [
         "CPU Capability: " + str(int(sum(CSPEEDARRAY) / 10.0)) + "%",
         "Player Pos Rounded: " + str((int(round(PLAYER.x)),int(round(PLAYER.y)))),
@@ -1878,8 +1874,8 @@ def check_rules(rules):
         "TIME3": "Timegem_time[2]",
         "help": "P_OPTIONS['Help']"
         }
-    
-    
+
+
     for rule in rules:
         if rule[0][0] == "finished": continue
         conditionclause = rule[0][1:]
@@ -1988,7 +1984,7 @@ def NPC_Tick():
 
         if NPC.still:
             if not NPC.clock%6: NPC.frame += 1
-            
+
         # depending on whether they follow the player, change vars accordingly
 
         if NPC.follow_player_fly:
@@ -2062,7 +2058,7 @@ def NPC_Tick():
                 NPC.direction = 0
             else:
                 NPC.direction = 1
-                
+
         else:
             # NPC is a rock.
             pass
@@ -2107,7 +2103,7 @@ def tutskip():
     ti = 0
     c = 0
     myflip()
-        
+
     while Choosing:
         time.sleep(0.02)
         finalscreen.fill(0)
@@ -2135,7 +2131,7 @@ def tutskip():
 def level_intro():
     global LEVEL, SCREEN, DATA, FONTS, PLAYER, GAME, finalscreen, Start_Level_Time
     global CONTROLS, Timegem_time
-    
+
     SCREEN.fill((0,0,0))
 
     name_s = FONTS[14].render(LEVEL.name, 1, (255,255,255))
@@ -2241,7 +2237,7 @@ def Level_Score(enemyperc, treasureperc, seconds, sd):
     level_s = FONTS[17].render(LEVEL.name, 1, (255,255,255))
     level_r = level_s.get_rect()
     level_r.center = (320, 225)
-    
+
     SCREEN.blit(level_s, level_r)
 
     for line in info:
@@ -2254,7 +2250,7 @@ def Level_Score(enemyperc, treasureperc, seconds, sd):
     BACKSCREEN = SCREEN.convert()
 
     y = 0
-    
+
     for line in vinfo2:
         if type(line) == str:
             line_s = FONTS[17].render(line, 1, (255,255,255))
@@ -2378,7 +2374,7 @@ def check_tips():
     for region in regions:
         if region[0] < MOUSEPOS[0] < region[2] and region[1] < MOUSEPOS[1] < region[3]:
             TOOLTIP = region[4]
-        
+
 
 def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, options, tut_active, ovs, pl):
     # Play a level LEVEL on screen SCREEN. Returns a few values to the caller
@@ -2435,7 +2431,7 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
 
     DEBUG = False
     CSPEEDARRAY = [0, 0, 0, 0, 0]
-    
+
     Hurtfade = 0
     ORBS = []
 
@@ -2503,8 +2499,7 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
     SCCOPY.set_colorkey((0,0,0))
     SCCOPY.set_alpha(100)
 
-#    LevelComplete, LCR = DATA.images["LC.png"]
-    
+
     clock = pygame.time.Clock()
     lasttick = 0
 
@@ -2588,8 +2583,6 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
             Objects = PLAYER.obelisk_save[3][:]
             PLAYER.obelisk_save[1].obelisk_save = PLAYER.obelisk_save[:]
             PLAYER = copy.deepcopy(PLAYER.obelisk_save[1])
-#            PLAYER.reset_for_new()
-#            PLAYER.suddendeath = PLAYER.obelisk_save[1].suddendeath
             CAMERA_MIDX = PLAYER.x
             Treasures = PLAYER.obelisk_save[4]
         else:
@@ -2685,7 +2678,6 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
 
         lasttick = mywait(lasttick) # Waiter
         if LEVEL.endpoint > PLAYER.x:
-#            Time_Played = (pygame.time.get_ticks() - Start_Level_Time) / 1000
             Time_Played = int((FRAMEMOD*25)/1000.0)
 
         # Control rain sound
@@ -2720,7 +2712,7 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
                                 exec((CONSOLE_TEXT), globals())
                                 CONSOLE_VIEW.append("%Successful")
                             except Exception as f:
-                                CONSOLE_VIEW.append("#Couldn't evaluate because "+str(e)+".")                                
+                                CONSOLE_VIEW.append("#Couldn't evaluate because "+str(e)+".")
                                 CONSOLE_VIEW.append("#Couldn't execute because " + str(f) + ".")
                         CONSOLE_HIST_STAGE = 0
                         CONSOLE_TEXT = ""
@@ -2779,12 +2771,12 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
             time.sleep(0.01)
 
         CAMERA_SLOWNESS = max(0, 20 - PLAYER.inertia[0])
-        
+
         if PLAYER.direction:
             CAMERA_MIDX = slow_cam(CAMERA_MIDX, PLAYER.x + CAMVIEWDIST, CAMERA_SLOWNESS)
         else:
             CAMERA_MIDX = slow_cam(CAMERA_MIDX, PLAYER.x - CAMVIEWDIST, CAMERA_SLOWNESS)
-            
+
         CAMERA_X = int(CAMERA_MIDX) - 320
         if PLAYER.quaking or PLAYER.bgquake:
             CAMERA_X += random.randint(-12,12)
@@ -2883,7 +2875,7 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
         else:
             OBJECT_CLOSEST = None
 
-            
+
         # If passed endpoint, end
         if LEVEL.endpoint and PLAYER.y < 480:
             if LEVEL.endpoint <= PLAYER.x or PLAYER.iwin:
@@ -2977,7 +2969,6 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
             DEATHFADE += 4
 
             stscreen = pygame.transform.scale(DSSCREEN, (800, 600))
-#            stscreen = pygame.transform.scale(stscreen, (640, 480))
 
             stscreenr = stscreen.get_rect()
             stscreenr.center = (320,240)
@@ -3014,7 +3005,7 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
 
             #battle status window
             FACE_VIEW.blit(finalscreen)
-            
+
             #status bar
             blit_new_status_bar(finalscreen)
             #globe lights
@@ -3078,8 +3069,6 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
         if TUT_ACTIVE:
             Tutorial_Tick(THISFLIP)
             MESSAGE_JUST_DONE += 1 # Another ticker-type object, but controls messagebox sounds
-#        elif PLAYER.ignore_move:
-#            PLAYER.ignore_move = False
 
         # DEBUG MESSAGES are on top of everything!
 
@@ -3217,7 +3206,7 @@ def playlevel(player, level, scripts, screen, data, fonts, soundbox, game, optio
                             IN_GAME = False
                             LEVELSTATUS = "Level_Complete"
                             LEVELPERCENT = -1
-                            
+
                 if event.key == K_BACKQUOTE and DEBUG:
                     pkgm = pygame.key.get_mods()
                     if not pkgm & KMOD_LSHIFT: continue
@@ -3332,7 +3321,7 @@ def blit_new_rain(r_heaviness, rain, v_info):
 
     while None in rain:
         rain.remove(None)
-    
+
     return rain
 
 def toggle(variable):
@@ -3372,7 +3361,7 @@ def blit_combo(surf, alpha):
 
         c = (0, 0, 0)
         comborender = FONTS[14].render(str(PLAYER.dcombo) + " hit" + ["s", ""][PLAYER.dcombo == 1] + "!", 1, c)
-        combonamerender = FONTS[13].render(comboname(PLAYER.dcombo), 1, c) 
+        combonamerender = FONTS[13].render(comboname(PLAYER.dcombo), 1, c)
         damagerender = FONTS[13].render(str(int(PLAYER.dcombodamage)) + " damage", 1, c)
         comborect = comborender.get_rect()
         comborect.midleft = (10, 160)
@@ -3394,7 +3383,7 @@ def blit_combo(surf, alpha):
 
         c = (255, 255, 255)
         comborender = FONTS[14].render(str(PLAYER.dcombo) + " hit" + ["s", ""][PLAYER.dcombo == 1] + "!", 1, c)
-        combonamerender = FONTS[13].render(comboname(PLAYER.dcombo), 1, c) 
+        combonamerender = FONTS[13].render(comboname(PLAYER.dcombo), 1, c)
         damagerender = FONTS[13].render(str(int(PLAYER.dcombodamage)) + " damage", 1, c)
         comborect = comborender.get_rect()
         comborect.midleft = (10, 160)
@@ -3442,7 +3431,7 @@ def blit_new_status_bar(surf):
         surf.blit(auraimg, aurarect)
         surf.blit(screen_rect, aurarect)
         PLAYER.leveljustup -= 1
-     
+
     if GAME.character == "Pyralis":
         surf.blit(DATA.images["Pyralis_Head.png"][0], (90,390))
     else:
@@ -3466,8 +3455,6 @@ def blit_new_status_bar(surf):
     mpsurf.set_colorkey((255,0,255))
     mpsurf.fill((255,0,255))
 
-#    hpixperc = 76 * PLAYER.hp[0] / float(PLAYER.hp[1])
-#    mpixperc = 76 * PLAYER.mp[0] / float(PLAYER.mp[1])
     hpsurf.fill((150,0,0), Rect(0, 19+(76-V_HP), 90, V_HP))
     hpsurf.set_alpha(160)
     mpsurf.fill((0,0,100), Rect(0, 19+(76-V_MP), 90, V_MP))
@@ -3555,7 +3542,7 @@ def status(msg):
     global FONTS, SCREEN
     smsg = FONTS[3].render(str(msg), 1, (255,255,255))
     SCREEN.blit(smsg, (0,0))
-                
+
 def blit_character(PLAYER, CAMERA_X, in_eq = False):
     # Uses PLAYER Character instance to blit in position.
     # if in_eq is true, then we are blitting in the equip menu.
@@ -3606,7 +3593,7 @@ def blit_character(PLAYER, CAMERA_X, in_eq = False):
 
     if not PLAYER.direction:
         PLAYERSURF = pygame.transform.flip(PLAYERSURF, True, False)
-    
+
     Blit_X = int(round((PLAYER.x - CAMERA_X) - TIMGRECT[2] / 2))
     Blit_Y = int(round(PLAYER.y - TIMGRECT[3] + 1))
 
@@ -3678,7 +3665,6 @@ def Make_CL_Surface(surf):
                 surf.blit(DATA.images[LEVEL.tiledef[ct.type]][0], (TX, TY))
 
     CL_Surface = surf
-#    CL_Surface.set_colorkey((255,0,255))
 
 def blit_map_at(CAMERA_X):
     # Blits the map of LEVEL onto the screen, using CAMERA_X to decide what
@@ -3724,7 +3710,7 @@ class PicViewer:
             self.pics[x][1] -= 2
 
         self.pics = [xp for xp in self.pics if xp[1] > 0]
-            
+
 
 class NoticeViewer:
     def __init__(self, font):
@@ -3806,8 +3792,6 @@ class Orb:
         self.y += self.inertia[1]
         self.inertia[1] *= 0.9
 
-#        if self.type == "Health": self.gravitational = Player.hp[0] < Player.hp[1]
-#        if self.type == "Mana": self.gravitational = Player.mp[0] < Player.mp[1]
         if self.type == "Health": self.gravitational = True
         if self.type == "Mana": self.gravitational = True
 
@@ -3951,7 +3935,7 @@ class FaceViewer:
                     if -50 < theta < 50 and ((PLAYER.direction == 1 and PLAYER.x < tgx) or (PLAYER.direction == 0 and PLAYER.x > tgx)):
                         targetpic = "target2.png"
                         self.lockedon = True
-                
+
             if self.target.isdead: self.target = None
             else:
                 ts, tr = DATA.images[targetpic]
@@ -3983,9 +3967,9 @@ class FaceViewer:
 
         hps = self.vhp / float(self.hp[1]) * 255
         hpbs = self.vhp / float(self.hp[1]) * 78
-        
+
         self.facesurf.fill((255-hps,hps,0), pygame.Rect(1,111, hpbs, 8))
-        
+
         self.facesurf.blit(namesurf, namerect)
 
         self.facesurf.fill((255,0,255), nameleftrect)
@@ -4001,7 +3985,7 @@ class FaceViewer:
 
         oldcenter = self.shakesurf.get_rect().move(self.x-1, self.y-1)
         oldcenter = oldcenter.center
-        
+
         if G_OPTIONS["Shake battle window"]:
             rotsurf = pygame.transform.rotate(self.shakesurf, self.shake)
         else:
@@ -4084,12 +4068,12 @@ class Particle:
             self.inertia[0] = random.randint(-350,350)/100.0
             self.inertia[1] = random.randint(-80,0)/10.0
             self.y -= random.randint(0,400)/10.0
-       
+
 
         self.image = pygame.Surface((int(self.size*3), int(self.size*3)))
         self.image.set_colorkey((255,0,255))
         self.image.fill((255,0,255))
-            
+
     def tick(self):
         global PLAYER
         self.lifetime += 1
@@ -4148,7 +4132,7 @@ class Particle:
 
         ao255 = ( self.lifetime / float(self.lifespan) ) * 255
         self.image.set_alpha(255 - ao255)
-        
+
         frame.blit(self.image, sir)
 
 class Arrow:
@@ -4280,7 +4264,7 @@ class Character:
                     # Each quest should have a value of a list, where the first value is Boolean to indicate
                     # if the quest is complete, then a string for the quest log, then any amount of variables
                     # for the quest to use.
-        
+
 
         self.slayer = {}
 
@@ -4497,7 +4481,7 @@ class Character:
                 PLAYER.hp[0] = 0
         except:
             pass
-        
+
         self.speedrecord = max(self.speedrecord, abs(int(40 * self.inertia[0])))
         for key in self.bits:
             if key[0] == "#":
@@ -4663,7 +4647,7 @@ class Character:
 
         if self.mycombotime <= 0: self.combo_string = ""; self.lastmovelen = 1
         toexec = [None, None]
-        
+
         combostr = self.combo_string
         if self.oldcombostr == combostr:
             return
@@ -4675,7 +4659,7 @@ class Character:
             if combostr == move[0] and (len(move[0]) > toexec[1] or toexec[1] is None):
                 toexec = [move[1], len(move[0])]
 
-        
+
         if toexec[0]:
             execfunc = getattr(self, toexec[0])
             execfunc()
@@ -4756,14 +4740,14 @@ class Character:
             # No mana
             Particle_Spawn(self.x, self.y-40, "PART_NOMANA", 15)
             self.nomanaicon = 59
-            
+
     def implosion_1(self):
         self.spells.append(magic.Implosion_1(self, self.x, self.y))
         if self.spells[-1].cant:
             # No mana
             Particle_Spawn(self.x, self.y-40, "PART_NOMANA", 15)
             self.nomanaicon = 59
-            
+
 
     def ice_2(self):
         self.spells.append(magic.Ice_2(self, self.x, self.y))
@@ -4869,7 +4853,7 @@ class Character:
 
         self.prep_attack((self.wearing["Weapon"][3].range, self.wearing["Weapon"][3].minrange), self.wearing["Weapon"][3].damage*1.1)
         self.chainmove = ["spinslash3", 1]
-        
+
     def spinslash3(self):
         self.direction = int(not self.direction)
         self.breaktime = self.wearing["Weapon"][3].time/2
@@ -4880,7 +4864,7 @@ class Character:
 
         self.prep_attack((self.wearing["Weapon"][3].range, self.wearing["Weapon"][3].minrange), self.wearing["Weapon"][3].damage*1.2)
         self.chainmove = ["spinslash4", 1]
-        
+
     def spinslash4(self):
         self.direction = int(not self.direction)
         self.breaktime = self.wearing["Weapon"][3].time/2
@@ -4891,7 +4875,7 @@ class Character:
 
         self.prep_attack((self.wearing["Weapon"][3].range, self.wearing["Weapon"][3].minrange), self.wearing["Weapon"][3].damage*1.3)
         self.ignore_move = False
-        
+
 
     def lungeattack(self):
         self.breaktime = self.wearing["Weapon"][3].time * 1.5
@@ -4986,7 +4970,7 @@ class Character:
             self.numbers.remove(None)
 
     def painsound(self, damage):
-        global SOUNDBOX, A_OPTIONS        
+        global SOUNDBOX, A_OPTIONS
         if max(0, int(round(damage))-self.protection):
             # i.e. it hurts
             if self.classtype:
@@ -5072,14 +5056,14 @@ class Character:
 
         if self.nomanaicon:
             self.nomanaicon -= 1
-        
+
         if self.shooting:
             self.torso_animation = "Attack"
             self.animation = "Stopped"
             self.frame = 0
             self.tframe = 3
             return
-        
+
         if self.animation == "Stopped":
             if not (self.directions[0] and self.directions[1]):
                 self.frame += (self.SPEEDS["Stopped"]) / 1000.0
@@ -5162,7 +5146,7 @@ class Character:
             elif Reactant.name == "cspider":
                 TUTBOX.playeraction("cspider_hit")
                 if Reactant.hp <= 0: TUTBOX.playeraction("cspider_death")
-                
+
             if crit:
                 Particle_Spawn(Reactant.x, self.y - 40, "PART_CRITICAL", 15)
 
@@ -5185,9 +5169,6 @@ class Character:
 
                 if len(Reactants) == 1: return
 
-##             for Reactant in Reactants:
-##                 if Reactant.isdead:
-##                     continue
             FACE_VIEW.appear(DATA.mimages[Reactant.name]["face.png"][0], Reactant, dmg*[1,2][crit])
             FACE_VIEW.update_curhp(Reactant.hp)
             FACE_VIEW.update_maxhp(Reactant.maxhp)
@@ -5215,7 +5196,7 @@ class Character:
     def arrow_tick(self):
         global SCREEN, DATA, CAMERA_X, LEVEL, Monsters
 
-        
+
         for arrow in self.arrows:
             if arrow.x > CAMERA_X + 640 or arrow.x < CAMERA_X - 640:
                 arrow.remove = True
@@ -5265,7 +5246,7 @@ class Character:
                     if "INCLINATION" in lm.collidetype and "LEFT" in lm.collidetype and arrow.x%40 < 25 and not arrow.broken:
                         arrow.broken = True
                         arrow.g = -2
-                
+
             img, rect = DATA.images[arrow.a]
             img = pygame.transform.rotate(img, arrow.r)
             rect = img.get_rect()
@@ -5332,7 +5313,7 @@ class Character:
         if not self.strafing:
             if self.directions[0]: self.direction = 0
             if self.directions[1]: self.direction = 1
-        
+
         # Alter inertia if I am holding down the key
         # Also check for walls before doing this
 
@@ -5436,7 +5417,7 @@ class Character:
         if self.y > 550:
             self.y = 550
             self.hp[0] = 0
-        
+
         if self.mbreaktime: return
         if self.up_held: self.bonus_tick += 1
         if self.jump_able:
@@ -5512,7 +5493,7 @@ class Character:
                     elif type(sb) != bool:
                         if "INCLINATION" in sb.collidetype:
                             self.on_ramp = True
-                        
+
                 except Exception as e:
                     raise
             if self.inertia[1] > 13:
@@ -5529,7 +5510,7 @@ class Character:
         if s1 or s2:
             return True
         return False
-            
+
     def sensebelow(self, y_rel):
         for y in range(20):#CHANGE from 5,8
             for x in range(0,23,3): #MIDCHANGE from 18
@@ -5604,7 +5585,7 @@ class Character:
 
         if type(x_rel) == str:
             if x_rel.isdigit(): xedge = int(x_rel) - 20
-            
+
             elif x_rel == "LEFTEDGE": xedge = -20
             elif x_rel == "RIGHTEDGE": xedge = 19
             elif x_rel == "LEFTEDGEIN": xedge = -7
@@ -5808,7 +5789,7 @@ class Gas:
         self.frame = pygame.Surface((0,0))
 
         self.poison = True
-    
+
     def _giveinfo(self, player):
         self.pstate = player
     def _inscreen(self, CX):
@@ -5838,7 +5819,7 @@ class Gas:
                     self.pstate.Take_Damage(1)
                     self.pstate.bits["poisoned"] = True
                     self.poison = False
-        
+
 
 class Walltorch:
     def __init__(self, tx, ty):
@@ -5933,7 +5914,7 @@ class Firepit:
             SOUNDBOX.PlaySound(self._ambsound, -1)
         else:
             SOUNDBOX.SetSoundVolume(self._ambsound, ambvol)
-        
+
         self.ticker += 1
         HitTick = False
         if self.state:
@@ -5979,7 +5960,7 @@ class Firepit:
 
         while None in self.fireballs:
             self.fireballs.remove(None)
-            
+
     def _activate(self):
         pass
 
@@ -6076,7 +6057,7 @@ class Sign:
         self._wordoffset = (0, -25)
 
         self.x = tx * 40
-        self.y = ty * 40 
+        self.y = ty * 40
 
         self.frame = "Sign.png"
         self.message = ""
@@ -6104,7 +6085,7 @@ class TreasureBox:
         self._activateable = True
 
         self.x = tx * 40 + 20
-        self.y = ty * 40 + 40 
+        self.y = ty * 40 + 40
 
         self.frame = ["Treasure_Closed.png", "Treasure_Open.png"]
         self.state = 0
@@ -6152,7 +6133,7 @@ class TreasureBoxB(TreasureBox):
         self._activateable = True
 
         self.x = tx * 40 + 20
-        self.y = ty * 40 + 40 
+        self.y = ty * 40 + 40
 
         self.frame = ["TreasureB_Closed.png", "TreasureB_Open.png"]
         self.state = 0
@@ -6169,7 +6150,7 @@ class TreasureBoxC(TreasureBox):
         self._activateable = True
 
         self.x = tx * 40 + 20
-        self.y = ty * 40 + 40 
+        self.y = ty * 40 + 40
 
         self.frame = ["TreasureC_Closed.png", "TreasureC_Open.png"]
         self.state = 0
@@ -6183,7 +6164,7 @@ class Butterfly:
         self._infront = True
         self.id = "Butterfly"
         self._activateable = False
-        
+
         self.st = (tx, ty) # Start tile
 
         self.x = tx * 40
@@ -6201,7 +6182,7 @@ class Butterfly:
     def _giveinfo(self, *args):
         return
     def _poll(self):
-        return self.frame[self.dir], self.x, self.y    
+        return self.frame[self.dir], self.x, self.y
     def _tick(self):
         if self.ticker%2:self.ticker += 1;return
         self.dir = [True, False][self.dir]
@@ -6217,7 +6198,7 @@ class ButterflyB(Butterfly):
         self._infront = True
         self.id = "ButterflyB"
         self._activateable = False
-        
+
         self.st = (tx, ty) # Start tile
 
         self.x = tx * 40
@@ -6237,7 +6218,7 @@ class ButterflyC(Butterfly):
         self._infront = True
         self.id = "ButterflyC"
         self._activateable = False
-        
+
         self.st = (tx, ty) # Start tile
 
         self.x = tx * 40

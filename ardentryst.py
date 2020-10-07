@@ -2999,8 +2999,6 @@ def handle_game(Game, loaded = False):
                                         Game.location[0] = mapdata[0].index(entry)
                                         flipme = False
                     elif event.key in p1c["B-1"]:
-#                        if Game.location[0] == 3: PlaceHolderScreen(screen, Fonts, "Congratulations! But Snodom isn't made yet. Thanks for playing!")
- #                       else:
                         if Game.location[0] == 4:
                             Game.story_scene("End", screen, Data, Fonts, soundbox)
                             fade_to_black(screen)
@@ -3163,20 +3161,11 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
         p1c["B-7"][0], p1c["B-8"][0], p1c["B-9"][0], p1c["B-4"][0], p1c["B-5"][0],
         p1c["B-6"][0], p1c["B-1"][0], p1c["B-2"][0], p1c["B-3"][0]
         ]
-#    cont_p2_m = [
-#        p2c["Up"][0], p2c["Down"][0], p2c["Left"][0], p2c["Right"][0]
-#        ]
-#    cont_p2_a = [
-#        p2c["B-7"][0], p2c["B-8"][0], p2c["B-9"][0], p2c["B-4"][0], p2c["B-5"][0],
-#        p2c["B-6"][0], p2c["B-1"][0], p2c["B-2"][0], p2c["B-3"][0]
-#        ]
 
     # controls stuff --- >
 
     kset_movement1 = SET1(cont_p1_m, 410, 275, 1)
     kset_action1 = SET2(cont_p1_a, 250, 245, 1)
-#    kset_movement2 = SET1(cont_p2_m, 410, 350, 2)
-#    kset_action2 = SET2(cont_p2_a, 250, 320, 2)
 
     # < ---
 
@@ -3454,10 +3443,7 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
                 opr.midleft = (200, 100 + x * 20)
                 nscreen.blit(ops, opr)
             yend = 109 + x*20
-#            ynotice = Fonts[13].render("Yellow options will take effect the next time you run " + GAME_NAME, 1, (200, 200, 0))
-#            yrect = ynotice.get_rect()
-#            yrect.bottomright = (635, 455)
-#            nscreen.blit(ynotice, yrect)
+
 
             if s_select != None:
                 oname, oopts, osel = alterlist[int(s_select)]
@@ -3567,7 +3553,7 @@ def OptionsScreen(o_g_options, o_a_options, o_p_options, p1c):
             else:
                 conf_select = 0
             tab = ""
-#            nscreen.fill((0,0,0), Rect(100, 200, 440, 140))
+
             cbit = pygame.Surface((640,100))
             bws = Data.images["BlueWhiffBG.png"][0]
             bws2 = Data.images["BlueWhiffBG2.png"][0]
@@ -3830,13 +3816,6 @@ def main():
 
     logfile("Soundbox successfuly created.")
 
-##     print "Fullscreen: " + str(FULLSCREENBIT)
-##     if FULLSCREENBIT:
-##         print "You can play in a window with:"
-##         print "    python "+sys.argv[0]+" -w"
-##     else:
-##         print "You can play in fullscreen with:"
-##         print "    python "+sys.argv[0]+" -f"
 
     pygame.init()
     pygame.display.init()
@@ -3932,7 +3911,6 @@ def main():
     fade_to_black(screen, 2*SLOW)
     if SLOW: time.sleep(1)
 
-#    soundbox.PlaySong("theme1.ogg", -1)
 
     ELABORATE_INTRO = True
 
@@ -4014,26 +3992,6 @@ def main():
         endpiecebottom = Data.images["MenuEndpiece.png"][0]
         endpiecetop = pygame.transform.flip(Data.images["MenuEndpiece.png"][0],False,True)
         menupiece = Data.images["Menupiece.png"][0]
-
-##         screen.blit(vtextW, (5, 5))
-
-##         eptr = endpiecetop.get_rect()
-##         eptr.midleft = (0, 186)
-##         screen.blit(endpiecetop, eptr)
-
-##         for i in range(len(menu_texts)):
-##             mprect = menupiece.get_rect()
-##             mprect.midleft = (0, 215 + i * 29)
-##             screen.blit(menupiece,mprect)
-
-##             mtrect = menu_texts[i][1].get_rect()
-##             mtrect.midleft = (10, 215 + i * 29)
-##             screen.blit(menu_texts[i][1], mtrect)
-##             screen.blit(menu_texts[i][0], mtrect.move(-1,-1))
-
-##         epbr = endpiecebottom.get_rect()
-##         epbr.midleft = (0, 215 + (i+1) * 29)
-##         screen.blit(endpiecebottom, epbr)
 
 
         old_ms = 0

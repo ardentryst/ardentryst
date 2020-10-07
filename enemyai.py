@@ -562,7 +562,6 @@ class giantjelly(Monster):
         self.hittime = 0
         self.sling = True
         self.slingt = 0
-#        self.imgheight = 40
         self.affected["quake"] = True
 
     def step(self):
@@ -1078,15 +1077,12 @@ class snowogre(Monster):
         self.SOUND = "hurt"
 
     def die(self):
-#        self.SOUND = "hurt"
         self.isdead = True
         self.SPAWN_GOODIES = True
     def damage(self):
         self.a_frame = 1
         self.a_prefix = "walk"
         self.ticker = 0
-#        self.SOUND = "hurt"
-#        self.AFTERSOUND = 6
         self.inert = 0
     def collision(self, entity):
         if self.state == 0: return
@@ -1098,7 +1094,6 @@ class snowogre(Monster):
         if not self.hittime:
             entity.raw_hit(self.pain * (random.randint(60,140)/100.0))
             self.hittime = 20
-#            self.SOUND = "collide"
 
         self.state = 1
         self.lunged = False
