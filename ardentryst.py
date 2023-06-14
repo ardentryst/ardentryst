@@ -1432,7 +1432,10 @@ def Game_SlotMenu(gameobj = None):
                         cursloaded = False
                         incompat = False
                 elif k == K_DELETE and pygame.key.get_mods() & KMOD_SHIFT:
-                    if gamelist[cursor]:
+                    if not len(gamelist):
+                        instructions = "There is no save file to delete."
+                        interface_sound("error")
+                    elif gamelist[cursor]:
                         interface_sound("menu-select")
                         os.remove(os.path.join(SAVEDIRECTORY, "Saves", gamelist[cursor]))
                         gamelist = [x for x in os.listdir(os.path.join(SAVEDIRECTORY, "Saves")) if x.endswith(".asf")]
@@ -1558,7 +1561,8 @@ def Game_SlotMenu(gameobj = None):
         tick += 1
         lasttick = wait_tick(lasttick)
 
-        if not newgame and not cursloaded:
+        # if gamelist is empty, we don't have a save to load
+        if len(gamelist) and not newgame and not cursloaded:
             gameobj = pickle.load(open(os.path.join(SAVEDIRECTORY, "Saves", gamelist[cursor]),"rb"))
             cursloaded = True
 
